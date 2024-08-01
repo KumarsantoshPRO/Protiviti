@@ -1,5 +1,6 @@
 sap.ui.define(
   [
+    "sap/ui/core/library",
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/Label",
@@ -14,8 +15,7 @@ sap.ui.define(
     "sap/ui/core/format/DateFormat",
     "sap/gantt/misc/Format",
     "sap/m/MessageBox",
-    "rmtool1/model/formatter"
-
+    "znewresource/model/formatter",
   ],
 
   /**
@@ -25,11 +25,13 @@ sap.ui.define(
      */
 
   function (
+    library,
     Controller,
     JSONModel,
     Filter,
     FilterOperator,
     Fragment,
+
     MessageItem,
     MessageToast,
     FlattenedDataset,
@@ -47,11 +49,11 @@ sap.ui.define(
     let selectedDate;
 
     ("use strict");
-    return Controller.extend("rmtool1.controller.View1", {
+
+    let SortOrder = library.SortOrder;
+    return Controller.extend("znewresource.controller.View1", {
       formatter: formatter,
       onInit: function () {
-
-
         this.addNewUser();
         var chartModel = new JSONModel({
           baseLoc: true,
@@ -86,17 +88,17 @@ sap.ui.define(
           utilization: "",
           lastupdate: "",
           LastupdUtilDate: "",
-          operator: "01"
+          operator: "01",
         });
         this.getView().setModel(ofilterDataModel, "FilterDataModel");
         var oLastUpdateUtil = new sap.ui.model.json.JSONModel();
-        this.getView().setModel(oLastUpdateUtil, "oUtilDateModel")
+        this.getView().setModel(oLastUpdateUtil, "oUtilDateModel");
 
         this.getDropDownValues("ZEMP_DESIGNATION", "LevelModel");
         this.getDropDownValues("ZPRO_OFFICE_LOCATION", "LocationModel");
         this.getDropDownValues("PAD_CNAME", "ResourceModel");
         this.getDropDownValues("ZEMP_SUB_MODULE", "SubmoduleModel");
-        this.getDropDownValues("ZUTIL_RANGE", "UtilizationModel")
+        this.getDropDownValues("ZUTIL_RANGE", "UtilizationModel");
         this.oGlobalFilter = null;
         var oDateModel = new JSONModel({
           currentDate: this.getFormattedDate(),
@@ -155,14 +157,16 @@ sap.ui.define(
 
               loclev.forEach(
                 (element) => {
-                  loclevel[element.DesinationText] = (loclevel[element.DesinationText] || 0) + 1;
+                  loclevel[element.DesinationText] =
+                    (loclevel[element.DesinationText] || 0) + 1;
                 }
                 // ,{
                 // loclevel,[element.Location] : (loclevel[element.Location]|| 0) + 1
                 // }
               );
               loclev.forEach((element) => {
-                levlevel[element.Location] = (levlevel[element.Location] || 0) + 1;
+                levlevel[element.Location] =
+                  (levlevel[element.Location] || 0) + 1;
               });
 
               var levsloc = [];
@@ -178,13 +182,17 @@ sap.ui.define(
               var desigLevelloc = {
                 desgLevelloc: levsloc,
               };
-              this.getView().setModel(new JSONModel(desigLevelloc), "levlocChart");
+              this.getView().setModel(
+                new JSONModel(desigLevelloc),
+                "levlocChart"
+              );
               this.getView().setModel(new JSONModel(levsloc), "levlocFilter");
 
               const sub = oData.results;
               const subMod = {};
               sub.forEach((element) => {
-                subMod[element.SubModule] = (subMod[element.SubModule] || 0) + 1;
+                subMod[element.SubModule] =
+                  (subMod[element.SubModule] || 0) + 1;
               });
 
               var subs = [];
@@ -205,7 +213,8 @@ sap.ui.define(
               const lev = oData.results;
               const level = {};
               lev.forEach((element) => {
-                level[element.DesinationText] = (level[element.DesinationText] || 0) + 1;
+                level[element.DesinationText] =
+                  (level[element.DesinationText] || 0) + 1;
               });
 
               var levs = [];
@@ -221,20 +230,9 @@ sap.ui.define(
               };
               this.getView().setModel(new JSONModel(desigLevel), "levChart");
               this.getView().setModel(new JSONModel(levs), "levFilter");
-
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
-
-
-
-
-
-
-
 
         var oProjectModel = new JSONModel();
         this.getView().setModel(oProjectModel, "oProjectModel");
@@ -260,13 +258,9 @@ sap.ui.define(
             success: function (oData) {
               var model2 = that.getView().getModel("oGenderModel");
               model2.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
-
 
         var AssignmentFilter = new sap.ui.model.Filter({
           path: "Domname",
@@ -283,12 +277,8 @@ sap.ui.define(
             success: function (oData) {
               var modelAssign = that.getView().getModel("oAssignModel");
               modelAssign.setData(oData.results);
-
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
 
         //Project value help
@@ -298,7 +288,10 @@ sap.ui.define(
           value1: "PROJECT_NAME",
         });
         var oProjectValueHelpModel = new JSONModel();
-        this.getView().setModel(oProjectValueHelpModel, "oProjectValueHelpModel");
+        this.getView().setModel(
+          oProjectValueHelpModel,
+          "oProjectValueHelpModel"
+        );
         this.getOwnerComponent()
           .getModel()
           .read("/es_value_helps", {
@@ -306,11 +299,8 @@ sap.ui.define(
             success: function (oData) {
               var modelprj = that.getView().getModel("oProjectValueHelpModel");
               modelprj.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
 
         //Customer value help
@@ -328,15 +318,9 @@ sap.ui.define(
             success: function (oData) {
               var modelcust = that.getView().getModel("oCustValueHelpModel");
               modelcust.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
-
-
-
 
         //main module
         var oMModuleModel = new JSONModel();
@@ -354,11 +338,8 @@ sap.ui.define(
             success: function (oData) {
               var model2 = that.getView().getModel("oMModuleModel");
               model2.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
 
         //sub-Module
@@ -377,11 +358,8 @@ sap.ui.define(
             success: function (oData) {
               var model2 = that.getView().getModel("oSuModuleModel");
               model2.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
 
         //BaseLocation
@@ -401,11 +379,8 @@ sap.ui.define(
             success: function (oData) {
               var model2 = that.getView().getModel("oDesigModel");
               model2.setData(oData.results);
-
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
 
         this.getOwnerComponent()
@@ -419,9 +394,7 @@ sap.ui.define(
               //table1.setVisible(true);
               // MessageBox.information("oData Read Succesful");
             }.bind(this),
-            error: function (oError) {
-
-            },
+            error: function (oError) {},
           });
         var oModel = new JSONModel();
         var employeeData = [
@@ -511,41 +484,46 @@ sap.ui.define(
 
         //Santosh Kumar: for keybord shortcut actions
         this.setKeyboardShortcuts();
+
+        //Initial sorting
+        var oView = this.getView();
+        var oEmployeeNameColumn = oView.byId("idClEmpName");
+        oView.byId("table").sort(oEmployeeNameColumn, SortOrder.Ascending);
       },
       //Santosh Kumar: Method to handle shortcut
       setKeyboardShortcuts: function () {
         //here in this example, I have attached to 'document', you may attach to specific view or control
-        $(document).keydown($.proxy(function (evt) {
-          switch (evt.keyCode) {
+        $(document).keydown(
+          $.proxy(function (evt) {
+            switch (evt.keyCode) {
+              case 117: //F6 key
+                var control = this.byId("filterbar");
+                control.fireSearch();
 
+                break;
+              case 118: //F7 key
+                var control = this.byId("filterbar");
 
-            case 117: //F6 key
-              var control = this.byId("filterbar");
-              control.fireSearch();
+                control.fireClear();
 
-              break;
-            case 118: //F7 key
-              var control = this.byId("filterbar");
+                break;
 
-              control.fireClear();
+              case 119: //F8 key
+                var control = this.byId("idAvailableResoures");
+                control.firePress();
 
-              break;
+                break;
+              case 120: //F9 key
+                var control = this.byId("idBtnEmployeeDetails");
+                control.firePress();
 
-            case 119: //F8 key
-              var control = this.byId("idAvailableResoures");
-              control.firePress();
+                break;
 
-              break;
-            case 120: //F9 key
-              var control = this.byId("idBtnEmployeeDetails");
-              control.firePress();
-
-              break;
-
-
-            default: break;
-          }
-        }, this));
+              default:
+                break;
+            }
+          }, this)
+        );
       },
       // last updated Date on utilization
       getLastUpdUtilDate: function () {
@@ -553,9 +531,18 @@ sap.ui.define(
           .getModel()
           .read("/es_utilupdated", {
             success: function (oData) {
-              this.getView().getModel("oUtilDateModel").setData(oData.results[0]);
-              var lastupdate = this.getView().getModel("oUtilDateModel").getProperty("/LastUpdateddate");
-              this.getView().getModel("FilterDataModel").setProperty("/LastupdUtilDate", this.formatUtilDate(lastupdate));
+              this.getView()
+                .getModel("oUtilDateModel")
+                .setData(oData.results[0]);
+              var lastupdate = this.getView()
+                .getModel("oUtilDateModel")
+                .getProperty("/LastUpdateddate");
+              this.getView()
+                .getModel("FilterDataModel")
+                .setProperty(
+                  "/LastupdUtilDate",
+                  this.formatUtilDate(lastupdate)
+                );
             }.bind(this),
             error: function (response) {
               console.log(response);
@@ -571,7 +558,12 @@ sap.ui.define(
         var date = new Date(year, month - 1, day); // Note: Month is zero-based in JavaScript Date object
 
         // Format the date to "dd/mm/yyyy" format
-        var formattedDate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+        var formattedDate =
+          ("0" + date.getDate()).slice(-2) +
+          "/" +
+          ("0" + (date.getMonth() + 1)).slice(-2) +
+          "/" +
+          date.getFullYear();
 
         return formattedDate;
       },
@@ -593,7 +585,9 @@ sap.ui.define(
               type: "binary",
             });
             workbook.SheetNames.forEach((sheetName) => {
-              excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+              excelData = XLSX.utils.sheet_to_row_object_array(
+                workbook.Sheets[sheetName]
+              );
               that.uploadExcelDataToServer(excelData);
             });
           };
@@ -622,7 +616,10 @@ sap.ui.define(
             success: function (oData, oResponse) {
               // this.getView().getModel("oFormModel").setData(oResponse);
               this.getEmployeeList();
-              sap.m.MessageToast.show("Excel Data Uploaded SuccesFully", oResponse);
+              sap.m.MessageToast.show(
+                "Excel Data Uploaded SuccesFully",
+                oResponse
+              );
 
               // this.getView().setBusy(false);
               //  this.downloadUploadedExcelWithStatus(oData.UPLOADENAM.results); //commented: Download excel
@@ -631,7 +628,6 @@ sap.ui.define(
             error: function (error) {
               this.getView().setBusy(false);
               sap.m.MessageToast.show("Failed Uploading the Data", error);
-
             }.bind(this),
           });
       },
@@ -641,26 +637,26 @@ sap.ui.define(
         var newOrderArr = new Array();
         for (var i = 0; i < excelDataArr.length; i++) {
           var newObj = {
-            "Pernr": excelDataArr[i].Pernr,
-            "EmpType": excelDataArr[i].EmpType,
-            "FirstName": excelDataArr[i].FirstName,
-            "LastName": excelDataArr[i].LastName,
-            "MiddleName": excelDataArr[i].MiddleName,
-            "EmailId": excelDataArr[i].EmailId,
-            "Gender": excelDataArr[i].Gender,
-            "Doj": new Date(excelDataArr[i].Doj),
-            "MainModule": excelDataArr[i].MainModule,
-            "Designation": excelDataArr[i].Designation,
-            "BaseLocation": excelDataArr[i].BaseLocation,
-          }
+            Pernr: excelDataArr[i].Pernr,
+            EmpType: excelDataArr[i].EmpType,
+            FirstName: excelDataArr[i].FirstName,
+            LastName: excelDataArr[i].LastName,
+            MiddleName: excelDataArr[i].MiddleName,
+            EmailId: excelDataArr[i].EmailId,
+            Gender: excelDataArr[i].Gender,
+            Doj: new Date(excelDataArr[i].Doj),
+            MainModule: excelDataArr[i].MainModule,
+            Designation: excelDataArr[i].Designation,
+            BaseLocation: excelDataArr[i].BaseLocation,
+          };
           newOrderArr.push(newObj);
         }
         var oUploadObject = {};
-        return oUploadObject = {
-          "Pernr": "C",
-          "UPLOAD_EMPLOYEE": newOrderArr,
-          "UPLOAD_MESSAGE": [{}]
-        };
+        return (oUploadObject = {
+          Pernr: "C",
+          UPLOAD_EMPLOYEE: newOrderArr,
+          UPLOAD_MESSAGE: [{}],
+        });
       },
 
       getDropDownValues: function (sDomValue, sModelName) {
@@ -681,7 +677,6 @@ sap.ui.define(
             model.setData(oData.results);
             this.getView().setModel(model, sModelName);
             this.getView().setBusy(false);
-
           }.bind(this),
           error: function (oError) {
             this.getView().setBusy(false);
@@ -703,7 +698,12 @@ sap.ui.define(
             arr.push(oItem.getText());
           });
         } else {
-          arr = arr.filter((item) => !aChangedItems.some((selectedItem) => selectedItem.setText() === item));
+          arr = arr.filter(
+            (item) =>
+              !aChangedItems.some(
+                (selectedItem) => selectedItem.setText() === item
+              )
+          );
           console.log(arr);
         }
       },
@@ -715,21 +715,31 @@ sap.ui.define(
           resourcename: "",
           submodule: "",
           utilization: "",
-          operator: "01"
+          operator: "01",
         });
         this.getView().setModel(ofilterDataModel, "FilterDataModel");
         this.onSearchFilter();
       },
 
       onRestore: function () {
-        for (var i = 0; i < this.getView().byId("idFilterBar").getAllFilterItems().length; i++) {
-          this.getView().byId("idFilterBar").getAllFilterItems()[i].setVisibleInFilterBar(false);
+        for (
+          var i = 0;
+          i < this.getView().byId("idFilterBar").getAllFilterItems().length;
+          i++
+        ) {
+          this.getView()
+            .byId("idFilterBar")
+            .getAllFilterItems()
+            [i].setVisibleInFilterBar(false);
         }
       },
       onSelectionChangeCustName: function (oEvent) {
         var oModel = this.getView().getModel("oFormModel1");
         var CustCode = oEvent.getSource().getSelectedKey();
-        var sPath = oEvent.getSource().getBindingContext("oFormModel1").getPath();
+        var sPath = oEvent
+          .getSource()
+          .getBindingContext("oFormModel1")
+          .getPath();
         var sPath = sPath.replace("/", "");
         var AssignmentTypeNum = oModel.getData()[sPath].AssignmentType;
         var oAssignFilter = new sap.ui.model.Filter({
@@ -743,8 +753,7 @@ sap.ui.define(
           value1: AssignmentTypeNum,
         });
 
-
-        var FilterArray = new Array;
+        var FilterArray = new Array();
         FilterArray.push(oAssignFilter1);
         FilterArray.push(oAssignFilter);
         this.getOwnerComponent()
@@ -753,23 +762,24 @@ sap.ui.define(
             filters: FilterArray,
             success: function (oData) {
               // come back here
-              var JSONModelForProjectCode = new JSONModel(oData.results)
-              sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable").getItems()[this.sPath].setModel(JSONModelForProjectCode, "ArrPrj");
+              var JSONModelForProjectCode = new JSONModel(oData.results);
+              sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable")
+                .getItems()
+                [this.sPath].setModel(JSONModelForProjectCode, "ArrPrj");
             }.bind(this),
             error: function (oError) {
               console.log(oError);
             },
           });
-
-
-
       },
 
       onSelectionChangeProjectName: function (oEvent) {
-
         var oModel = this.getView().getModel("oFormModel1");
         var ProjectCode = oEvent.getSource().getSelectedKey();
-        var sPath = oEvent.getSource().getBindingContext("oFormModel1").getPath();
+        var sPath = oEvent
+          .getSource()
+          .getBindingContext("oFormModel1")
+          .getPath();
         var sPath = sPath.replace("/", "");
         var AssignmentTypeNum = oModel.getData()[sPath].AssignmentType;
         var CustomerCode = oModel.getData()[sPath].CustomerCode;
@@ -790,7 +800,7 @@ sap.ui.define(
           value1: AssignmentTypeNum,
         });
 
-        var FilterArray = new Array;
+        var FilterArray = new Array();
         FilterArray.push(CustomerCodeFilter);
         FilterArray.push(AssignmentTypeNumFilter);
         FilterArray.push(ProjectCodeFilter);
@@ -800,17 +810,17 @@ sap.ui.define(
           .read("/es_project_details", {
             filters: FilterArray,
             success: function (oData) {
-
-
               var tempData = this.getView().getModel("oFormModel1").getData();
 
-              tempData[Number(this.sPath)].ProjectType = oData.results[0].ProjectType;
-              tempData[Number(this.sPath)].ProjectTypeText = oData.results[0].ProjectTypeText;
-              tempData[Number(this.sPath)].StartDate = oData.results[0].ProjectStartDate;
-              tempData[Number(this.sPath)].EndDate = oData.results[0].ProjectEndDate;
+              tempData[Number(this.sPath)].ProjectType =
+                oData.results[0].ProjectType;
+              tempData[Number(this.sPath)].ProjectTypeText =
+                oData.results[0].ProjectTypeText;
+              tempData[Number(this.sPath)].StartDate =
+                oData.results[0].ProjectStartDate;
+              tempData[Number(this.sPath)].EndDate =
+                oData.results[0].ProjectEndDate;
               this.getView().getModel("oFormModel1").refresh();
-
-
             }.bind(this),
             error: function (oError) {
               console.log(oError);
@@ -818,13 +828,18 @@ sap.ui.define(
           });
       },
       onSelectAssignmentType: function (oEvent) {
-
-        this.sPath = oEvent.getSource().getBindingContext("oFormModel1").getPath().replace("/", "");
+        this.sPath = oEvent
+          .getSource()
+          .getBindingContext("oFormModel1")
+          .getPath()
+          .replace("/", "");
         var AssignmentTypeNum = oEvent.getSource().getSelectedKey();
         this.vAssignmentTypeNum = oEvent.getSource().getSelectedKey();
 
         var aNewAssignment = this.getView().getModel("oFormModel1").getData();
-        var aExistingAssignment = this.getView().getModel("oFormModel1").getData();
+        var aExistingAssignment = this.getView()
+          .getModel("oFormModel1")
+          .getData();
 
         // No repeat value validation for AssignmentType
         var flagAssignmentTypeNum = 1;
@@ -864,20 +879,17 @@ sap.ui.define(
             .read("/es_project_details", {
               filters: aFiltersAssignmentType,
               success: function (oData) {
-
-
-
-                var JSONModelForCustName = new JSONModel(oData.results)
-                sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable").getItems()[this.sPath].setModel(JSONModelForCustName, "ArrCust");
+                var JSONModelForCustName = new JSONModel(oData.results);
+                sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable")
+                  .getItems()
+                  [this.sPath].setModel(JSONModelForCustName, "ArrCust");
                 this.getView().setBusy(false);
-
               }.bind(this),
               error: function (oError) {
                 console.log(oError);
               },
             });
         }
-
       },
       //Start: Customer code F4
       onCustCodeF4: function (oEvent) {
@@ -887,48 +899,45 @@ sap.ui.define(
         if (!this._pDialogPrdList) {
           this._pDialogPrdList = sap.ui.core.Fragment.load({
             id: oView.getId(),
-            name: "rmtool1.view.fragments.custCodeF4",
-            controller: this
+            name: "znewresource.view.fragments.custCodeF4",
+            controller: this,
           }).then(function (oDialogList) {
             oView.addDependent(oDialogList);
             return oDialogList;
           });
         }
 
-        this._pDialogPrdList.then(function (oDialogPrdList) {
+        this._pDialogPrdList.then(
+          function (oDialogPrdList) {
+            var aFiltersAssignmentType = [];
 
-          var aFiltersAssignmentType = [];
-
-          var oFilter = new sap.ui.model.Filter({
-            path: "AssignmentType",
-            operator: "EQ",
-            value1: this.vAssignmentTypeNum,
-          });
-
-          aFiltersAssignmentType.push(oFilter);
-          this.getView().setBusy(true);
-          this.getOwnerComponent()
-            .getModel()
-            .read("/es_project_details", {
-              filters: aFiltersAssignmentType,
-              success: function (oData) {
-
-                var JSONModelForCustName = new JSONModel(oData.results)
-                var oTable = this.getView().byId("idCustomerAndListTable");
-                oTable.setModel(JSONModelForCustName, "ArrCustF4");
-                oDialogPrdList.open();
-                this.getView().setBusy(false);
-              }.bind(this),
-              error: function (oError) {
-
-              },
+            var oFilter = new sap.ui.model.Filter({
+              path: "AssignmentType",
+              operator: "EQ",
+              value1: this.vAssignmentTypeNum,
             });
 
+            aFiltersAssignmentType.push(oFilter);
+            this.getView().setBusy(true);
+            this.getOwnerComponent()
+              .getModel()
+              .read("/es_project_details", {
+                filters: aFiltersAssignmentType,
+                success: function (oData) {
+                  var JSONModelForCustName = new JSONModel(oData.results);
+                  var oTable = this.getView().byId("idCustomerAndListTable");
+                  oTable.setModel(JSONModelForCustName, "ArrCustF4");
 
-
-
-
-        }.bind(this));
+                  oTable.setTitle(
+                    "Customer list ( " + oData.results[0].AssignmentText + " )"
+                  );
+                  oDialogPrdList.open();
+                  this.getView().setBusy(false);
+                }.bind(this),
+                error: function (oError) {},
+              });
+          }.bind(this)
+        );
       },
       handleCloseProductDialog: function () {
         if (this._pDialogPrdList) {
@@ -938,21 +947,27 @@ sap.ui.define(
       },
 
       handleConfirmProductDialog: function (oEvent) {
-
-        var selectedIndex = oEvent.getParameter("selectedItems")[0].getBindingContextPath().split('/')[1];
-        var selectedObject = oEvent.getParameter("selectedItems")[0].getModel("ArrCustF4").getData()[selectedIndex];
+        var selectedIndex = oEvent
+          .getParameter("selectedItems")[0]
+          .getBindingContextPath()
+          .split("/")[1];
+        var selectedObject = oEvent
+          .getParameter("selectedItems")[0]
+          .getModel("ArrCustF4")
+          .getData()[selectedIndex];
         var aTableData = this.getView().getModel("oFormModel1").getData();
         aTableData[this.sPath].CustomerName = selectedObject.CustomerName;
         aTableData[this.sPath].CustomerCode = selectedObject.CustomerCode;
         aTableData[this.sPath].ProjectName = selectedObject.ProjectName;
         aTableData[this.sPath].ProjectCode = selectedObject.ProjectCode;
-
+        aTableData[this.sPath].AssignmentCode = selectedObject.AssignmentId;
         aTableData[this.sPath].ProjectType = selectedObject.ProjectType;
         aTableData[this.sPath].ProjectTypeText = selectedObject.ProjectTypeText;
         aTableData[this.sPath].StartDate = selectedObject.ProjectStartDate;
         aTableData[this.sPath].EndDate = selectedObject.ProjectEndDate;
 
-        aTableData[this.sPath].Skill = selectedObject.Skill;
+        aTableData[this.sPath].EmployeeSkillText =
+          selectedObject.EmployeeSkillText;
         // aTableData[this.sPath].Role=   selectedObject.Role ;
         // aTableData[this.sPath].Designation=   selectedObject.Designation ;
         // aTableData[this.sPath].Location=   selectedObject.Location ;
@@ -960,20 +975,23 @@ sap.ui.define(
         this.getView().getModel("oFormModel1").refresh();
       },
       onSuggestionItemSelected: function (oEvent) {
-        debugger;
-        var selectedObject = oEvent.getParameter("selectedRow").getBindingContext("ArrCust").getObject();
+        var selectedObject = oEvent
+          .getParameter("selectedRow")
+          .getBindingContext("ArrCust")
+          .getObject();
         var aTableData = this.getView().getModel("oFormModel1").getData();
         aTableData[this.sPath].CustomerName = selectedObject.CustomerName;
         aTableData[this.sPath].CustomerCode = selectedObject.CustomerCode;
         aTableData[this.sPath].ProjectName = selectedObject.ProjectName;
         aTableData[this.sPath].ProjectCode = selectedObject.ProjectCode;
-
+        aTableData[this.sPath].AssignmentCode = selectedObject.AssignmentId;
         aTableData[this.sPath].ProjectType = selectedObject.ProjectType;
         aTableData[this.sPath].ProjectTypeText = selectedObject.ProjectTypeText;
         aTableData[this.sPath].StartDate = selectedObject.ProjectStartDate;
         aTableData[this.sPath].EndDate = selectedObject.ProjectEndDate;
 
-        aTableData[this.sPath].Skill = selectedObject.Skill;
+        aTableData[this.sPath].EmployeeSkillText =
+          selectedObject.EmployeeSkillText;
         // aTableData[this.sPath].Role=   selectedObject.Role ;
         // aTableData[this.sPath].Designation=   selectedObject.Designation ;
         // aTableData[this.sPath].Location=   selectedObject.Location ;
@@ -986,13 +1004,24 @@ sap.ui.define(
 
         var oFilters = new sap.ui.model.Filter({
           filters: [
-            new sap.ui.model.Filter("CustomerName", sap.ui.model.FilterOperator.Contains, sValue),
-            new sap.ui.model.Filter("ProjectName", sap.ui.model.FilterOperator.Contains, sValue),
-            new sap.ui.model.Filter("ProjectTypeText", sap.ui.model.FilterOperator.Contains, sValue)
+            new sap.ui.model.Filter(
+              "CustomerName",
+              sap.ui.model.FilterOperator.Contains,
+              sValue
+            ),
+            new sap.ui.model.Filter(
+              "ProjectName",
+              sap.ui.model.FilterOperator.Contains,
+              sValue
+            ),
+            new sap.ui.model.Filter(
+              "ProjectTypeText",
+              sap.ui.model.FilterOperator.Contains,
+              sValue
+            ),
           ],
           and: false,
         });
-
 
         var oBinding = oEvent.getSource().getBinding("items");
         oBinding.filter([oFilters]);
@@ -1025,60 +1054,61 @@ sap.ui.define(
           .read("/es_project_code", {
             filters: P,
             success: function (oData) {
-
-
-
-
-
               if (oData.results.length < 1) {
-
-                sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable1").setVisible(false);
+                sap.ui.core.Fragment.byId(
+                  "sampleFrag",
+                  "Assignmenttable1"
+                ).setVisible(false);
               } else {
-                sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable1").setVisible(true);
+                sap.ui.core.Fragment.byId(
+                  "sampleFrag",
+                  "Assignmenttable1"
+                ).setVisible(true);
               }
               var model = this.getView().getModel("oFormModel1");
 
-
               for (var k = 0; k < oData.results.length; k++) {
-                oData.results[k].AllocationPer = oData.results[k].AllocationPer.replace(/^0+/, '');
+                oData.results[k].AllocationPer = oData.results[
+                  k
+                ].AllocationPer.replace(/^0+/, "");
               }
 
               model.setData(oData.results);
-
             }.bind(this),
             error: function (oError) {
               console.log(oError);
             },
           });
-
       },
-      onValueHelpChange: function () {
-
-
-
-      },
+      onValueHelpChange: function () {},
       onRemoveRow: function (oEvent) {
         var oModel = this.getView().getModel("oFormModel1");
         var oTable = oModel.getData();
-        var sPath = oEvent.getSource().getBindingContext("oFormModel1").getPath();
+        var sPath = oEvent
+          .getSource()
+          .getBindingContext("oFormModel1")
+          .getPath();
         var iIndex = parseInt(sPath.split("/")[1]);
-        ;
         oTable.splice(iIndex, 1);
         oModel.refresh();
       },
       onRemoveExistingRow: function (oEvent) {
         var oModel = this.getView().getModel("oFormModel2");
         var oTable = oModel.getData();
-        var sPath = oEvent.getSource().getBindingContext("oFormModel2").getPath();
+        var sPath = oEvent
+          .getSource()
+          .getBindingContext("oFormModel2")
+          .getPath();
         var iIndex = parseInt(sPath.split("/")[1]);
-        ;
         oTable.splice(iIndex, 1);
         oModel.refresh();
       },
       onAddNewRow: function () {
         var oModelNewAssignment = this.getView().getModel("oFormModel1");
 
-        var pernrx = this.getView().getModel("SelectedRowModel").getProperty("/Pernr");
+        var pernrx = this.getView()
+          .getModel("SelectedRowModel")
+          .getProperty("/Pernr");
         var aNewAssignment;
         if (oModelNewAssignment.getData().length === undefined) {
           aNewAssignment = [];
@@ -1087,23 +1117,19 @@ sap.ui.define(
         }
 
         aNewAssignment.push({
-
-          "AssignmentCode": "",
-          "AssignmentType": "",
-          "PernrD": pernrx,
-          "CustomerName": "",
-          "Remarks": "",
-          "ProjectName": "",
-          "ProjectType": "",
-          "AllocationPer": "",
-          "StartDate": "",
-          "EndDate": ""
-        })
-
+          AssignmentCode: "",
+          AssignmentType: "",
+          PernrD: pernrx,
+          CustomerName: "",
+          Remarks: "",
+          ProjectName: "",
+          ProjectType: "",
+          AllocationPer: "",
+          StartDate: "",
+          EndDate: "",
+        });
 
         oModelNewAssignment.setData(aNewAssignment);
-
-
       },
       // NewRow: function (oEvent) {
       //   var oModel = this.getView().getModel("oFormModel1");
@@ -1114,8 +1140,12 @@ sap.ui.define(
 
       onCloseProjectAssignDialog: function (oEvent) {
         this.onSearchFilter();
-        this.getView().getModel("oVisibleModel").setProperty("/dropDownVisible", false);
-        this.getView().getModel("oVisibleModel").setProperty("/textVisible", true);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/dropDownVisible", false);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/textVisible", true);
         this._oFragmentsamp.close();
       },
 
@@ -1123,47 +1153,47 @@ sap.ui.define(
         var oTable = this.getView().byId("table");
         var aData = oTable.getModel("oFormModel").getProperty("/");
         var columnNames = {
-          "Pernr": "Employee Id",
-          "DesinationText": "Designation",
-          "Location": "Base Location",
-          "SecondarySkill": "Secondary Skill",
-          "IndustryExpertise": "IndustryExpertise",
-          "Task": "Task",
-          "TaskText": "Task Text",
-          "Mtd": "MTD",
-          "Ytd": "YTD",
-          "Project01": "Project 01",
-          "Customer01": "Customer 01",
-          "Per01": "Per 01",
-          "Project02": "Project 02",
-          "Customer02": "Customer 02",
-          "Per02": "Per 02",
-          "Project03": "Project 03",
-          "Customer03": "Customer 03",
-          "Per03": "Per 03",
-          "Project04": "Project 04",
-          "Customer04": "Customer 04",
-          "Per04": "Per 04",
-          "Planned01": "Planned 01",
-          "PlannedCust01": "Planner customer 01",
-          "PlannedPer01": "Planned Per 01",
-          "Planned02": "Planned 02",
-          "PlannedCust02": "Planned Customer 02",
-          "PlannedPer02": "Planned Per 02",
-          "Planned03": "Planned 03",
-          "PlannedCust03": "Planned Customer 03",
-          "PlannedPer03": "Planned Per 03",
-          "WeekExecution": "Week Execution",
-          "End01": "End 01",
-          "End02": "End 02",
-          "End03": "End 03",
-          "End04": "End 04",
-          "StartDatePlannned01": "Start Date Planned 01",
-          "EndDatePlanned01": "End Date Planned 01",
-          "StartDatePlannned02": "Start Date Planned 02",
-          "EndDatePlanned02": "End Date Planned 02",
-          "StartDatePlannned03": "Start Date Planned 03",
-          "EndDatePlanned03": "End Date Planned 03",
+          Pernr: "Employee Id",
+          DesinationText: "Designation",
+          Location: "Base Location",
+          SecondarySkill: "Secondary Skill",
+          IndustryExpertise: "IndustryExpertise",
+          Task: "Task",
+          TaskText: "Task Text",
+          Mtd: "MTD",
+          Ytd: "YTD",
+          Project01: "Project 01",
+          Customer01: "Customer 01",
+          Per01: "Per 01",
+          Project02: "Project 02",
+          Customer02: "Customer 02",
+          Per02: "Per 02",
+          Project03: "Project 03",
+          Customer03: "Customer 03",
+          Per03: "Per 03",
+          Project04: "Project 04",
+          Customer04: "Customer 04",
+          Per04: "Per 04",
+          Planned01: "Planned 01",
+          PlannedCust01: "Planner customer 01",
+          PlannedPer01: "Planned Per 01",
+          Planned02: "Planned 02",
+          PlannedCust02: "Planned Customer 02",
+          PlannedPer02: "Planned Per 02",
+          Planned03: "Planned 03",
+          PlannedCust03: "Planned Customer 03",
+          PlannedPer03: "Planned Per 03",
+          WeekExecution: "Week Execution",
+          End01: "End 01",
+          End02: "End 02",
+          End03: "End 03",
+          End04: "End 04",
+          StartDatePlannned01: "Start Date Planned 01",
+          EndDatePlanned01: "End Date Planned 01",
+          StartDatePlannned02: "Start Date Planned 02",
+          EndDatePlanned02: "End Date Planned 02",
+          StartDatePlannned03: "Start Date Planned 03",
+          EndDatePlanned03: "End Date Planned 03",
         };
         var selectedColumns = [
           "Pernr",
@@ -1211,7 +1241,9 @@ sap.ui.define(
           "StartDatePlannned03",
           "EndDatePlanned03",
         ];
-        var csvContent = selectedColumns.map(col => columnNames[col] || col).join(",") + "\n";
+        var csvContent =
+          selectedColumns.map((col) => columnNames[col] || col).join(",") +
+          "\n";
 
         aData.forEach(function (row) {
           csvContent += selectedColumns.map((key) => row[key]).join(",") + "\n";
@@ -1240,18 +1272,14 @@ sap.ui.define(
         var oFormModel = this.getView().getModel("SelectedRowModel");
         var oData = oFormModel.getData();
 
-
-
         this.getOwnerComponent()
           .getModel()
           .create("/et_employee_detailsSet", oData, {
             success: function (oResponse) {
               this.getView().getModel("oFormModel").setData(oResponse);
               this.getView().getModel("oFormModel").refresh(true);
-              this.getView().getModel("SelectedRowModel").refresh(true)
+              this.getView().getModel("SelectedRowModel").refresh(true);
               this.editTableData();
-
-
             }.bind(this),
             error: function (oError) {
               console.log(oError);
@@ -1276,6 +1304,7 @@ sap.ui.define(
 
         var arrProjectUpdate = [];
         var nAllocationPer = 0;
+        debugger;
         for (var i = 0; i < oModelData.length; i++) {
           nAllocationPer = nAllocationPer + Number(oModelData[i].AllocationPer);
           var newObj = {
@@ -1283,7 +1312,7 @@ sap.ui.define(
             CustomerName: "",
             PernrD: oModelData[i].PernrD,
             CustomerName: "",
-            AssignmentCode: "",
+
             AssignmentType: oModelData[i].AssignmentType,
             AssignmentCode: oModelData[i].AssignmentCode,
             Remarks: oModelData[i].Remarks,
@@ -1292,56 +1321,61 @@ sap.ui.define(
             ProjectType: oModelData[i].ProjectType,
             AllocationPer: oModelData[i].AllocationPer,
             StartDate: oModelData[i].StartDate,
-            EndDate: oModelData[i].EndDate
+            EndDate: oModelData[i].EndDate,
           };
 
           arrProjectUpdate.push(newObj);
         }
 
         var oEntry = {
-          Pernr: this.getView().getModel("SelectedRowModel").getProperty("/Pernr"),
+          Pernr: this.getView()
+            .getModel("SelectedRowModel")
+            .getProperty("/Pernr"),
           project_update: arrProjectUpdate,
         };
         var sMsg = 0;
         for (var i = 0; i < oEntry.project_update.length; i++) {
           if (!oEntry.project_update[i].AssignmentType) {
-            sap.m.MessageBox.error("Select  Assignment Type at line Number " + (i + 1));
+            sap.m.MessageBox.error(
+              "Select  Assignment Type at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].CustomerCode) {
-            sap.m.MessageBox.error("Select Customer Name at line Number " + (i + 1));
+          } else if (!oEntry.project_update[i].CustomerCode) {
+            sap.m.MessageBox.error(
+              "Select Customer Name at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].ProjectCode) {
-            sap.m.MessageBox.error("Select Project Name at line Number " + (i + 1));
+          } else if (!oEntry.project_update[i].ProjectCode) {
+            sap.m.MessageBox.error(
+              "Select Project Name at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].ProjectType) {
-            sap.m.MessageBox.error("Select Project Type at line Number " + (i + 1));
+          } else if (!oEntry.project_update[i].ProjectType) {
+            sap.m.MessageBox.error(
+              "Select Project Type at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].StartDate) {
-            sap.m.MessageBox.error("Enter Start Date at line Number " + (i + 1));
+          } else if (!oEntry.project_update[i].StartDate) {
+            sap.m.MessageBox.error(
+              "Enter Start Date at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].EndDate) {
+          } else if (!oEntry.project_update[i].EndDate) {
             sap.m.MessageBox.error("Enter End Date at line Number " + (i + 1));
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-          else if (!oEntry.project_update[i].AllocationPer) {
-            sap.m.MessageBox.error("Enter Allocation % at line Number " + (i + 1));
+          } else if (!oEntry.project_update[i].AllocationPer) {
+            sap.m.MessageBox.error(
+              "Enter Allocation % at line Number " + (i + 1)
+            );
             sMsg = 1;
             i = oEntry.project_update.length;
-          }
-
-
-          else {
+          } else {
             sMsg = 0;
           }
         }
@@ -1349,31 +1383,29 @@ sap.ui.define(
           // if (nAllocationPer >= 100) {
           //   sap.m.MessageBox.error("Total allocation % exceeding limit")
           // } else {
-            //return;
-            this.getOwnerComponent()
-              .getModel()
-              .create("/es_project_update", oEntry, {
-                success: function (data, response) {
+          //return;
+          this.getOwnerComponent()
+            .getModel()
+            .create("/es_project_update", oEntry, {
+              success: function (data, response) {
+                this.getCallTable(oModelData[0].PernrD);
 
-                  this.getCallTable(oModelData[0].PernrD);
-
-                  sap.m.MessageToast.show("Data saved successfully.");
-
-                }.bind(this),
-                error: function (error) {
-
-                  sap.m.MessageToast.show(error);
-
-                },
-              });
-            this.getView().getModel("oFormModel").refresh();
-            this.getView().getModel("oVisibleModel").setProperty("/dropDownVisible", false);
-            this.getView().getModel("oVisibleModel").setProperty("/textVisible", true);
-          }
+                sap.m.MessageToast.show("Data saved successfully.");
+              }.bind(this),
+              error: function (error) {
+                sap.m.MessageToast.show(error);
+              },
+            });
+          this.getView().getModel("oFormModel").refresh();
+          this.getView()
+            .getModel("oVisibleModel")
+            .setProperty("/dropDownVisible", false);
+          this.getView()
+            .getModel("oVisibleModel")
+            .setProperty("/textVisible", true);
+        }
 
         // }
-
-
       },
 
       formatDate: function (dateString) {
@@ -1384,7 +1416,12 @@ sap.ui.define(
         var date = new Date(year, month - 1, day); // Note: Month is zero-based in JavaScript Date object
 
         // Format the date to "dd/mm/yyyy" format
-        var formattedDate = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+        var formattedDate =
+          ("0" + date.getDate()).slice(-2) +
+          "/" +
+          ("0" + (date.getMonth() + 1)).slice(-2) +
+          "/" +
+          date.getFullYear();
 
         return formattedDate;
       },
@@ -1393,7 +1430,9 @@ sap.ui.define(
         var selectedIndices = oTable.getSelectedIndices();
 
         if (selectedIndices.length !== 1) {
-          sap.m.MessageBox.information("Please select one resource to generate the table.");
+          sap.m.MessageBox.information(
+            "Please select one resource to generate the table."
+          );
           return;
         }
 
@@ -1418,19 +1457,22 @@ sap.ui.define(
           .read("/et_employee_detailsSet", {
             filters: Q,
             success: function (oData) {
-              ;
               //  console.log(oData.results);
-              this.getView().getModel("SelectedRowModel").setData(oData.results[0]);
-              var lastupdate = this.getView().getModel("SelectedRowModel").getProperty("/LastUpdateddate");
-              this.getView().getModel("FilterDataModel").setProperty("/lastupdate", this.formatDate(lastupdate));
+              this.getView()
+                .getModel("SelectedRowModel")
+                .setData(oData.results[0]);
+              var lastupdate = this.getView()
+                .getModel("SelectedRowModel")
+                .getProperty("/LastUpdateddate");
+              this.getView()
+                .getModel("FilterDataModel")
+                .setProperty("/lastupdate", this.formatDate(lastupdate));
             }.bind(this),
             error: function (oError) {
               console.log(oError);
             },
           });
         this.getCallTable(pernr);
-
-
 
         // var oFormModel1 = new sap.ui.model.json.JSONModel();
         // this.getView().setModel(oFormModel1, "oFormModel1");
@@ -1452,7 +1494,7 @@ sap.ui.define(
         //       var model = this.getView().getModel("oFormModel1");
         //       model.setData(oData.results);
         //       console.log(oData.results);
-        //       
+        //
         //       this.setProjectType(oData.results);
         //       var table1 = this.getView().byId("Assignmenttable");
         //     }.bind(this),
@@ -1461,14 +1503,13 @@ sap.ui.define(
         //     },
         //   });
 
-
-
-
-
-
         var oView = this.getView();
         if (!this._oFragmentsamp) {
-          this._oFragmentsamp = sap.ui.xmlfragment("sampleFrag", "rmtool1.view.fragments.sample", this);
+          this._oFragmentsamp = sap.ui.xmlfragment(
+            "sampleFrag",
+            "znewresource.view.fragments.sample",
+            this
+          );
           oView.addDependent(this._oFragmentsamp);
         }
         this._oFragmentsamp.open();
@@ -1514,7 +1555,11 @@ sap.ui.define(
 
       isRowEmpty: function (row) {
         for (var key in row) {
-          if (row.hasOwnProperty(key) && row[key] !== "" && row[key] !== undefined) {
+          if (
+            row.hasOwnProperty(key) &&
+            row[key] !== "" &&
+            row[key] !== undefined
+          ) {
             return false;
           }
         }
@@ -1526,42 +1571,42 @@ sap.ui.define(
       },
       // validation for utilization
       validateUtilization: function () {
-        var valid = true
-        var utilData = this.getView().getModel("FilterDataModel").getProperty("/utilization");
+        var valid = true;
+        var utilData = this.getView()
+          .getModel("FilterDataModel")
+          .getProperty("/utilization");
         if (utilData.length > 0) {
           if (parseInt(utilData) > 300) {
             sap.m.MessageBox.error("Eneter Valid Utilization Value");
-            valid = false
-          }
-          else {
+            valid = false;
+          } else {
             valid = true;
           }
         }
-        return valid
+        return valid;
       },
       onOperatorChnage: function () {
         var FilterDataModel = this.getView().getModel("FilterDataModel");
         var value = FilterDataModel.getProperty("/operator");
         var operator = sap.ui.model.FilterOperator.EQ;
         if (value === "01") {
-          operator = sap.ui.model.FilterOperator.EQ
+          operator = sap.ui.model.FilterOperator.EQ;
         } else if (value === "02") {
-          operator = sap.ui.model.FilterOperator.LT
-        }
-        else if (value === "03") {
-          operator = sap.ui.model.FilterOperator.GT
+          operator = sap.ui.model.FilterOperator.LT;
+        } else if (value === "03") {
+          operator = sap.ui.model.FilterOperator.GT;
         } else if (value === "04") {
-          operator = sap.ui.model.FilterOperator.LE
+          operator = sap.ui.model.FilterOperator.LE;
         } else if (value === "05") {
-          operator = sap.ui.model.FilterOperator.GE
+          operator = sap.ui.model.FilterOperator.GE;
         }
-        return operator
+        return operator;
       },
       getEmployeeList: function () {
-        var operator = this.onOperatorChnage()
-        var valid = this.validateUtilization()
+        var operator = this.onOperatorChnage();
+        var valid = this.validateUtilization();
         if (!valid) {
-          return
+          return;
         } else {
           this.getView().setBusy(true);
           var newArrayFilter = new Array();
@@ -1569,7 +1614,9 @@ sap.ui.define(
           var NameFilter = new sap.ui.model.Filter({
             path: "Name",
             operator: sap.ui.model.FilterOperator.EQ,
-            value1: this.getView().getModel("FilterDataModel").getProperty("/resourcename"),
+            value1: this.getView()
+              .getModel("FilterDataModel")
+              .getProperty("/resourcename"),
             // value1: ""
           });
           newArrayFilter.push(NameFilter);
@@ -1577,7 +1624,9 @@ sap.ui.define(
           var DesignationFilter = new sap.ui.model.Filter({
             path: "Designation",
             operator: sap.ui.model.FilterOperator.EQ,
-            value1: this.getView().getModel("FilterDataModel").getProperty("/level"),
+            value1: this.getView()
+              .getModel("FilterDataModel")
+              .getProperty("/level"),
             // value1: ""
           });
           newArrayFilter.push(DesignationFilter);
@@ -1585,7 +1634,9 @@ sap.ui.define(
           var LocationFilter = new sap.ui.model.Filter({
             path: "Location",
             operator: sap.ui.model.FilterOperator.EQ,
-            value1: this.getView().getModel("FilterDataModel").getProperty("/location"),
+            value1: this.getView()
+              .getModel("FilterDataModel")
+              .getProperty("/location"),
             // value1: ""
           });
           newArrayFilter.push(LocationFilter);
@@ -1593,7 +1644,9 @@ sap.ui.define(
           var SubmoduleFilter = new sap.ui.model.Filter({
             path: "SubModule",
             operator: sap.ui.model.FilterOperator.EQ,
-            value1: this.getView().getModel("FilterDataModel").getProperty("/submodule"),
+            value1: this.getView()
+              .getModel("FilterDataModel")
+              .getProperty("/submodule"),
             // value1: ""
           });
           newArrayFilter.push(SubmoduleFilter);
@@ -1602,8 +1655,9 @@ sap.ui.define(
             path: "Mtd",
 
             operator: operator,
-            value1: this.getView().getModel("FilterDataModel").getProperty("/utilization"),
-
+            value1: this.getView()
+              .getModel("FilterDataModel")
+              .getProperty("/utilization"),
           });
           newArrayFilter.push(utilizationFilter);
 
@@ -1614,20 +1668,21 @@ sap.ui.define(
 
               success: function (oData) {
                 for (var i = 0; i < oData.results.length; i++) {
-                  oData.results[i].SecondarySkill = oData.results[i].SecondarySkill.replaceAll(",", ";");
-                  oData.results[i].IndustryExpertise = oData.results[i].IndustryExpertise.replaceAll(",", ";");
+                  oData.results[i].SecondarySkill = oData.results[
+                    i
+                  ].SecondarySkill.replaceAll(",", ";");
+                  oData.results[i].IndustryExpertise = oData.results[
+                    i
+                  ].IndustryExpertise.replaceAll(",", ";");
                 }
 
                 this.getView().getModel("oFormModel").setData(oData.results);
 
                 const arr = oData.results;
 
-
                 this.getView().setBusy(false);
-
               }.bind(this),
               error: function (oError) {
-
                 console.log(oError);
               },
             });
@@ -1684,7 +1739,10 @@ sap.ui.define(
         });
 
         if (!this._settingsDialog) {
-          this._settingsDialog = sap.ui.xmlfragment("rmtool1.view.fragments.SettingsDialog", this);
+          this._settingsDialog = sap.ui.xmlfragment(
+            "znewresource.view.fragments.SettingsDialog",
+            this
+          );
           this.getView().addDependent(this._settingsDialog);
         }
         this._settingsDialog.open();
@@ -1730,7 +1788,9 @@ sap.ui.define(
         };
         if (aSelectedIndices.length > 0) {
           aSelectedIndices.forEach(function (iSelectedIndex) {
-            var oSelectedEmployee = oTable.getContextByIndex(iSelectedIndex).getObject();
+            var oSelectedEmployee = oTable
+              .getContextByIndex(iSelectedIndex)
+              .getObject();
             aSelectedEmployees.push({
               name: oSelectedEmployee.Name,
               location: oSelectedEmployee.Location,
@@ -1742,13 +1802,18 @@ sap.ui.define(
           oModel.setProperty("/selectedEmployees", aSelectedEmployees);
 
           if (!this._gantDialog) {
-            this._gantDialog = sap.ui.xmlfragment("rmtool1.view.fragments.Gant", this);
+            this._gantDialog = sap.ui.xmlfragment(
+              "znewresource.view.fragments.Gant",
+              this
+            );
             this.getView().addDependent(this._gantDialog);
           }
           setTimeout(() => {
             this._gantDialog.open();
           }, 0);
-          aSelectedEmployees.map((item) => childrenArr.push(generateChildren(item)));
+          aSelectedEmployees.map((item) =>
+            childrenArr.push(generateChildren(item))
+          );
         } else {
         }
         console.log(childrenArr);
@@ -1782,7 +1847,10 @@ sap.ui.define(
       onCalendarPress: function () {
         var oView = this.getView();
         if (!this._oCalendar) {
-          this._oCalendar = sap.ui.xmlfragment("rmtool1.view.fragments.calendar", this);
+          this._oCalendar = sap.ui.xmlfragment(
+            "znewresource.view.fragments.calendar",
+            this
+          );
           oView.addDependent(this._oCalendar);
         }
         this._oCalendar.open();
@@ -1796,7 +1864,9 @@ sap.ui.define(
       handleSelectToday: function () {
         var oCalendar = this.byId("calendar");
         oCalendar.removeAllSelectedDates();
-        oCalendar.addSelectedDate(new DateRange({ startDate: UI5Date.getInstance() }));
+        oCalendar.addSelectedDate(
+          new DateRange({ startDate: UI5Date.getInstance() })
+        );
       },
       handleOkCalendar: function () {
         console.log(selectedDate);
@@ -1830,7 +1900,10 @@ sap.ui.define(
 
         var selectedColumns = [];
         for (var columnId in oColumnsData) {
-          if (oColumnsData.hasOwnProperty(columnId) && oColumnsData[columnId] === true) {
+          if (
+            oColumnsData.hasOwnProperty(columnId) &&
+            oColumnsData[columnId] === true
+          ) {
             selectedColumns.push(columnId);
           }
         }
@@ -1853,10 +1926,16 @@ sap.ui.define(
       },
 
       onSelectionProjectType: function (oEvent) {
-        var oSelectedKey = oEvent.getSource().getParent().getId().split("Assignmenttable-rows-row")[1];
+        var oSelectedKey = oEvent
+          .getSource()
+          .getParent()
+          .getId()
+          .split("Assignmenttable-rows-row")[1];
         console.log(oSelectedKey);
         var oModelData = this.getView().getModel("oFormModel1").getData();
-        oModelData[oSelectedKey].ProjectType = oEvent.getSource().getSelectedKey();
+        oModelData[oSelectedKey].ProjectType = oEvent
+          .getSource()
+          .getSelectedKey();
         console.log(oModelData);
 
         // this.getView().getModel("oFormModel1").setData(oModelData);
@@ -1912,10 +1991,8 @@ sap.ui.define(
         this.getOwnerComponent()
           .getModel()
           .read("/ZEMP_MODULE", {
-
             success: function (oData) {
               this.getView().getModel("oNewProjMod").setData(oData.results);
-
             }.bind(this),
             error: function (oError) {
               console.log(oError);
@@ -1940,7 +2017,10 @@ sap.ui.define(
             }.bind(this),
           });
         if (!this._oFragmentUser) {
-          this._oFragmentUser = sap.ui.xmlfragment("rmtool1.view.fragments.adduser", this);
+          this._oFragmentUser = sap.ui.xmlfragment(
+            "znewresource.view.fragments.adduser",
+            this
+          );
           oView.addDependent(this._oFragmentUser);
         }
         this._oFragmentUser.open();
@@ -1949,7 +2029,10 @@ sap.ui.define(
       addNewProject: function () {
         var oView = this.getView();
         if (!this._oFragmentProj) {
-          this._oFragmentProj = sap.ui.xmlfragment("rmtool1.view.fragments.addNewProject", this);
+          this._oFragmentProj = sap.ui.xmlfragment(
+            "znewresource.view.fragments.addNewProject",
+            this
+          );
           oView.addDependent(this._oFragmentProj);
         }
         this._oFragmentProj.open();
@@ -1971,15 +2054,16 @@ sap.ui.define(
           BaseLocation: "",
           // CurrentLocation: "",
           EmailAddress: "",
-          Gender: ""
-
+          Gender: "",
         });
         this.getView().setModel(oNewUserModel, "NewUserModel");
       },
 
       onChangeGender: function (oEvent) {
         var oSelectedItem = oEvent.getSource().getSelectedKey();
-        this.getView().getModel("NewUserModel").setProperty("/Gender", oSelectedItem);
+        this.getView()
+          .getModel("NewUserModel")
+          .setProperty("/Gender", oSelectedItem);
       },
       // onChangeMainModule: function (oEvent) {
       //   var oSelectedItem = oEvent.getSource().getSelectedKey();
@@ -1987,11 +2071,15 @@ sap.ui.define(
       // },
       onChangeSubModule: function (oEvent) {
         var oSelectedItem = oEvent.getSource().getSelectedKey();
-        this.getView().getModel("NewUserModel").setProperty("/SubModuleCode", oSelectedItem);
+        this.getView()
+          .getModel("NewUserModel")
+          .setProperty("/SubModuleCode", oSelectedItem);
       },
       onChangeDesignation: function (oEvent) {
         var oSelectedItem = oEvent.getSource().getSelectedKey();
-        this.getView().getModel("NewUserModel").setProperty("/Designation", oSelectedItem);
+        this.getView()
+          .getModel("NewUserModel")
+          .setProperty("/Designation", oSelectedItem);
       },
 
       onSaveUser: function () {
@@ -2012,12 +2100,10 @@ sap.ui.define(
               this.addNewUser();
               this.onSearch();
               this.getEmployeeList();
-
             }.bind(this),
             error: function (error) {
               sap.m.MessageBox.error("Error adding new employee");
             },
-
           });
 
         // this.getDropDownValues();
@@ -2050,7 +2136,10 @@ sap.ui.define(
         }
 
         if (emptyFields.length > 0) {
-          sap.m.MessageBox.error("Please fill in the following required fields: " + emptyFields.map(this.getFieldDisplayName).join(", "));
+          sap.m.MessageBox.error(
+            "Please fill in the following required fields: " +
+              emptyFields.map(this.getFieldDisplayName).join(", ")
+          );
           return false;
         }
 
@@ -2110,20 +2199,32 @@ sap.ui.define(
         this.getDropDownValues("PAD_CNAME", "ResourceModel");
       },
       openHome: function (oEvent) {
-        open("https://103.162.247.67:4443/sap/bc/ui2/flp?sap-client=100&sap-language=EN#Shell-home");
+        open(
+          "https://103.162.247.67:4443/sap/bc/ui2/flp?sap-client=100&sap-language=EN#Shell-home"
+        );
       },
       onEditEmpDetails: function () {
-        this.getView().getModel("oVisibleModel").setProperty("/textVisible", false);
-        this.getView().getModel("oVisibleModel").setProperty("/dropDownVisible", true);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/textVisible", false);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/dropDownVisible", true);
       },
       onCancelEmp: function () {
         // this.handleMessagePopoverPress();
-        var pernrx = this.getView().getModel("SelectedRowModel").getProperty("/Pernr");
+        var pernrx = this.getView()
+          .getModel("SelectedRowModel")
+          .getProperty("/Pernr");
 
         this.getCallTable(pernrx);
 
-        this.getView().getModel("oVisibleModel").setProperty("/dropDownVisible", false);
-        this.getView().getModel("oVisibleModel").setProperty("/textVisible", true);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/dropDownVisible", false);
+        this.getView()
+          .getModel("oVisibleModel")
+          .setProperty("/textVisible", true);
       },
 
       onListItemPress: function () {
@@ -2152,7 +2253,10 @@ sap.ui.define(
       availResource: function () {
         var oView = this.getView();
         if (!this._oFragmentavail) {
-          this._oFragmentavail = sap.ui.xmlfragment("rmtool1.view.fragments.availRes", this);
+          this._oFragmentavail = sap.ui.xmlfragment(
+            "znewresource.view.fragments.availRes",
+            this
+          );
           oView.addDependent(this._oFragmentavail);
         }
         this._oFragmentavail.open();
@@ -2169,7 +2273,6 @@ sap.ui.define(
             success: function (oData) {
               this.getView().getModel("availResModel").setData(oData.results);
               // this.getView().setBusy(true);
-
             }.bind(this),
             error: function (oError) {
               // this.getView().setBusy(false);
@@ -2195,8 +2298,18 @@ sap.ui.define(
           Ytd: "YTD",
         };
 
-        var selectedColumns = ["Pernr", "Name", "BaseLocation", "DesignationText", "CurrentMtd", "LastMtd", "Ytd"];
-        var csvContent = selectedColumns.map((col) => columnNames[col] || col).join(",") + "\n";
+        var selectedColumns = [
+          "Pernr",
+          "Name",
+          "BaseLocation",
+          "DesignationText",
+          "CurrentMtd",
+          "LastMtd",
+          "Ytd",
+        ];
+        var csvContent =
+          selectedColumns.map((col) => columnNames[col] || col).join(",") +
+          "\n";
 
         aData.forEach(function (row) {
           csvContent += selectedColumns.map((key) => row[key]).join(",") + "\n";

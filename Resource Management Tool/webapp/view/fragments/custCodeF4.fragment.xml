@@ -5,7 +5,7 @@
     <TableSelectDialog
         id="idCustomerAndListTable"
         noDataText="No Data"
-        title="Customer list"
+      title=""
         search="handleSearchProduct"
         confirm="handleConfirmProductDialog"
         cancel="handleCloseProductDialog"
@@ -17,8 +17,8 @@
                 <Text text="{ArrCustF4>CustomerName}" />
                 <Label text="{ArrCustF4>ProjectName}" />
                 <Label text="{ArrCustF4>ProjectTypeText}" />
-                <Text text="{ArrCustF4>Skill}"/>
-                <Text text="{ArrCustF4>Role}"/>
+                <Text text="{ArrCustF4>EmployeeSkillText}"/>
+                <Text text="{ArrCustF4>Role}" visible="false"/>
                 <Text text="{ArrCustF4>Designation}"/>
                 <Text text="{ArrCustF4>Location}"/>
              
@@ -38,14 +38,14 @@
             <Column>
                 <Text text="Skill Set" />
             </Column>
-            <Column>
+            <Column visible="false">
                 <Text text="Role" />
             </Column>
             <Column>
                 <Text text="Designation" />
             </Column>
             <Column>
-                <Text text="Development Location" />
+                <Text text="Location" />
             </Column>
         </columns>
     </TableSelectDialog>

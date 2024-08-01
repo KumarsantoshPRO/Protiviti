@@ -12,7 +12,7 @@
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:f="sap.f"
     xmlns:tnt="sap.tnt"
-    controllerName="rmtool1.controller.View1"
+    controllerName="znewresource.controller.View1"
   
 >
     <!-- <f:ShellBar
@@ -49,11 +49,12 @@
                 selectionMode="MultiToggle"
                 visibleRowCountMode="Interactive"
                 rows="{oFormModel>/}"
-                enableCellFilter="{ui>/cellFilterOn}"
+                enableCellFilter="true"
                 filter="filterPrice"
                 ariaLabelledBy="title"
                 fixedColumnCount="4"
                 columnHeaderHeight="25%"
+              
             >
                 <!-- <extension>
             <m:HeaderContainer backgroundDesign="Solid">
@@ -348,10 +349,13 @@
                 </extension>
                 <columns>
                     <Column
-                        sortProperty="EmployeeNo."
-                        filterProperty="EmployeeNo."
+                    id="idClEmpName"
+                        sortProperty="EmployeeName"
+                        	 
+                        filterProperty="EmployeeName."
                         width="11rem"
                         visible="false"
+                        
                     >
                         <m:Label text="Employee No." />
                         <template>

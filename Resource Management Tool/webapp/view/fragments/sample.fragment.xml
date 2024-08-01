@@ -91,8 +91,8 @@
                         />
                         <Label text="Reporting Manager" />
                         <Input
-                            value=""
-                            editable="{oVisibleModel>/dropDownVisible}"
+                            value="{SelectedRowModel>/ReportingManager}"
+                            editable="false"
                         />
                     </form:content>
                 </form:SimpleForm>
@@ -398,7 +398,7 @@
                                             />
 
                                             <Label
-                                                text="{ArrCust>Skill}"
+                                                text="{ArrCust>EmployeeSkillText}"
                                                 wrapping="true"
                                                 wrappingType="Normal"
                                             />
@@ -433,7 +433,7 @@
                                     />
                                 </ComboBox> -->
                                   <Input
-                                    value="{oFormModel1>Skill}"
+                                    value="{oFormModel1>EmployeeSkillText}"
                                     editable="false"
                                 />
                                 <Input
@@ -454,7 +454,7 @@
                                     editable="{oVisibleModel>/dropDownVisible}"
                                 />
                                 <Input
-                                    value="{path:'oFormModel1>AllocationPer', formatter:'.formatter.removeZero'}"
+                                    value="{path:'oFormModel1>AllocationPer'}"
                                     editable="{oVisibleModel>/dropDownVisible}"
                                 />
                             </cells>

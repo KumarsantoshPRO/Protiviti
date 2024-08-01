@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: rmtool1
+  name: znewresource
 type: application
 framework:
   name: SAPUI5
@@ -32,12 +32,12 @@ server:
         backend:
           - path: /sap/opu/odata/sap/ZPROTIVITI_RMG_DATA_SRV/
             url: http://103.162.247.67:8000
-            client: '100'
+            client: "100"
           - path: /sap
             url: http://103.162.247.67:8000
-            client: '100'
+            client: "100"
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: rmtool1
+        component: znewresource
         ui5Theme: sap_horizon

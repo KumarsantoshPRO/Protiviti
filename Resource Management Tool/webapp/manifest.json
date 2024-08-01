@@ -1,7 +1,7 @@
 {
     "_version": "1.59.0",
     "sap.app": {
-        "id": "rmtool1",
+        "id": "znewresource",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -81,7 +81,7 @@
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
                     
-                    "bundleName": "rmtool1.i18n.i18n"
+                    "bundleName": "znewresource.i18n.i18n"
                 }
             },
             "": {
@@ -104,7 +104,7 @@
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
                 "async": true,
-                "viewPath": "rmtool1.view",
+                "viewPath": "znewresource.view",
                 "controlAggregation": "pages",
                 "controlId": "app",
                 "clearControlAggregation": false
@@ -129,7 +129,7 @@
             }
         },
         "rootView": {
-            "viewName": "rmtool1.view.App",
+            "viewName": "znewresource.view.App",
             "type": "XML",
             "async": true,
             "id": "App"

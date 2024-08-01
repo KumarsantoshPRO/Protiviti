@@ -7,7 +7,7 @@
     xmlns:form="sap.ui.layout.form"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
-    controllerName="rmtool1.controller.View1"
+    controllerName="znewresource.controller.View1"
     displayBlock="true"
 >
     <uxap:ObjectPageLayout showAnchorBarPopover="true" id="objectPageLayout" upperCaseAnchorBar="false">
