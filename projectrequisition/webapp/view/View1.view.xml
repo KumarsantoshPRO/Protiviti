@@ -1,0 +1,141 @@
+<mvc:View xmlns:form="sap.ui.layout.form" controllerName="in.protiviti.newprojectrequisition.controller.View1" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:cbox="sap.m.ComboBox" xmlns:core="sap.ui.core">
+	<Page>
+		<content>
+			<form:SimpleForm layout="ColumnLayout" editable="true" columnsL="2" columnsM="1" columnsXL="-1">
+        <Label text="Customer"/>
+                <ComboBox id="cust1" items="{oFormModel>/}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/CustomerCode}" required="true">
+          <core:ListItem key="{oFormModel>CustomerCode}" text="{oFormModel>CustomerName}"/>
+        </ComboBox>
+        <Label text="Start Date"></Label>
+        <DatePicker
+			value="{ path: 'oDataModel>/StartDate', type: 'sap.ui.model.type.Date', formatOptions: {UTC:true, style: 'medium'} }"
+			enabled="{oViewModel>/showAvailablebtn}"
+			width="60%"
+			id="startdate"
+			valueFormat="MM/dd/yyyy"
+			valueState="{path: 'oViewModel>/startDateState'}"
+			valueStateText="{path: 'oViewModel>/startDateStateText'}"
+			change="onStartDateChange"
+			required="true"
+			>
+			</DatePicker>
+
+			
+		<Label text="Project Location"></Label>
+                <ComboBox id="projloc" items="{oProjectAllocModel>/}" width="60%" change="onChangeProjLoc" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/ProjectLocation}" required="true">
+          <core:ListItem key="{oProjectAllocModel>DomvalueL}" text="{oProjectAllocModel>Ddtext}"/>
+        </ComboBox>
+                <Label text="Project Type"></Label>
+                <ComboBox id="projtype" items="{oProjectTypeModel>/}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/ProjectType}" required="true">
+          <core:ListItem key="{oProjectTypeModel>DomvalueL}" text="{oProjectTypeModel>Ddtext}"/>
+        </ComboBox>
+                <Label text="Billing Type"></Label>
+                <ComboBox id="billing" items="{oBillingModel>/}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/BillingType}" required="true">
+          <core:ListItem key="{oBillingModel>DomvalueL}" text="{oBillingModel>Ddtext}"/>
+        </ComboBox>
+		 <Label text="Engagement Director"></Label>
+				  <ComboBox id="director" items="{path:'DirectorModel>/', length:200}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/EngagmentDirector}" required="true">
+          <core:ListItem key="{DirectorModel>DomvalueL}" text="{DirectorModel>Ddtext}"/>
+        </ComboBox>
+                <Label text="Project Name"></Label>
+        <Input id="projname" value="{oDataModel>/ProjcetName}" width="60%" enabled="{oViewModel>/showAvailablebtn}" required="true"/>
+               
+				<Label text="End Date"></Label>
+        <DatePicker
+			value="{ path: 'oDataModel>/EndDate', type: 'sap.ui.model.type.Date', formatOptions: {UTC:true, style: 'medium'} }"
+			enabled="{oViewModel>/showAvailablebtn}"
+			width="60%"
+			id="enddate"
+			valueFormat="MM/dd/yyyy"
+			valueState="{path: 'oViewModel>/endDateState'}"
+			valueStateText="{path: 'oViewModel>/endDateStateText'}"
+			change="onEndDateChange"
+			required="true"
+			>
+			</DatePicker>
+		<Label text="Execution City"></Label>
+        <Input id="city" width="60%" value="{oDataModel>/ProjectCity}" enabled="{oViewModel>/showAvailablebtn}" required="true"></Input>
+        <Label text="Responsible Manager"></Label>
+        <ComboBox id="manager" showSecondaryValues="true" items="{path:'ResMngModel>/', length:200}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/ResponsibleManager}" required="true">
+          <core:ListItem key="{ResMngModel>DomvalueL}" text="{ResMngModel>Ddtext}" additionalText="{ResMngModel>Desg}"/>
+        </ComboBox>
+        <Label text="CRM Oppurtunity/Project Code"></Label>
+        <Input id="crm" width="60%" value="{oDataModel>/CrmCode}" enabled="{oViewModel>/showAvailablebtn}" required="true"></Input>
+        <Label text="Engagement Manager"></Label>
+		<ComboBox id="engagemanager" showSecondaryValues="true" items="{path:'EngMngModel>/', length:200}" width="60%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oDataModel>/EngagmentManager}" required="true">
+          <core:ListItem key="{EngMngModel>DomvalueL}" text="{EngMngModel>Ddtext}" additionalText="{EngMngModel>Desg}"/>
+        </ComboBox>
+			    </form:SimpleForm>
+			<Table id="myTable" items="{oViewModel>/tableData}" mode="MultiSelect" selectionChange="onSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<ToolbarSpacer/>
+							<Button text="Add Row" press="onAddRow" enabled="{oViewModel>/addRowbtn}"/>
+							<Button text="Delete Row" press="onDeleteRow" enabled="{oViewModel>/deleteRowbtn}"/>
+			  				<Button text="Duplicate Row" press="onDuplicateRow" enabled="{oViewModel>/duplicateRowBtn}"/>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="Skill Set"/>
+					</Column>
+					<Column>
+						<Text text="Role"/>
+					</Column>
+					<Column>
+						<Text text="Designation"/>
+					</Column>
+					<Column>
+						<Text text="Deployment Location"/>
+					</Column>
+					<Column>
+						<Text text="Start Date"/>
+					</Column>
+					<Column>
+						<Text text="End Date"/>
+					</Column>
+					<Column>
+						<Text text="Allocation %"/>
+					</Column>
+					<Column visible="{oViewModel>/resourseName}">
+						<Text text="Resource Name"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ComboBox id="skill" items="{oSkillModel>/}" width="100%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oViewModel>skill}" required="true">
+								<core:ListItem key="{oSkillModel>DomvalueL}" text="{oSkillModel>Ddtext}"/>
+							</ComboBox>
+							<ComboBox id="role" items="{oRoleModel>/}" width="100%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oViewModel>role}" required="true">
+								<core:ListItem key="{oRoleModel>DomvalueL}" text="{oRoleModel>Ddtext}"/>
+							</ComboBox>
+							<ComboBox id="desig" items="{oDesignationModel>/}" width="100%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oViewModel>design}" required="true">
+								<core:ListItem key="{oDesignationModel>DomvalueL}" text="{oDesignationModel>Ddtext}"/>
+							</ComboBox>
+							<ComboBox id="projalloc" items="{oProjectAllocModel>/}" width="100%" enabled="{oViewModel>/showAvailablebtn}" selectedKey="{oViewModel>depLocation}" required="true">
+                                <core:ListItem key="{oProjectAllocModel>DomvalueL}" text="{oProjectAllocModel>Ddtext}"/>
+                            </ComboBox>
+							<DatePicker id="start" value="{ path: 'oViewModel>startDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }" enabled="{oViewModel>/showAvailablebtn}" valueState="{path: 'oViewModel>/startState'}"
+							valueStateText="{path: 'oViewModel>/startStateText'}" change="onStartDateChange1" required="true"/>
+							<DatePicker id="end" value="{ path: 'oViewModel>endDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }" enabled="{oViewModel>/showAvailablebtn}" valueState="{path: 'oViewModel>/endState'}"
+							valueStateText="{path: 'oViewModel>/endStateText'}" change="onEndDateChange1" required="true"/>
+							<Input id="alloc" value="{oViewModel>allocation}" enabled="{oViewModel>/showAvailablebtn}" required="true"></Input>
+              				<Text text="{oViewModel>resourse}" visible="{oViewModel>/resourseName}"></Text>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Bar >
+				<contentRight>
+					<Button text="Create Requisition" press="onCreate" visible="{oViewModel>/create}"></Button>
+				</contentRight>
+			</Bar >
+		</footer>
+	</Page>
+</mvc:View>
