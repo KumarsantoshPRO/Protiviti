@@ -1,0 +1,160 @@
+{
+    "_version": "1.58.0",
+    "sap.app": {
+        "id": "com.zskrep.zskillreport",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.11.3",
+            "toolsId": "2f9941ba-86f7-4024-88cd-cdcb1b16af58"
+        },
+        "dataSources": {
+            "ZPROTIVITI_SKILL_PORTALDETAILS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZPROTIVITI_SKILL_PORTALDETAILS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZSKILL_PORTAL_SRV": {
+                "uri": "/sap/opu/odata/sap/ZPRO_SKILL_PORTAL_DATA_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata1.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "fullWidth": true,
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.121.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.zskrep.zskillreport.i18n.i18n"
+                }
+            },
+            "": {
+                "preload": true,
+                "dataSource": "ZPROTIVITI_SKILL_PORTALDETAILS_SRV",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "Skill_Portal": {
+                "preload": true,
+                "dataSource": "ZSKILL_PORTAL_SRV",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.zskrep.zskillreport.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteskillReport",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetskillReport"
+                    ]
+                },{
+                    "name": "EmployeeSkillPortal",
+                    "pattern": "SkillPortal/{Id}",
+                    "target":[
+                        "SkillPortalScreen"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetskillReport": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "skillReport",
+                    "viewName": "skillReport"
+                },
+                "SkillPortalScreen":{
+                    "viewType": "XML",
+                    "viewName": "EmployeeSkillPortal"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.zskrep.zskillreport.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

@@ -1,0 +1,5 @@
+/* Enter your custom styles here */
+.sapUiSizeCompact .sapMPageWithHeader>section {
+    top: 2.5rem;
+    background-color: white;
+}

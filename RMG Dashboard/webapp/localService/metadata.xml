@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPRO_RMG_DASHBOARD_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="et_dashboard_data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Name"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Header" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ytd" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Year to Date Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mtd" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Month to Date Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Allocation" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Allocation total current week" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bench" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Bench Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Count" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Total Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OpenPosition" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Total Open Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZPRO_RMG_DASHBOARD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="es_location_data" EntityType="ZPRO_RMG_DASHBOARD_SRV.et_dashboard_data" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_employee_level_data" EntityType="ZPRO_RMG_DASHBOARD_SRV.et_dashboard_data" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_module_data" EntityType="ZPRO_RMG_DASHBOARD_SRV.et_dashboard_data" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPRO_RMG_DASHBOARD_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPRO_RMG_DASHBOARD_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

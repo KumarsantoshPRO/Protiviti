@@ -1,0 +1,422 @@
+<mvc:View controllerName="rmg.rmgdashboard.controller.DashBoardView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core"
+    xmlns:card="sap.f.cards" xmlns="sap.m" xmlns:f="sap.f" xmlns:w="sap.ui.integration.widgets" xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:tnt="sap.tnt"
+    xmlns:viz.data="sap.viz.ui5.data" xmlns:fb="sap.ui.comp.filterbar" xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <!-- <f:ShellBar
+			title=""
+			secondTitle=""
+			homeIcon="/css/Protiviti_logo.svg.png"
+			showCopilot="false"
+			showSearch="false"
+			showNotifications="false"
+			showProductSwitcher="false">
+	</f:ShellBar> -->
+
+    <!-- <HeaderContainer backgroundDesign="Solid">
+
+        <core:Icon
+			src="sap-icon://home"
+			class="size10"
+			color="#8875E7"
+			press="handleStethoscopePress" >
+			<core:layoutData>
+				<FlexItemData growFactor="1" />
+			</core:layoutData>
+		</core:Icon>
+
+        <ImageContent  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Protiviti_logo.svg/220px-Protiviti_logo.svg.png" >
+        </ImageContent>
+
+        
+    </HeaderContainer> -->
+
+    <Page id="page" title="{i18n>title}">
+        <content>
+            
+            <IconTabBar id="idIconTabChart" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter text="Resource Details" key="rmdetails">
+                        
+                        <grid:CSSGrid id="grid1"
+                            gridTemplateColumns="1fr 1fr 1fr"
+                            gridTemplateRows="200px 400px 0px"
+                            gridGap=".5rem">
+                            
+                            <VBox alignItems="Baseline">
+                            <Label text="Chart Type"></Label>
+                            <ComboBox placeholder="Select Chart Type" showButton="true"  change="setChartType" selectedKey="{selectionModel>/selectedKey}" >
+                            <items>
+                            <core:Item key="0" text="Donut"></core:Item>
+                            <core:Item key="1" text="Bar"></core:Item>
+                            </items>
+                            </ComboBox>
+                                <layoutData>
+                                    <grid:GridItemLayoutData gridRow="1 / 4"/>
+                                </layoutData> 
+                                <w:Card manifest="{LocationDetailsModel>/donut}" visible="{selectionModel>/donutvisible}" action="onLocationDonutPress"
+                                   width="600px" height="600px">
+                                    <w:layoutData>
+                                        <!-- <f:GridContainerItemLayoutData rows="5" columns="5" /> -->
+                                    
+                                    </w:layoutData>
+                                    
+                                </w:Card>
+                                <w:Card manifest="{LocationDetailsBar>/stackedColumn}" visible="{selectionModel>/barvisible}" action="onLocationDonutPress"
+                                   width="750px" height="600px">
+                                    <w:layoutData>
+                                        <!-- <f:GridContainerItemLayoutData rows="5" columns="5" /> -->
+                                    
+                                    </w:layoutData>
+                                    
+                                </w:Card>
+                            </VBox>
+
+                            <VBox>
+                                 <layoutData>
+                                    <grid:GridItemLayoutData gridRow = "1 / 2" />
+                                </layoutData>
+                                <w:Card manifest="{listData>/ListNumericHeader}" height="180px">
+                                    <w:layoutData>
+                                        <!-- <f:GridContainerItemLayoutData rows="4" columns="3" /> -->
+                                    </w:layoutData>
+                                </w:Card>
+                                
+                            </VBox>
+                            
+                            <VBox>
+                                <layoutData>
+                                    <!-- <grid:GridItemLayoutData gridRow = "1 / 2" /> -->
+                                </layoutData>
+                                <w:Card manifest="{barChart>/donut}" height="180px" id="card1">
+                                    <w:layoutData>
+                                        <!-- <f:GridContainerItemLayoutData rows="3" columns="5" /> -->
+                                    </w:layoutData>
+                                </w:Card>
+                            </VBox>
+                            
+                          
+                            <VBox>
+                                <layoutData>
+                                    <grid:GridItemLayoutData gridColumn="2 / 4"/>
+                                </layoutData>
+
+                                <f:Card height="550px" >
+                            <f:header>
+                                <card:NumericHeader
+                                    details=""
+                                    number="{TotEmpModel>/totalEmpcount}"
+                                    scale=""
+                                    state="Neutral"
+                                    statusText=""
+                                    subtitle=""
+                                    title="Total Strength"
+                                    trend="None"
+                                    unitOfMeasurement=""                                 >
+                                    <card:sideIndicators>
+                                        
+                                    </card:sideIndicators>
+                                    <card:toolbar>
+                                        <Button text="View Details" textDirection="Inherit" type="Default" press="onViewDetailsOfModule"/>
+                                        
+                                    </card:toolbar>
+                                </card:NumericHeader>
+
+
+                            </f:header>
+
+                            <f:content>
+                                <viz:VizFrame id="idVizFrame5" height="100%" width="100%" vizType='stacked_column'
+                                    vizProperties="{plotArea: { drawingEffect: 'glossy', colorPalette: ['#d43015', '#11d215']}, 
+                                        title:{ text:'Report based on Designations'},dataLabel:{visible:true,showTotal:true}}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset data="{BenchStrengthChart>/}">
+                                            <viz.data:dimensions >
+                                                <viz.data:DimensionDefinition name="Designation" value="{BenchStrengthChart>Name}" dataType="string"/>
+                                            </viz.data:dimensions>
+                                            
+                                            <viz.data:measures>
+                                                
+                                                <viz.data:MeasureDefinition name="Bench" value="{BenchStrengthChart>Bench}" />
+                                                <viz.data:MeasureDefinition name="Count"  value="{BenchStrengthChart>Count}"/>
+
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+        
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem uid="valueAxis"  type="Measure" values="Bench"/>
+                                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Count"/>
+                                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Designation" />
+                                    </viz:feeds>
+                                
+                                </viz:VizFrame>                            
+                            </f:content>
+                            </f:Card>
+
+
+
+                            </VBox>
+
+                            </grid:CSSGrid>
+
+
+                    <!-- <grid:CSSGrid id="grid2" height="600px"
+                            gridTemplateColumns="1fr 1fr 1fr 1fr"
+                            gridTemplateRows="600px"
+                            gridGap=".5rem"> -->
+
+                        <!-- <VBox>
+                            <layoutData>
+                                <grid:GridItemLayoutData gridColumn="1 / 3"/>
+                            </layoutData> 
+                            <f:Card height="400px">
+                                <f:header>
+                                    <card:Header title="MTD Chart"/>
+                                </f:header>
+                            <f:content>
+                               
+                                <viz:VizFrame id = "idVizFrameMTD" uiConfig = "{applicationSet:'fiori'}"
+                                    height = '100%' width = "100%" vizType = 'heatmap' 
+                                    vizProperties="{plotArea: { drawingEffect: 'glossy', colorPalette: ['#d43015', '#11d215']}, 
+                                                            title:{ text:'Report based on Module'}, 
+                                                            dataLabel:{visible:true, showTotal:true}}"> 
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset data = "{demo>/Resources}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition name = "Module"
+                                                    value = "{demo>Module}" />
+                                                <viz.data:DimensionDefinition name = "Month"
+                                                    value = "{demo>Month}" />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition name = "MTD"
+                                                    value = "{demo>MTD}" />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem uid = "color" type = "Measure"
+                                            values = "MTD" />
+                                        <viz.feeds:FeedItem uid = "categoryAxis" type = "Dimension"
+                                            values = "Month" />    
+                                        <viz.feeds:FeedItem uid = "categoryAxis2" type = "Dimension"
+                                            values = "Module" />
+                                    </viz:feeds>
+                                    <viz:dependents>
+                                        <viz:Popover id="idPopOver"></viz:Popover>
+                                    </viz:dependents>
+                                </viz:VizFrame>
+
+
+    
+                            </f:content>
+                            </f:Card>
+                        </VBox>  -->
+
+
+                         <!-- <VBox>
+                            <layoutData>
+                                <grid:GridItemLayoutData gridColumn="3 / 5"/>
+                            </layoutData> 
+
+                            <f:Card height="400px">
+                            <f:header>
+                                <card:Header title="Resources chart"/>
+                            </f:header>
+
+                            <f:content>
+                                <viz:VizFrame id="idVizFrame1" height="100%" width="100%" vizType='stacked_column'
+                                    vizProperties="{plotArea: { drawingEffect: 'glossy', colorPalette: ['#d43015', '#11d215']}, title:{ text:'Data analysis through Reports'},dataLabel:{visible:true,showTotal:true}}">
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset data="{demo>/Resources}">
+                                            <viz.data:dimensions >
+                                                <viz.data:DimensionDefinition name="Date" value="{demo>Date}" dataType="string"/>
+                                            </viz.data:dimensions>
+                                            
+                                            <viz.data:measures color="FFA500">
+                                                
+                                                <viz.data:MeasureDefinition name="Count" value="{demo>Count}" />
+                                                <viz.data:MeasureDefinition name="Bench"  value="{demo>Bench}"/>
+
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+        
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem uid="valueAxis"  type="Measure" values="Bench"/>
+                                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Count"/>
+                                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Date" />
+                                    </viz:feeds>
+                                
+                                </viz:VizFrame>                            
+                            </f:content>
+                            </f:Card>
+                        </VBox> -->
+                    
+                    
+             <!-- </grid:CSSGrid>        -->
+                    
+                    
+                    
+                    <!-- <grid:CSSGrid id="grid2" height="600px"
+                            gridTemplateColumns="1fr 1fr 1fr 1fr"
+                            gridTemplateRows="600px"
+                            gridGap=".5rem">
+                            <VBox>
+                                <layoutData>
+                                    <grid:GridItemLayoutData gridColumn="1 / 3"/>
+                                </layoutData> 
+                                <w:Card manifest="{LocationDetailsModel>/donut}" action="onLocationDonutPress"
+                                    height="300px">
+                                    <w:layoutData>
+                                    </w:layoutData>
+                                </w:Card>
+                            </VBox>
+
+                             <VBox>
+                                <layoutData>
+                                    <grid:GridItemLayoutData gridColumn="3 / 5"/>
+                                </layoutData> 
+                                
+                                <f:Card  class="sapUiMediumMarginTop">
+                                    <f:header>
+                                        <card:Header
+                                                title="Resources chart"/>
+                                    </f:header>
+
+                                    <f:content>
+                                <viz:VizFrame id="idVizFrame1" vizProperties="" height="auto" vizType='timeseries_stacked_column'>
+                                
+                                        <viz:dataset>
+                                            <viz.data:FlattenedDataset data="{/Resources}">
+                                                <viz.data:dimensions >
+                                                    <viz.data:DimensionDefinition name="Date" value="{Date}" dataType="date"/>
+                                                </viz.data:dimensions>
+                                                <viz.data:measures>
+                                                    
+                                                    <viz.data:MeasureDefinition name="Resource1" value="{Resource1}" />
+                                                    <viz.data:MeasureDefinition name="Resource2"  value="{Resource2}"/>
+
+                                                </viz.data:measures>
+                                            </viz.data:FlattenedDataset>
+                                        </viz:dataset>
+                                        <viz:feeds>
+                                            <viz.feeds:FeedItem uid="valueAxis"  type="Measure" values="Resource2"/>
+                                            <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Resource1"/>
+                                            <viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="Date" />
+                                        </viz:feeds>
+                                    
+                                    </viz:VizFrame>
+                                    
+                                    </f:content>
+
+                                    </f:Card>
+
+
+                            </VBox>
+
+                            </grid:CSSGrid> -->
+
+                            <!-- </core:HTML> -->
+
+
+                            <!-- <VBox>
+                                <layoutData>
+                                    <grid:GridItemLayoutData gridRow = "5 / 6" />
+                                </layoutData>
+                                <w:Card manifest="{barChart>/donut}" height="500px">
+                                   
+                                </w:Card>
+                            </VBox> -->
+
+                        
+
+                    
+                    
+                    
+                    
+                    
+                    </IconTabFilter>
+                    
+                    <IconTabFilter text="HeatMap" key="othDetails">
+                        
+                        <grid:CSSGrid id="grid12"
+                            gridTemplateColumns="1fr 1fr 1fr"
+                            gridTemplateRows="200px 400px 0px"
+                            gridGap=".5rem">
+                            <!-- <core:HTML content='&lt;header class=&quot;stylePageLayout&quot;&gt;Header&lt;/header&gt;'>
+                                <core:layoutData>
+                                    <grid:GridItemLayoutData gridRow="1 / 4"/>
+                                </core:layoutData>
+                            </core:HTML> -->
+                            <VBox>
+                            <!-- <Title text="Last Updated On:{oUtilDateModel>/LastupdUtilDate}"></Title> -->
+                            <HBox justifyContent="SpaceBetween"  >
+                            <tnt:InfoLabel  text="Last Updated On:{oUtilDateModel>/LastupdUtilDate}" colorScheme="6" />
+                            
+                            	<tnt:InfoLabel  text="Data Collected From:{oUtilDateModel>/startDate}" colorScheme="7" />
+                            
+                            	<tnt:InfoLabel  text="Data Collected Upto:{oUtilDateModel>/EndDate}" colorScheme="7" />
+                            </HBox>
+                            	
+                                <layoutData>
+                                <grid:GridItemLayoutData gridColumn="1 / 4"/>
+                                </layoutData> 
+                                <f:Card height="700px">
+                                    <f:header>
+                                        <card:Header title="MTD Chart"/>
+                                    </f:header>
+                                <f:content>
+
+                                <viz:VizFrame id = "idVizFrameMTD" uiConfig = "{applicationSet:'fiori'}" selectData="onSelectHeatMap"
+                                    height = '100%' width = "100%" vizType = 'heatmap' 
+                                    vizProperties="{plotArea: { drawingEffect: 'glossy', colorPalette: ['#d43015', '#11d215']}, 
+                                                            title:{ text:'Report based on Module'}, 
+                                                            dataLabel:{visible:true, showTotal:true}}"> 
+                                    <viz:dataset>
+                                        <viz.data:FlattenedDataset data = "{HeatMapDataModel>/Resources}">
+                                            <viz.data:dimensions>
+                                                <viz.data:DimensionDefinition name = "Module"
+                                                    value = "{HeatMapDataModel>Name}" />
+                                                <viz.data:DimensionDefinition name = "Month"
+                                                    value = "{HeatMapDataModel>Month}" />
+                                            </viz.data:dimensions>
+                                            <viz.data:measures>
+                                                <viz.data:MeasureDefinition name = "Mtd"
+                                                    value = "{HeatMapDataModel>Mtd}" />
+                                            </viz.data:measures>
+                                        </viz.data:FlattenedDataset>
+                                    </viz:dataset>
+
+                                    <viz:feeds>
+                                        <viz.feeds:FeedItem uid = "color" type = "Measure"
+                                            values = "Mtd" />
+                                        <viz.feeds:FeedItem uid = "categoryAxis" type = "Dimension"
+                                            values = "Module" />    
+                                        <viz.feeds:FeedItem uid = "categoryAxis2" type = "Dimension"
+                                            values = "Month" />
+                                    </viz:feeds>
+                                    <viz:dependents>
+                                        <viz:Popover id="idPopOver"></viz:Popover>
+                                    </viz:dependents>
+                                </viz:VizFrame>
+
+
+    
+                            </f:content>
+                            </f:Card>
+                        </VBox> 
+
+                        </grid:CSSGrid>       
+
+                    </IconTabFilter>
+                    
+                </items>
+            </IconTabBar>
+
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns:table="sap.ui.table" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml">
+<Dialog contentWidth="50%" title="{i18n>heading} for {HeatMapModuleName>/moduleName} for {HeatMapModuleName>/monthName}" titleAlignment="Center">
+<!-- <content> -->
+<!-- <Table items="{TableDataModel>/}" class="" alternateRowColors="true">
+<headerToolbar>
+<OverflowToolbar >
+    <Title text="Employees ({=${TableDataModel>/}.length})"></Title>
+</OverflowToolbar>
+</headerToolbar>
+<columns>
+    <Column >
+        <Label text="{i18n>empid}"></Label>
+    </Column>
+    <Column >
+        <Label text="{i18n>empname}"></Label>
+    </Column>
+    <Column >
+        <Label text="{i18n>desig}"></Label>
+    </Column>
+    <Column >
+        <Label text="{i18n>mtd}"></Label>
+    </Column>
+    <Column >
+        <Label text="{i18n>ytd}"></Label>
+    </Column>
+</columns>
+<items>
+<ColumnListItem >
+<cells>
+<Text text="{TableDataModel>Pernr}"></Text>
+<Text text="{TableDataModel>Name}"></Text>
+<Text text="{TableDataModel>DesinationText}"></Text>
+<Text text="{TableDataModel>CurrentMtd}"></Text>
+<Text  text="{TableDataModel>Ytd}"></Text>
+</cells>
+</ColumnListItem>
+</items>
+</Table> -->
+<Toolbar  >
+
+<ToolbarSpacer/>
+<Button text="Sort Ascending" press="onAscendingPress"></Button>
+<Button text="Sort Descending"  press="onDescendingPress"></Button>
+</Toolbar>
+<table:Table alternateRowColors="true" selectionMode="None" sort="" id="mtdtable" rows="{TableDataModel>/}" enableCellFilter="{ui>/cellFilterOn}" >
+
+<table:columns>
+<table:Column sortProperty="EmployeeNo."  filterProperty="EmployeeNo." >
+        <Label text="{i18n>empid}"></Label>
+        <table:template>
+            <Text text="{TableDataModel>Pernr}"></Text>    
+        </table:template>
+</table:Column>
+<table:Column sortProperty="EmployeeNo." filterProperty="EmployeeNo." >
+        <Label text="{i18n>empname}"></Label>
+        <table:template>
+            <Text  text="{TableDataModel>Name}"></Text>
+        </table:template>
+</table:Column>
+<table:Column sortProperty="EmployeeNo." filterProperty="EmployeeNo." >
+        <Label text="{i18n>desig}"></Label>
+        <table:template>
+        <Text text="{TableDataModel>DesinationText}"></Text>
+        </table:template>
+</table:Column >
+<table:Column sortProperty="mtd" filterProperty="mtd" >
+        <Label text="{i18n>mtd}"></Label>
+        <table:template>
+        <Text text="{
+            path:'TableDataModel>CurrentMtd',
+            type:'sap.ui.model.type.Integer'
+        }"></Text>
+        </table:template>
+</table:Column>
+<table:Column sortProperty="EmployeeNo." filterProperty="EmployeeNo." >
+                <Label text="{i18n>ytd}"></Label>
+<table:template>
+<Text  text="{TableDataModel>Ytd}"></Text>
+</table:template>
+</table:Column>
+</table:columns>
+</table:Table>
+
+<beginButton>
+<Button text="{i18n>excel}"  press="ExporttoExcelMtdReport" tooltip="Download As Excel" ></Button>
+</beginButton>
+<endButton>
+<Button text="{i18n>close}" press="closeDialog"></Button>
+</endButton>
+
+</Dialog>
+</core:FragmentDefinition>

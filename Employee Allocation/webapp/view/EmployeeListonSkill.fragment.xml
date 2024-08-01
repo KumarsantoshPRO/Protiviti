@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog resizable="true" contentWidth="50%"
+		id="idResourceListTable"
+		noDataText="No Employee Found"
+		title="{i18n>sel_prdt}"
+		search="handleSearchResource"
+		growing="true"
+		searchPlaceholder="Search Employee Id"
+		titleAlignment="Center"
+		confirm="handleConfirmResourceDialog"
+		cancel="handleCloseResourceDialog">
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<Text text="{BrandDesc}" />
+                <Text text="{ parts: [                                        
+                                        'BrandId'], 
+                                formatter: '.formatter.removeZeros' }" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column><Text text="{i18n>EMP_ID}" /></Column>
+			<Column><Text text="{i18n>EMP_NAME}" /></Column>
+			<Column><Text text="{i18n>DESIGNATION}" /></Column>
+			<Column ><Text text="{i18n>MTD}"></Text></Column>
+			<Column ><Text text="{i18n>YTD}"></Text></Column>
+			<!-- <Column><Text text="{i18n>UTILIZATION}" /></Column>				 -->
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

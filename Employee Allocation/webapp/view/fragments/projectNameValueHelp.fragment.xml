@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"  xmlns:l="sap.ui.layout">
+<!-- TABLE SELECT DIALOG -->
+<!-- <TableSelectDialog 
+id="selectDialog"
+title="{i18n>selectProjectName}"
+items="{oDataModel>/}"
+search=".onValueHelpSearch"
+confirm=".onValueHelpClose"
+cancel=".onValueHelpClose"
+>
+<columns>
+<Column >
+<Label text="{i18n>projName}"></Label>
+</Column>
+</columns>
+<ColumnListItem >
+<cells>
+<Text text="{oDataModel>ProjcetName}"></Text>
+</cells>
+</ColumnListItem>
+</TableSelectDialog> -->
+
+<!-- DIALOG -->
+<Dialog title="Project Name" contentWidth="auto" contentHeight="300px">
+<List  items="{oProjectNameModel>/}"
+mode="SingleSelectMaster"
+selectionChange="onValueHelpConfirm"
+ >
+ <StandardListItem title="{oProjectNameModel>Ddtext}"  ></StandardListItem>
+ </List>
+ <beginButton>
+ <Button text="OK" press="onValueHelpCancel"></Button>
+ </beginButton>
+ <endButton>
+ <Button text="Cancel" press="onValueHelpCancel"></Button>
+ </endButton>
+</Dialog>
+
+<!-- SELECT DIALOG -->
+<!-- <SelectDialog 
+title="Select Project Name"
+items="{oDataModel>/}"
+search="onValueHelpSearch"
+confirm="onValueHelpConfirm"
+cancel="onValueHelpCancel">
+
+<StandardListItem title="{oDataModel>ProjectName}"></StandardListItem>
+</SelectDialog> -->
+
+</core:FragmentDefinition>

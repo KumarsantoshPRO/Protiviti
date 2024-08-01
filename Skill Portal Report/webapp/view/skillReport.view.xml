@@ -1,0 +1,160 @@
+<mvc:View controllerName="com.zskrep.zskillreport.controller.skillReport"
+    xmlns:mvc="sap.ui.core.mvc"  displayBlock="true"
+    xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar" xmlns:u="sap.ui.unified" xmlns:svm="smartva" xmlns:tnt="sap.tnt">
+    <Page id="page" title="{i18n>title}">
+        <content >
+        <f:DynamicPage headerExpanded="{/headerExpanded}">
+                 <f:header>
+				 <f:DynamicPageHeader>
+					<f:content>
+						<fb:FilterBar id="filterbar"  persistencyKey="myPersKey" useToolbar="false" clear="onClearFilter" showClearOnFB="true" search="onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+                              <!-- Resource Name -->
+                                <!-- <fb:FilterGroupItem name="ResName" label="{i18n>resName}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<MultiComboBox id="ResName" items="{path : '', length : '500'}" growing="true" growingThreshold="10000" placeholder="Select Resource" selectionChange=".onResourceNameChange">
+                                       
+                                        <core:ListItem key="" text=""/>
+                                        </MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem> -->
+                                 <!-- Location -->
+                                <fb:FilterGroupItem name="location" label="{i18n>location}" groupName="Group1"  visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="empLoc" items="{path : 'BaseLocModel>/', length : '500'}" selectedKey="{FilterDataModel>/location}" selectionChange=".onLocationChange" placeholder="Select Employee Location">
+                                            <core:ListItem key="{BaseLocModel>DomvalueL}" text="{BaseLocModel>Ddtext}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                 <!-- Primary Skill -->
+                                <fb:FilterGroupItem name="PSkill" label="{i18n>pSkill}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="PSkill" items="{path : 'PrSkillModel>/', length : '500'}" selectedKey="{FilterDataModel>/primarySkill}" selectionChange=".onPrimarySkillChange" placeholder="Select Primary Skill">
+                                        <core:ListItem key="{PrSkillModel>DomvalueL}" text="{PrSkillModel>Ddtext}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                  <!-- Secondary Skill -->
+                                <fb:FilterGroupItem name="SSkill" label="{i18n>sskill}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="SSkill" items="{path : 'ScSkillModel>/', length : '500'}" selectedKey="{FilterDataModel>/secSkill}" selectionChange=".onSecondarySkill" placeholder="Select Secondary Skill">
+                                        <core:ListItem key="{ScSkillModel>DomvalueL}" text="{ScSkillModel>Ddtext}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                <!-- Industry Expertise -->
+                                <fb:FilterGroupItem name="IndExp" label="{i18n>indExp}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="IndExp" items="{path : 'IndExpModel>/', length : '500'}" selectedKey="{FilterDataModel>/indExp}" selectionChange=".onSecondarySkill" placeholder="Select Industry Expertise">
+                                        <core:ListItem key="{IndExpModel>DomvalueL}" text="{IndExpModel>Ddtext}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                 <!-- Total Experience -->
+                                 <fb:FilterGroupItem name="totExp" label="{i18n>totExp}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                        <ComboBox id="totExp" items="{path : 'TotExpModel>/', length : '500'}"  change="" enabled="{oViewModel>/showAvailablebtn}" placeholder="Select Total Experience" selectionChange=".onTotalExpChange" selectedKey="{FilterDataModel>/totExp}" >
+                                            <core:ListItem key="{TotExpModel>DomvalueL}" text="{TotExpModel>Ddtext}"/>
+                                        </ComboBox>
+									</fb:control>
+								    </fb:FilterGroupItem>                              
+                                <!-- SAP Experience -->
+                                 <!-- <fb:FilterGroupItem name="SAPExp" label="{i18n>sapExp}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="SAPExp" items="{path : '', length : '500'}" selectionChange=".onTotalExpChange" placeholder="Select SAP Experience">
+                                            <core:ListItem key="" text=""/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem> -->
+                                <!-- Profile Updated -->
+                                <fb:FilterGroupItem name="ProfUpdate" label="{i18n>profUpdate}" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="ProfUpd"  selectionChange="onUpdateChange" forceSelection="{FilterDataModel>/profUpdate}" selectedKey="{FilterDataModel>/profUpdate}" placeholder="Select Profile Status">
+                                        <core:ListItem key="0" text="{i18n>all}"/>
+                                        <core:ListItem key="2" text="{i18n>updated}"/>
+                                        <core:ListItem key="1" text="{i18n>notUpdated}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+                              
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+                        
+					</f:content>
+				    </f:DynamicPageHeader>
+			    </f:header>
+                <f:content>
+                <Table id="idSkillReport" items="{oEmployeeListModel>/}" alternateRowColors="true" growing="true" growingThreshold="10000">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                          <Title text="Resources ({=${oEmployeeListModel>/}.length})" level="H2" />
+                          <ToolbarSpacer />
+                          <Button icon="sap-icon://excel-attachment" tooltip="Export To Excel" press="exportToExcel" type="Ghost"></Button>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>resName}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>location}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>pSkill}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>sskill}"/>
+                    </Column>
+                    <Column >
+                    <Text text="{i18n>indExp}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>totExp}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>sapExp}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>mtd}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>ytd}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>dateUpdate}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{Date}"/>
+                    </Column>
+                    <Column visible="false">
+                        <Text text="{i18n>userId}"/>
+                    </Column>
+                </columns>
+                
+                <items>
+                    <ColumnListItem  press="onClickofItem"  type="Navigation" >
+                        <cells>
+                            <Text text="{oEmployeeListModel>Name}"></Text>
+                            <Text text="{oEmployeeListModel>CurrentLocation}"></Text>
+                            <Text text="{oEmployeeListModel>PrimarySkillText}"></Text> 
+                            <Text text="{oEmployeeListModel>SecondarySkill}"></Text>   
+                            <Text text="{oEmployeeListModel>IndustryExpertise}"></Text>            
+                            <Text text="{oEmployeeListModel>TotalExp} Years"></Text>
+                            <Text text="{oEmployeeListModel>RelevantExp} Years"></Text>
+                            <Text text="{oEmployeeListModel>CurrentMtd}"/>
+                            <Text text="{oEmployeeListModel>Ytd}"/>   
+                
+                            <ObjectStatus text="{ parts: ['oEmployeeListModel>LastUpdateddate'], 
+                                                formatter: '.formatter.getDays' }" state="{= ${oEmployeeListModel>LastUpdateddate} ? 'Success':'Error'}" />         
+                            <Text visible="false" text="{oEmployeeListModel>UserId}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>

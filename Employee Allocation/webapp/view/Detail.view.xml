@@ -1,0 +1,172 @@
+<mvc:View controllerName="in.protiviti.employeeallocation.controller.Detail"
+	xmlns:unified="sap.ui.unified" height="100%" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" 
+	xmlns:core="sap.ui.core" xmlns:forms="sap.ui.layout.form" xmlns:uxap="sap.uxap" xmlns="sap.m">
+	<uxap:ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" showFooter="true"   showTitleInHeaderContent="true" class="sapUiSizeCompact">
+		<!-- <uxap:headerTitle>
+			<uxap:ObjectPageHeader>
+				<Button text="Back" press="onBack"></Button>				        
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle> -->
+		<uxap:headerTitle>
+		<uxap:ObjectPageHeader objectTitle="{HeaderData>/CustomerName}"
+		 objectImageURI="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+  		 objectImageDensityAware="true"
+    	 objectImageShape="Circle"
+    	 showPlaceholder="true"
+    	 isObjectTitleAlwaysVisible="false"></uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+		<l:VerticalLayout >
+		<Label text="Project Name"/>
+		<Title text="{HeaderData>/ProjcetName}"></Title>
+		<Label text="Project Location"></Label>
+		<Title text="{HeaderData>/ProjectLocationText}"></Title>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text=""></Label>
+		<Label text=""></Label>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text="Project Type"></Label>
+		<Title text="{HeaderData>/ProjectTypeText}"></Title>
+		<Label text="CRM Oppurtunity/Project Code"></Label>
+		<Title text="{HeaderData>/CrmCode}"></Title>
+		<Label text="Execution City"></Label>
+		<Title text="{HeaderData>/ProjectCity}"></Title>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text=""></Label>
+		<Label text=""></Label>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text="Engagement Director"></Label>
+		<Title text="{HeaderData>/EngagmentDirectorName}"></Title>
+		<Label text="Engagement Manager"></Label>
+		 <Title text="{HeaderData>/EngagmentManagerName}"></Title>
+
+ <Label text="Responsible Manager"></Label>		
+ <Title text="{HeaderData>/ResponsibleManagerName}"></Title>
+		<!-- <Label text="Engagement Manager"></Label> -->
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text=""></Label>
+		<Label text=""></Label>
+		</l:VerticalLayout>
+		<l:VerticalLayout >
+		<Label text="Start Date"></Label>
+	    <Title text="{ parts: [ 'HeaderData>/StartDate'], formatter: '.formatter.getFormattedDateTime' }"></Title>
+		<Label text="End Date" ></Label>
+		<Title text="{ parts: [ 'HeaderData>/EndDate'], formatter: '.formatter.getFormattedDateTime' }"></Title>
+		</l:VerticalLayout>
+
+		</uxap:headerContent>
+		<uxap:sections>
+	       
+ 			<uxap:ObjectPageSection titleUppercase="true" title="Resource Mapping on Project">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Resource Mapping on Project" titleUppercase="true">
+						<uxap:blocks>
+							<Table id="myTable" mode="MultiSelect" items="{ResMapping>/}" > 
+							<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<ToolbarSpacer/>
+							<Button text="Add Row" press="onAddRow" visible="{oViewModel>/editable}"/>
+							<Button text="Delete Row" press="onDeleteRows" visible="{oViewModel>/editable}"/>
+			  				<Button text="Duplicate Row" press="onDuplicateRow" visible="{oViewModel>/editable}"/>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+                                <columns>
+                                <Column>
+                                    <Text text="Skill Set"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Role"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Designation"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Deployment Location"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Start Date"/>
+                                </Column>
+                                <Column>
+                                    <Text text="End Date"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Allocation %"/>
+                                </Column>
+                                <Column >
+                                    <Text text="Resource Name"/>
+                                </Column>
+                                </columns>
+                                <items>
+                                <ColumnListItem>
+                                    <cells>
+                                    <ComboBox items="{oSkillModel>/}" width="100%" change="validateCombo" editable="{oViewModel>/editable}" selectedKey="{ResMapping>EmployeeSkill}" required="true">
+                                        <core:ListItem key="{oSkillModel>DomvalueL}" text="{oSkillModel>Ddtext}"/>
+                                    </ComboBox>
+									<!-- <Text text="{ResMapping>EmployeeSkillText}"/>     enabled="{oViewModel>/showAvailablebtn}"-->
+                                    <ComboBox items="{oRoleModel>/}" width="100%" change="validateCombo" editable="{oViewModel>/editable}" selectedKey="{ResMapping>AssignmentType}" required="true">
+                                        <core:ListItem key="{oRoleModel>DomvalueL}" text="{oRoleModel>Ddtext}"/>
+                                    </ComboBox>
+									<!-- <Text text="{ResMapping>AssignmentTypeText}"/> -->
+                                    <ComboBox items="{oDesignationModel>/}" change="validateCombo" width="100%" editable="{oViewModel>/editable}" selectedKey="{ResMapping>DesignationReq}" required="true">
+                                        <core:ListItem key="{oDesignationModel>DomvalueL}" text="{oDesignationModel>Ddtext}"/>
+                                    </ComboBox>
+									<!-- <Text text="{ResMapping>DesignationText}"/> -->
+                                    <ComboBox items="{oProjectAllocModel>/}" change="validateCombo" width="100%" editable="{oViewModel>/editable}" selectedKey="{ResMapping>ProjectLocation}" required="true">
+                                        <core:ListItem key="{oProjectAllocModel>DomvalueL}" text="{oProjectAllocModel>Ddtext}"/>
+                                    </ComboBox>
+									<!-- <Text text="{ResMapping>City}"/> -->
+                                    <DatePicker value="{ path: 'ResMapping>StartDate', type: 'sap.ui.model.type.Date', formatOptions: {UTC:true, style: 'medium'} }" editable="{oViewModel>/editable}"  valueFormat="MM/dd/yyyy" valueState="{path: 'oViewModel>/startState'}"
+                                    valueStateText="{path: 'oViewModel>/startStateText'}" change="onStartDateChange1" required="true"/>
+                                    <!-- <Text text="{ parts: [ 'ResMapping>StartDate'], formatter: '.formatter.getFormattedDateTime' }"/> -->
+
+
+
+
+
+									<DatePicker  value="{ path: 'ResMapping>EndDate' , type: 'sap.ui.model.type.Date', formatOptions: {UTC:true, style: 'medium'} }" editable="{oViewModel>/editable}"  valueFormat="MM/dd/yyyy" valueState="{path: 'oViewModel>/endState'}"
+                                    valueStateText="{path: 'oViewModel>/endStateText'}" change="onEndDateChange1" required="true"/>
+									<!-- <Text text="{ parts: [ 'ResMapping>EndDate'], formatter: '.formatter.getFormattedDateTime' }"/> -->
+                                    <!-- <Input value="{oViewModel>allocation}" enabled="{oViewModel>/showAvailablebtn}" required="true"></Input> -->
+                                    <Input value="{ResMapping>AllocationPer}" editable="{oViewModel>/editable}" enabled="true"/>
+									<!-- <ComboBox items="{path:'oNameModel>/', length:200}" change="validateCombo" width="100%" enabled="true" selectedKey="{oViewModel>name}" required="true">
+                                        <core:ListItem key="{oNameModel>DomvalueL}" text="{oNameModel>Ddtext}"/>
+                                    </ComboBox> -->
+									<!-- "{= ${oViewModel>/editable} ? {ResMapping>PernrD} : parts:[{ path: 'ResMapping>PernrD'}], formatter: '.getEmployeeNameDetails'}}" -->
+									<Input	id="idResourceName"
+											placeholder="Select Resource"
+											
+											value="{parts:['ResMapping>PernrD'], formatter: '.getEmployeeNameDetails'}" 
+											
+											showSuggestion="true"
+											showValueHelp="true"
+											editable="{oViewModel>/editable}" enabled="true" valueHelpOnly="true"
+											valueHelpRequest="onValueHelpRequestResource">											
+									</Input>
+                                    </cells>
+                                </ColumnListItem>
+                                </items>
+                            </Table>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>  
+		<uxap:footer>
+			<Bar visible="true">
+				<contentRight>
+				<Button text="Back" press="onBack" visible="{oViewModel>/visible}" type="Back"></Button>
+				<Button text="Save" press="onSave" visible="{oViewModel>/editable}" type="Success"></Button>
+				<Button text="Cancel" press="onCancel" visible="{oViewModel>/editable}" type="Reject"></Button>
+				<Button text="Edit" press="onEdit" visible="{oViewModel>/visible}" type="Emphasized"></Button>
+				</contentRight>
+			</Bar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout> 
+</mvc:View>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPRO_SKILL_PORTAL_DATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="et_employee_details" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="IndustryExpertise" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Industry Expertise" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LanguagesKnown" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Languages known by the employee" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastUpdateddate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PassportNumb" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Passport Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastUpdatedtime" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Time" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PassportValidfrom" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PassportValidto" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Gender" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Doj" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MainModule" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Module/Track" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubModule" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Employee Sub Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="eMployee Designation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DesinationText" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrentLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotalExp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Two-digit no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RelevantExp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Two-digit no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Photo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Photo of String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserId" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="sskill" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.sskill" FromRole="FromRole_sskill" ToRole="ToRole_sskill" sap:label="sskill"/>
+                <NavigationProperty Name="industryexp" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.industryexp" FromRole="FromRole_industryexp" ToRole="ToRole_industryexp" sap:label="industryexp"/>
+                <NavigationProperty Name="Certificationdet" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.Certificationdet" FromRole="FromRole_Certificationdet" ToRole="ToRole_Certificationdet" sap:label="Certificationdet"/>
+                <NavigationProperty Name="projectexp" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.projectexp" FromRole="FromRole_projectexp" ToRole="ToRole_projectexp" sap:label="projectexp"/>
+                <NavigationProperty Name="cvdetails" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.cvdetails" FromRole="FromRole_cvdetails" ToRole="ToRole_cvdetails" sap:label="cvdetails"/>
+                <NavigationProperty Name="education" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.education" FromRole="FromRole_education" ToRole="ToRole_education" sap:label="education"/>
+                <NavigationProperty Name="visa" Relationship="ZPRO_SKILL_PORTAL_DATA_SRV.visa" FromRole="FromRole_visa" ToRole="ToRole_visa" sap:label="visa"/>
+            </EntityType>
+            <EntityType Name="et_value_helps" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Domname"/>
+                </Key>
+                <Property Name="Domname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Domain" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Valpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Value key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ddlanguage" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Lang." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalueL" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Lower Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalueH" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Dom.upper limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ddtext" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Short Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalLd" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Lower limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalHd" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Upper Limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Appval" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="App" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_indexp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IndustryExpertise" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Industry Expertise" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_visadetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="IssueDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VisaType" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Visa Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VisaName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Visa Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Country/Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTill" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AuthorizedToWork" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Authorized to work" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_cvdetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="CvFile" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CV base64 data" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CvType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Type of CV" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CvName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="File name of CV" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_educationdetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="MarksScored" Type="Edm.Decimal" Precision="5" Scale="2" sap:unicode="false" sap:label="Marks Scored" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CourseName" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Course Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Board" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Industry of Work" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DateOfPassing" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_Certificationdetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="CertificateId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Certificate Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Score" Type="Edm.Decimal" Precision="5" Scale="2" sap:unicode="false" sap:label="Marks Scored" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CertificateName" Type="Edm.String" Nullable="false" MaxLength="300" sap:unicode="false" sap:label="Certificate Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Industry" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Industry of Work" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_projectexperience" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="LegacySystem" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Legacy System" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Industry of Work" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProjectType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Project SubType" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Industry" Type="Edm.String" Nullable="false" MaxLength="1000" sap:unicode="false" sap:label="INDUSTRY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Country/Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Role" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="ROLE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_secondary_skill" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SecondaryskillId" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Employee Sub Module ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Secondary Details of Employees" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DetailsId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Details ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="industryexp" sap:content-version="1" sap:label="industryexp">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_industryexp"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_indexp" Multiplicity="*" Role="ToRole_industryexp"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_industryexp">
+                        <PropertyRef Name="Pernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_industryexp">
+                        <PropertyRef Name="Pernr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Certificationdet" sap:content-version="1" sap:label="Certificationdet">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_Certificationdet"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_Certificationdetails" Multiplicity="*" Role="ToRole_Certificationdet"/>
+            </Association>
+            <Association Name="projectexp" sap:content-version="1" sap:label="projectexp">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_projectexp"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_projectexperience" Multiplicity="*" Role="ToRole_projectexp"/>
+            </Association>
+            <Association Name="cvdetails" sap:content-version="1" sap:label="cvdetails">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_cvdetails"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_cvdetails" Multiplicity="*" Role="ToRole_cvdetails"/>
+            </Association>
+            <Association Name="education" sap:content-version="1" sap:label="education">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_education"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_educationdetails" Multiplicity="*" Role="ToRole_education"/>
+            </Association>
+            <Association Name="visa" sap:content-version="1" sap:label="visa">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_visa"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_visadetails" Multiplicity="*" Role="ToRole_visa"/>
+            </Association>
+            <Association Name="sskill" sap:content-version="1" sap:label="sskill">
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" Multiplicity="1" Role="FromRole_sskill"/>
+                <End Type="ZPRO_SKILL_PORTAL_DATA_SRV.et_secondary_skill" Multiplicity="*" Role="ToRole_sskill"/>
+            </Association>
+            <EntityContainer Name="ZPRO_SKILL_PORTAL_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="et_employee_detailsSet" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_employee_details" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="es_value_helps" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_value_helps" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="et_indexpSet" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_indexp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="es_visadetails" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_visadetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_cvdetails" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_cvdetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_educationdetails" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_educationdetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_Certificationdetails" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_Certificationdetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_projectexperience" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_projectexperience" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_secondary_skill" EntityType="ZPRO_SKILL_PORTAL_DATA_SRV.et_secondary_skill" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="cvdetails_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.cvdetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_cvdetails"/>
+                    <End EntitySet="es_cvdetails" Role="ToRole_cvdetails"/>
+                </AssociationSet>
+                <AssociationSet Name="Certificationdet_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.Certificationdet" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_Certificationdet"/>
+                    <End EntitySet="es_Certificationdetails" Role="ToRole_Certificationdet"/>
+                </AssociationSet>
+                <AssociationSet Name="visa_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.visa" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_visa"/>
+                    <End EntitySet="es_visadetails" Role="ToRole_visa"/>
+                </AssociationSet>
+                <AssociationSet Name="sskill_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.sskill" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_sskill"/>
+                    <End EntitySet="es_secondary_skill" Role="ToRole_sskill"/>
+                </AssociationSet>
+                <AssociationSet Name="industryexp_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.industryexp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_industryexp"/>
+                    <End EntitySet="et_indexpSet" Role="ToRole_industryexp"/>
+                </AssociationSet>
+                <AssociationSet Name="education_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.education" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_education"/>
+                    <End EntitySet="es_educationdetails" Role="ToRole_education"/>
+                </AssociationSet>
+                <AssociationSet Name="projectexp_AssocSet" Association="ZPRO_SKILL_PORTAL_DATA_SRV.projectexp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="et_employee_detailsSet" Role="FromRole_projectexp"/>
+                    <End EntitySet="es_projectexperience" Role="ToRole_projectexp"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPRO_SKILL_PORTAL_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPRO_SKILL_PORTAL_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

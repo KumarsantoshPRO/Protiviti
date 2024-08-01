@@ -1,0 +1,131 @@
+<mvc:View controllerName="in.protiviti.employeeallocation.controller.View1"
+     xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" xmlns:core="sap.ui.core"
+    xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:u="sap.ui.unified" xmlns:svm="smartva" xmlns:tnt="sap.tnt">
+    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+        <content>
+		<f:DynamicPage headerExpanded="{/headerExpanded}">
+                 <f:header>
+				 <f:DynamicPageHeader>
+					<f:content>
+						<fb:FilterBar id="filterbar" persistencyKey="myPersKey" showFilterConfiguration="false" useToolbar="false" clear="onReset" showClearOnFB="true" search="onSerachFilter" filterChange=".onFilterChange"  afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+                            <fb:FilterGroupItem name="CName" label="Customer Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox id="cust1" items="{CustModel>/}" width="60%"  selectedKey="{FilterDataModel>/customerName}"  placeholder="Select Customer Name" selectionChange=".onCustomerFilterSelection" >
+                                            <core:ListItem key="{CustModel>CustomerCode}" text="{CustModel>CustomerName}"/>
+                                        </ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								<fb:FilterGroupItem name="PName" label="Project Name" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+								<ComboBox id="Proj1" items="{oProjectNameModel>/}" width="60%" selectedKey="{FilterDataModel>/ProjectName}" placeholder="Select Project Name" >
+										<core:ListItem key="{oProjectNameModel>DomvalueL}" text="{oProjectNameModel>Ddtext}" ></core:ListItem>
+								</ComboBox>
+								</fb:control>
+								</fb:FilterGroupItem>
+								<!-- Project Status -->
+								<fb:FilterGroupItem name="Pstatus" label="Project Status" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+								<ComboBox id="pstatus" items="{ostatusModel>/}" width="60%" selectedKey="{FilterDataModel>/ProjectStatus}" placeholder="Select Project Status" >
+										<core:ListItem key="{ostatusModel>DomvalueL}" text="{ostatusModel>Ddtext}" ></core:ListItem>
+								</ComboBox>
+								</fb:control>
+								</fb:FilterGroupItem>
+								<!-- Allocation Status -->
+								<fb:FilterGroupItem name="Astatus" label="Allocation Status" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+								<ComboBox id="astatus" items="{ostatusModel>/}" width="60%" selectedKey="{FilterDataModel>/AllocationStatus}" placeholder="Select Allocation Status" >
+										<core:ListItem key="{ostatusModel>DomvalueL}" text="{ostatusModel>Ddtext}" ></core:ListItem>
+								</ComboBox>
+								</fb:control>
+								</fb:FilterGroupItem>
+                                <!-- <fb:FilterGroupItem name="PName" label="Project Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input	id="idName"
+												value="{oFilterModel>/selectedValue}"
+												placeholder="Select Project Name"
+												showSuggestion="true"
+												showValueHelp="true"
+												autocomplete="true"
+												valueHelpOnly="true"
+												showClearIcon="true"
+												suggestionItems="{oValueHelpModel>/}"
+												valueHelpRequest="onValueHelpSuggest">
+												<suggestionItems>
+												<core:ListItem >
+												</core:ListItem>
+												</suggestionItems>		
+										</Input>
+									</fb:control>
+								</fb:FilterGroupItem> -->
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+					</f:content>
+				    </f:DynamicPageHeader>
+			    </f:header>
+                <f:content>
+            <Table id="idEmployeeAllocation" sticky="ColumnHeaders,HeaderToolbar" mode="SingleSelectLeft" items="{oDataModel>/}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="Projects({=${oDataModel>/}.length})" level="H2"/>
+						<ToolbarSpacer/>
+						<!-- <OverflowToolbarButton tooltip="Delete" icon="sap-icon://delete" press="onDelete"/>
+						<OverflowToolbarButton tooltip="New" icon="sap-icon://add" press="onCreate"/> -->
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column >
+						<Text text="Project Code" />
+					</Column>
+					<Column >
+						<Text text="Customer Name" />
+					</Column>
+					<Column>
+						<Text text="Project Name" />
+					</Column>
+					<Column>
+						<Text text="Start Date" />
+					</Column>
+					<Column>
+						<Text text="End Date" />
+					</Column>
+					
+					<Column>
+						<Text text="Project Location"/>
+					</Column>
+                    <Column>
+						<Text text="Project Type"/>
+					</Column>
+					<Column>
+						<Text text="Project Status"/>
+					</Column>
+					<!-- <Column>
+						<Text text="Allocation Status"/>
+					</Column> -->
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" press="onClickofItem"  type="Navigation">
+						<cells>
+							<Text text="{oDataModel>ProjectCode}" />
+							<Text text="{oDataModel>CustomerName}" />
+							<Text text="{oDataModel>ProjcetName}" />
+                            <Text text="{ parts: [ 'oDataModel>StartDate'], formatter: '.formatter.getFormattedDateTime' }" />
+							<Label text="{ parts: [ 'oDataModel>EndDate'], formatter: '.formatter.getFormattedDateTime' }"></Label>
+							<!-- <Input value="{ parts: [ 'oDataModel>EndDate'], formatter: '.formatter.getFormattedDateTime' }" /> -->
+							<!-- <Text text="" /> -->
+                            <!-- <Text text="{ parts: [ 'oDataModel>EndDate'], formatter: '.formatter.getFormattedDateTime' }" /> -->
+							<Text text="{oDataModel>ProjectLocationText}" />
+							<Text text="{oDataModel>ProjectTypeText}" />
+							<Text text="{oDataModel>ProjectStatus}" />
+							<!-- <Text text="{oDataModel>AllocationStatus}" /> -->
+							<!-- <Text text="{ parts: [ 'oDataModel>Fulfilled'], formatter: '.formatter.getProjectStatus'}" /> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+        </f:content>
+           </f:DynamicPage>
+        </content>
+    </Page>
+</mvc:View>

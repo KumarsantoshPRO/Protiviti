@@ -1,0 +1,490 @@
+<mvc:View controllerName="com.zsp.skillportal.controller.SkillPortal" xmlns:unified="sap.ui.unified" xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" 
+    xmlns="sap.m" xmlns:uxap="sap.uxap">
+	<uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" upperCaseAnchorBar="false">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle>
+				<uxap:expandedHeading>
+					<Title text="{ViewModel>/Name}" wrapping="true"/>
+				</uxap:expandedHeading>
+				<uxap:snappedHeading>
+					<FlexBox fitContainer="true" alignItems="Center">
+						<Avatar src="{ViewModel>/Photo}" backgroundColor="Random" class="sapUiTinyMarginEnd"/>
+						<Title text="{ViewModel>/Name}" wrapping="true"/>
+					</FlexBox>
+				</uxap:snappedHeading>
+                <uxap:expandedContent>
+					<Text text="{ViewModel>/DesinationText}"/>
+				</uxap:expandedContent>
+                <uxap:snappedContent>
+					<Text text="{ViewModel>/DesinationText}"/>
+				</uxap:snappedContent>
+
+                <uxap:actions>
+					<Button press="onEdit" text="{i18n>edit}" type="Emphasized" visible="{visibleModel>/btnEdit}"/>
+                    <Button text="{i18n>submit}" type="Success" visible="{visibleModel>/editable}" press="onSubmit"></Button>
+                    <Button text="{i18n>cancel}" type="Reject" visible="{visibleModel>/editable}" press="onCancel"></Button>
+                </uxap:actions>
+			</uxap:ObjectPageDynamicHeaderTitle>
+            <!-- <uxap:ObjectPageHeader>
+                <uxap:actions>
+                    <uxap:ObjectPageHeaderActionButton hideText="false" press="onEdit" text="{i18n>edit}" type="Emphasized" visible="{visibleModel>/btnEdit}"></uxap:ObjectPageHeaderActionButton>
+                </uxap:actions>
+            </uxap:ObjectPageHeader> -->
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<FlexBox wrap="Wrap">
+				<Avatar src="{ViewModel>/Photo}" backgroundColor="Random" displaySize="L" class="sapUiTinyMarginEnd"/>
+				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+					<ObjectStatus title="Employee ID" text="{ViewModel>/Pernr}"/>
+					<ObjectStatus title="{i18n>baselocation}" text="{ViewModel>/BaseLocation}"/>
+					<ObjectStatus title="Date of Joining" text="{path:'ViewModel>/Doj',
+                                                                    type:'sap.ui.model.type.Date',
+                                                                    formatOptions: {
+                                                                        style: 'medium',
+                                                                        strictParsing: true
+                                                                    }}"/>
+				</l:VerticalLayout>
+                <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<ObjectStatus title="Last Updated On" text="{path:'ViewModel>/LastUpdateddate',
+                                                                    type:'sap.ui.model.type.Date',
+                                                                    formatOptions: {
+                                                                        style: 'medium',
+                                                                        strictParsing: true
+                                                                    }}"/>
+						<ObjectStatus text="{ parts: ['ViewModel>/LastUpdateddate'], 
+                                                formatter: '.formatter.getDays' }" 
+                                    state="{ parts: ['ViewModel>/LastUpdateddate'], 
+                                                formatter: '.formatter.getStatusOnSkillUpdate' }"/>
+				</l:VerticalLayout>
+			</FlexBox>
+		</uxap:headerContent>
+		<uxap:sections>
+        
+        <uxap:ObjectPageSection titleUppercase="false" title="{i18n>appTitle}" >
+    <uxap:subSections>
+    <uxap:ObjectPageSubSection title="{i18n>basicDetails}">
+    <uxap:blocks>
+     <f:SimpleForm  layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4" editable="true">
+            <f:content>
+               
+                <Label text="{i18n>currentLocation}" />
+                <Input value="{ViewModel>/CurrentLocation}" editable="{visibleModel>/editable}" required="true"/>
+               
+                <Label text="{i18n>primarySkill}"/>
+                <ComboBox id="skill" items="{PrSkillModel>/}" editable="{visibleModel>/editable}" enabled="{ViewModel>/showAvailablebtn}" selectedKey="{ViewModel>/MainModule}" required="true">
+                    <core:ListItem key="{PrSkillModel>DomvalueL}" text="{PrSkillModel>Ddtext}"/>
+                </ComboBox>
+ 
+                <Label text="{i18n>secondarySkill}" />
+                <!-- <Input value="{ViewModel>/secSkill}" editable="{visibleModel>/editable}" ></Input> -->
+                <MultiComboBox id="idScskill" items="{ScSkillModel>/}" editable="{visibleModel>/editable}" 
+                        enabled="{ViewModel>/showAvailablebtn}" selectionFinish="onChangeSecndSkill" required="true">
+                    <core:ListItem key="{ScSkillModel>DomvalueL}" text="{ScSkillModel>Ddtext}"/>
+                </MultiComboBox>
+ 
+                <Label text="{i18n>totExp}"  />
+                <ComboBox id="years" items="{yearsModel>/years}" editable="{visibleModel>/editable}" selectedKey="{ViewModel>/TotalExp}" required="true" placeholder="Years">
+                        <core:ListItem key="{yearsModel>key}" text="{yearsModel>text}" />
+                        <layoutData>
+                        <l:GridData span="XL1 L2 M2 S4" />
+                        </layoutData>
+                </ComboBox>
+ 
+                <Label text="{i18n>sapExp}" id="InputNumberLabel1" labelFor="inputNumber"></Label>
+                <ComboBox id="sapEx" items="{yearsModel>/years}" editable="{visibleModel>/editable}"  selectedKey="{ViewModel>/RelevantExp}"  required="true" placeholder="Years">
+                    <core:ListItem key="{yearsModel>key}" text="{yearsModel>text}"/>
+                </ComboBox>   
+               
+               <Label text="{i18n>industryExp}"></Label>
+               <MultiComboBox id="idIndExpid" items="{IndExpModel>/}" editable="{visibleModel>/editable}" selectionFinish="onChangeIndusExp" enabled="{ViewModel>/showAvailablebtn}" required="true" >
+                    <core:ListItem key="{IndExpModel>DomvalueL}" text="{IndExpModel>Ddtext}"/>
+                </MultiComboBox>
+
+                <Label text="{i18n>PASSPORT_NO}" />
+                <Input value="{ViewModel>/PassportNumb}" maxLength="12" editable="{visibleModel>/editable}" />
+                <Label text="{i18n>ValidFrom}" />
+                <DatePicker value="{path:'ViewModel>/PassportValidfrom', type:'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'medium',
+                                            strictParsing: true,
+                                            type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                        }
+                                    }" editable="{visibleModel>/editable}"></DatePicker>
+                <Label text="{i18n>PST_VALIDTO}" />
+                <DatePicker value="{path:'ViewModel>/PassportValidto', 
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                    }" editable="{visibleModel>/editable}"></DatePicker>
+
+
+            </f:content>
+        </f:SimpleForm>
+    </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+    </uxap:subSections>
+    </uxap:ObjectPageSection>
+                                            <!-- CERTITFICATION TABLE -->
+    <uxap:ObjectPageSection titleUppercase="false" title="{i18n>backgroundDetails}">
+    <uxap:subSections>
+    <uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>backgroundDetails}">
+    <uxap:blocks>
+    <VBox >
+    <Table   items="{CertificateModel>/}" >
+								
+			        <columns>
+						<Column visible="true">
+            			<Text text="{i18n>CertID}" />
+                        </Column>
+			            <Column >
+				        <Label text="{i18n>validCert}" />
+			            </Column>
+			            <Column>
+				        <Label text="{i18n>certDate}" />
+			            </Column>
+			            <Column>
+				        <Label text="{i18n>certScore}" />
+			            </Column> 
+                        <Column >
+                        </Column>
+
+		            </columns>
+		            <items>
+                        <ColumnListItem vAlign="Middle" >
+                            <cells>
+                                <Input value="{CertificateModel>CertificateId}" editable="{visibleModel>/editable}"  ></Input>
+    							<Input value="{CertificateModel>CertificateName}" editable="{visibleModel>/editable}" type="Text" valueState="{ViewModel>/valueState1}" placeholder="Name of the Certificate" enabled="{ViewModel>/editMode}" />
+                                <DatePicker
+                                    value="{
+                                        path: 'CertificateModel>ValidDate',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                    }"
+                                    placeholder="Valid Thru"
+                                    valueFormat="MM/dd/yyyy"
+                                    editable="{visibleModel>/editable}"
+                                    />
+                                <Input change="onChangeCertficateMrks" value="{CertificateModel>Score}" editable="{visibleModel>/editable}" type="Number" placeholder="Marks Obtained" valueState="{ViewModel>/valueState3}" enabled="{ViewModel>/editMode}"/>
+                                
+                                
+            				    <Button icon="sap-icon://sys-minus" text="{i18n>remove}" press="onRemoveCertificate" visible="{visibleModel>/editable}"/>
+
+                            </cells>
+                        </ColumnListItem>
+		            </items>		
+			</Table>  
+    <Button icon="sap-icon://sys-add" text="{i18n>addNewLine}" press="onAddCertificate" visible="{visibleModel>/editable}"/>
+    </VBox>
+              
+    </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+    </uxap:subSections>
+    </uxap:ObjectPageSection>
+                                        <!-- PROJECT EXPERIENCE -->
+    <uxap:ObjectPageSection titleUppercase="false" title="{i18n>projExp}" >
+    <uxap:subSections>
+    <uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>projExp}">
+    <uxap:blocks>
+    <VBox >
+    <Table   items="{ProjectModel>/}" >
+								
+			        <columns>
+			            <Column >
+				        <Label text="{i18n>client}" />
+			            </Column>
+			            <Column>
+				        <Label text="{i18n>industry}" />
+			            </Column>
+			            <Column>
+				        <Label text="{i18n>region}" />
+			            </Column> 
+                        <Column>
+				        <Label text="{i18n>legacySystem}"/>
+			            </Column> 
+                        <Column>
+				        <Label text="{i18n>role}" />
+			            </Column> 
+                        <Column>
+				        <Label text="{i18n>from}" />
+			            </Column> 
+                        <Column>
+				        <Label text="{i18n>to}" />
+			            </Column> 
+                        <Column >
+                        </Column>
+
+		            </columns>
+		            <items>
+                        <ColumnListItem vAlign="Middle" >
+                            <cells>
+    							<Input value="{ProjectModel>CustomerName}" type="Text" placeholder="Client" editable="{visibleModel>/editable}" />
+                                <Input value="{ProjectModel>Industry}" tooltip="{ProjectModel>Industry}" placeholder="Industry" editable="{visibleModel>/editable}" ></Input>
+                                <Input value="{ProjectModel>Region}" placeholder="Region" editable="{visibleModel>/editable}" ></Input>
+                                <Input value="{ProjectModel>LegacySystem}" placeholder="Legacy System" editable="{visibleModel>/editable}" ></Input>
+                                <Input value="{ProjectModel>Role}" placeholder="Role" editable="{visibleModel>/editable}"></Input>
+                                <DatePicker
+                                    value="{
+                                        path: 'ProjectModel>StartDate',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                    }"
+                                    placeholder="From"
+                                    editable="{visibleModel>/editable}"/>
+                                <DatePicker
+                                    value="{
+                                        path: 'ProjectModel>EndDate',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                    }"
+                                    
+                                    placeholder="To"
+                                    editable="{visibleModel>/editable}"/>
+                                
+            				    <Button icon="sap-icon://sys-minus" text="{i18n>remove}" press="onRemoveRowProject" visible="{visibleModel>/editable}"/>
+
+                            </cells>
+                        </ColumnListItem>
+		            </items>		
+			</Table>
+    <Button icon="sap-icon://sys-add" text="{i18n>addNewLine}" visible="{visibleModel>/editable}" press="onAddRowProject"/>
+    </VBox>
+    </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+    </uxap:subSections>
+    </uxap:ObjectPageSection>
+                            <!-- EDUCATION -->
+    <uxap:ObjectPageSection titleUppercase="false" title="{i18n>edu}">
+    <uxap:subSections>
+    <uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>edu}">
+    <uxap:blocks>
+    <VBox >
+     <Table   items="{EducationModel>/}" >
+								
+			        <columns>
+						<Column visible="false">
+            			<Text text="{i18n>seqNum}"  />
+                        </Column>
+			            <Column >
+				        <Label text="{i18n>courseName}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>marksScored}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>yearPassed}" />
+			            </Column>
+			             
+                        <Column >
+                        </Column>
+
+		            </columns>
+		            <items>
+                        <ColumnListItem vAlign="Middle" >
+                            <cells>
+                                <Input value="{EducationModel>DetailsId}" editable="{visibleModel>/editable}" />
+    							<Input value="{EducationModel>CourseName}" type="Text" placeholder="eg. SSLC,HSC,Bachelors, Masters" editable="{visibleModel>/editable}"/> 
+    							<Input type="Number" maxLength="5" change="onChangeEducationMrks" value="{EducationModel>MarksScored}" placeholder="Marks Scored" editable="{visibleModel>/editable}"  />    
+    							<!-- value="{path: 'EducationModel>MarksScored', type: 'sap.ui.model.type.Float', formatOptions:{minFractionDigits: 2, maxFractionDigits: 2, roundingMode: 'away_from_zero' }}" -->
+                                <!-- <Input value="{EducationModel>DateOfPassing}" type="Text" placeholder="Year passed" editable="{visibleModel>/editable}" liveChange="validateField" />     -->
+            				    <DatePicker
+                                    value="{
+                                        path: 'EducationModel>DateOfPassing',
+                                        type: 'sap.ui.model.type.Date',
+                                        'formatOptions': {
+                                            'pattern': 'yyyy',
+                                                UTC:true
+
+                                        }
+                                    }"
+                                    
+                                    placeholder="Passed Year"
+                                    editable="{visibleModel>/editable}"/>   
+                                <Button icon="sap-icon://sys-minus" text="{i18n>remove}" visible="{visibleModel>/editable}" press="onRemoveRowEducation" />
+
+                            </cells>
+                        </ColumnListItem>
+		            </items>		
+			</Table>    
+    <Button icon="sap-icon://sys-add" text="{i18n>addNewLine}" visible="{visibleModel>/editable}" press="onAddRowEducation" />
+    </VBox>
+    </uxap:blocks>
+    </uxap:ObjectPageSubSection>
+    </uxap:subSections>
+    </uxap:ObjectPageSection>
+                                  <!-- visa -->
+<uxap:ObjectPageSection titleUppercase="true" title="{i18n>visa}" >
+<uxap:subSections>
+<uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>visa}">
+<uxap:blocks>
+<VBox >
+<Table growing="true" growingThreshold="200"   items="{VisaModel>/}" >
+								
+			        <columns>
+						<!-- <Column visible="false">
+            			<Text text="{i18n>seqNum}" />
+                        </Column> -->
+			            <Column >
+				        <Label text="{i18n>visaName}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>countryName}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>visaType}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>issueDate}" />
+			            </Column>
+                        <Column >
+				        <Label text="{i18n>expirationDate}" />
+			            </Column>
+			             
+                        <Column >
+                        </Column>
+
+		            </columns>
+		            <items>
+                        <ColumnListItem vAlign="Middle" >
+                            <cells>
+                                <!-- <Input value="{VisaModel>DetailsId}" ></Input> -->
+    							<Input value="{VisaModel>VisaName}" editable="{visibleModel>/editable}" type="Text" placeholder="Visa Name"  />
+                                
+                                <ComboBox items="{path:'CountryModel>/', length:1000}" selectedKey="{VisaModel>Country}" editable="{visibleModel>/editable}" change="onChangeCountry" >
+                                     <core:ListItem key="{CountryModel>DomvalueL}" text="{CountryModel>Ddtext}"/>
+                                </ComboBox>
+                                <Input value="{VisaModel>VisaType}" editable="{visibleModel>/editable}" placeholder="Visa Type" ></Input>
+                                <DatePicker
+                                    value="{
+                                        path: 'VisaModel>IssueDate',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                    }"
+                                    
+                                    placeholder="Issue Date"
+                                    editable="{visibleModel>/editable}"/>    
+                                    <DatePicker
+                                                value="{
+                                                    path: 'VisaModel>ValidTill',
+                                                  type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                                }"
+                                                placeholder="Valid Thru"
+                                                editable="{visibleModel>/editable}"/>
+            				    <Button icon="sap-icon://sys-minus" text="{i18n>remove}" press="onRemoveRowVisa" visible="{visibleModel>/editable}"/>
+
+                            </cells>
+                        </ColumnListItem>
+		            </items>		
+			</Table>
+    <Button icon="sap-icon://sys-add" text="{i18n>addNewLine}" visible="{visibleModel>/editable}" press="onAddRowVisa" />
+    </VBox>
+
+</uxap:blocks>
+
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+<uxap:ObjectPageSection titleUppercase="false" title="{i18n>cvDetails}">
+<uxap:subSections>
+<uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>cvDetails}" >
+<uxap:blocks>
+
+                    <f:SimpleForm layout="ResponsiveGridLayout" editable="true" columnsM="2" columnsL="2" columnsXL="4" >
+                    <Text class="sapUiSmallMarginBegin" text="{i18n>fileSize}" />
+                    <Label text="{i18n>type1}" required="true"></Label>
+                    <ComboBox id="idType1"  items="{ResumeTypeModel>/}" editable="false" enabled="{ViewModel>/showAvailablebtn}" selectedKey="{ResumeModel>/0/typeName}" required="true">
+                        <core:ListItem key="{ResumeTypeModel>DomvalueL}" text="{ResumeTypeModel>Ddtext}"/>
+                    </ComboBox>
+                    <!-- <Input placeholder="Description for CV 1" value="{ViewModel>/Desc1}" editable="{visibleModel>/editable}" /> -->
+                    <unified:FileUploader icon="sap-icon://upload" buttonOnly="true" buttonText="{i18n>uploadbtn}" maximumFileSize="5" fileType="docx,pdf,pptx" iconFirst="true" placeholder="Upload your Resume Here" value="" id="fileUploader1" name="fileUploader1" 
+                        uploadUrl="your_upload_url"  uploadComplete="onUploadComplete" change="onUploadChange" enabled="{visibleModel>/editable}" ></unified:FileUploader>
+                    <Link text="{ResumeModel>/0/fileName}" press="openFileType1" target="{ResumeModel>/0/fileName}" ></Link>
+                    <Label text="{i18n>type2}"></Label>
+                    <ComboBox id="idType2" items="{ResumeTypeModel>/}" editable="false" enabled="{ViewModel>/showAvailablebtn}" selectedKey="{ResumeModel>/1/typeName}" required="false">
+                        <core:ListItem key="{ResumeTypeModel>DomvalueL}" text="{ResumeTypeModel>Ddtext}"/>
+                    </ComboBox>
+                    <!-- <Input placeholder="Description for CV 2" value="{ViewModel>/Desc2}" editable="{visibleModel>/editable}" /> -->
+                    <unified:FileUploader icon="sap-icon://upload" buttonOnly="true" buttonText="{i18n>uploadbtn}" maximumFileSize="5" fileType="doc,pdf,pptx" iconFirst="true" placeholder="Upload your Resume Here" value="" id="fileUploader2" name="fileUploader2" 
+                        uploadUrl="your_upload_url" uploadComplete="onUploadComplete" change="onUploadChange" enabled="{visibleModel>/editable}" ></unified:FileUploader>
+                    <Link text="{ResumeModel>/1/fileName}" press="openFileType2" target="{ResumeModel>/1/fileName}" ></Link>
+                    <Label text="{i18n>type3}"></Label>
+                    <ComboBox id="idType3" items="{ResumeTypeModel>/}" editable="false" enabled="{ViewModel>/showAvailablebtn}" selectedKey="{ResumeModel>/2/typeName}" required="false">
+                        <core:ListItem key="{ResumeTypeModel>DomvalueL}" text="{ResumeTypeModel>Ddtext}"/>
+                    </ComboBox>
+                    <!-- <Input placeholder="Description for CV 3" value="{ViewModel>/Desc3}" editable="{visibleModel>/editable}" /> -->
+                    <unified:FileUploader icon="sap-icon://upload" buttonOnly="true" buttonText="{i18n>uploadbtn}" maximumFileSize="5" fileType="doc,pdf,pptx" iconFirst="true" placeholder="Upload your Resume Here" value="" 
+                        id="fileUploader3" name="fileUploader3" uploadUrl="your_upload_url" uploadComplete="onUploadComplete" change="onUploadChange" enabled="{visibleModel>/editable}" ></unified:FileUploader>
+                    <Link text="{ResumeModel>/2/fileName}" press="openFileType3" target="{ResumeModel>/2/fileName}" ></Link>
+                
+                </f:SimpleForm>
+                       
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+<uxap:ObjectPageSection titleUppercase="false" title="{i18n>addDetails}">
+<uxap:subSections>
+<uxap:ObjectPageSubSection titleUppercase="false" title="{i18n>addDetails}">
+<uxap:blocks>
+<f:SimpleForm  layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
+			<f:content>
+                <Label text="{i18n>langs}" />
+				<MultiComboBox id="idLanguages" placeholder="Select Known Languages" showClearIcon="true" items="{LanguageModel>/}" 
+                        editable="{visibleModel>/editable}" required="true" selectionFinish="onChangeLanguages">
+                    <core:Item key="{LanguageModel>DomvalueL}" text="{LanguageModel>Ddtext}"></core:Item>
+                </MultiComboBox>
+
+                <Label text="{i18n>pPhoto}" required="{visibleModel>/editable}"/>
+				<unified:FileUploader placeholder="Upload PNG,JPEG/JPG" fileType="png,jpeg,JPG" multiple="false" buttonOnly="true" buttonText="{i18n>uploadphoto}"
+                    value="{ViewModel>/pPhoto}" id="proPhoto" enabled="{visibleModel>/editable}" change="onPhotoUploadChange"></unified:FileUploader>
+                <Link text="{i18n>ViewPhoto}" press="openViewPhoto" target="" class="sapUiTinyMarginTop"
+                    visible="{ parts: ['ViewModel>/Photo'], 
+                                formatter: '.formatter.handleVisiblePhoto' }"></Link>
+                
+                </f:content>
+                </f:SimpleForm>
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+
+<uxap:ObjectPageSection titleUppercase="false" title="Image test">
+<uxap:subSections>
+<uxap:ObjectPageSubSection titleUppercase="false" title="Image test">
+<uxap:blocks>
+<!-- <f:SimpleForm  layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
+			<f:content>
+                
+                <TextArea id="idBase64Area" value='Base 64 Value' editable="true" height="300px" width="500px" change="onChangeDP"/>
+                                <Title text="Your Image"/>
+                                <Image id="idDP" width="30%"/>
+                
+                
+                </f:content>
+                </f:SimpleForm> -->
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+    </uxap:sections>
+
+<uxap:footer >
+<Bar visible="{visibleModel>/editable}" >
+<contentRight>
+<!-- <Button text="{i18n>edit}" type="Emphasized" visible="{visibleModel>/btnEdit}" press="onEdit"></Button> -->
+<Button text="{i18n>submit}" type="Success" visible="{visibleModel>/editable}" press="onSubmit"></Button>
+<Button text="{i18n>cancel}" type="Reject" visible="{visibleModel>/editable}" press="onCancel"></Button>
+</contentRight>
+</Bar>
+</uxap:footer>
+
+
+    </uxap:ObjectPageLayout>
+
+    <!-- </Page> -->
+</mvc:View>
