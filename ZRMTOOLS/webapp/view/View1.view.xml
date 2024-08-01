@@ -1,0 +1,600 @@
+<mvc:View
+    xmlns:filterbar="sap.ui.comp.filterbar"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:m="sap.m"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:cbox="sap.m.ComboBox"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:f="sap.f"
+    xmlns:tnt="sap.tnt"
+    controllerName="rmtool1.controller.View1"
+  
+>
+    <!-- <f:ShellBar
+
+			secondTitle=""
+			homeIcon="/css/Protiviti_logo1.png"
+			showCopilot="false"
+			showSearch="false"
+			showNotifications="false"
+			showProductSwitcher="false">
+	</f:ShellBar> -->
+    <m:HeaderContainer backgroundDesign="Solid">
+        <!-- <m:FlexBox  alignItems="Center"
+     >
+        <m:Button
+            class="sapUiSmallMarginEnd increaseFont"
+            icon="sap-icon://home"
+            width="auto"
+            press="openHome"
+            tooltip="Home"
+            type="Transparent"
+            />
+        <m:ImageContent src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Protiviti_logo.svg/220px-Protiviti_logo.svg.png"  class="custom-image"  />
+    </m:FlexBox> -->
+    </m:HeaderContainer>
+    <m:Page
+        showHeader="false"
+        enableScrolling="true"
+        class="fullScreenPage"
+    >
+        <m:content>
+            <Table
+                id="table"
+                selectionMode="MultiToggle"
+                visibleRowCountMode="Interactive"
+                rows="{oFormModel>/}"
+                enableCellFilter="{ui>/cellFilterOn}"
+                filter="filterPrice"
+                ariaLabelledBy="title"
+                fixedColumnCount="4"
+                columnHeaderHeight="25%"
+            >
+                <!-- <extension>
+            <m:HeaderContainer backgroundDesign="Solid">
+        <m:ImageContent  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Protiviti_logo.svg/220px-Protiviti_logo.svg.png" >
+        </m:ImageContent>
+        </m:HeaderContainer>
+            </extension>
+            -->
+                <extension>
+                    <filterbar:FilterBar
+                        id="filterbar"
+                        showFilterConfiguration="false"
+                        clear="onReset"
+                        showClearOnFB="true"
+                        persistencyKey="myPersKey"
+                        useToolbar="false"
+                        search="onSearchFilter"
+                        filterChange=".onFilterChange"
+                        afterVariantLoad=".onAfterVariantLoad"
+                    
+                    >
+                        <filterbar:filterGroupItems>
+                            <filterbar:FilterGroupItem
+                                name="Level"
+                                label="Level"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:ComboBox
+                                        items="{path : 'LevelModel>/', length : '500'}"
+                                        showClearIcon="true"
+                                        id="LevelDesig"
+                                        selectedKey="{FilterDataModel>/level}"
+                                        selectionChange=".onLevelChange"
+                                        placeholder="Select Employee Designation"
+                                    >
+                                        <c:ListItem
+                                            key="{LevelModel>DomvalueL}"
+                                            text="{LevelModel>Ddtext}"
+                                        />
+                                    </m:ComboBox>
+
+                                    <!-- <ComboBox id="empLoc" items="{path : 'BaseLocModel>/', length : '500'}" selectedKey="{FilterDataModel>/location}" selectionChange=".onLocationChange" placeholder="Select Employee Location">
+                                            <core:ListItem key="{BaseLocModel>DomvalueL}" text="{BaseLocModel>Ddtext}"/>
+                                        </ComboBox> -->
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem
+                                name="Location"
+                                label="Location"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:ComboBox
+                                        items="{LocationModel>/}"
+                                        showButton="true"
+                                        showClearIcon="true"
+                                        id="location"
+                                        selectedKey="{FilterDataModel>/location}"
+                                        selectionChange=".onLocationChange"
+                                        placeholder="Select Employee Location"
+                                    >
+                                        <c:ListItem
+                                            key="{LocationModel>DomvalueL}"
+                                            text="{LocationModel>Ddtext}"
+                                        />
+                                    </m:ComboBox>
+
+                                    <!-- <m:ComboBox items="{levFilter>/}" showClearIcon="true" id="levelComboBox" selectedKeys="{FilterDataModel>/level}" selectionChange=".onLevelChange" placeholder="Select Employee Designation" >
+                                        <c:ListItem key="{LevelModel>DomvalueL}" text="{LevelModel>Ddtext}"/>
+                                    </m:ComboBox> -->
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem
+                                name="Resource Name"
+                                label="Resource Name"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <!-- <m:MultiComboBox items="{path : 'oFormModel>/', length : '500'}"  showClearIcon="true" id="resource" selectionChange=".onResourceChange">
+                                        <c:ListItem key="{oFormModel>Name}" text="{oFormModel>Name}"/>
+                                    </m:MultiComboBox> -->
+
+                                    <m:ComboBox
+                                        id="resource"
+                                        items="{path : 'ResourceModel>/', length : '500'}"
+                                        showButton="true"
+                                        showClearIcon="true"
+                                        selectedKey="{FilterDataModel>/resourcename}"
+                                        selectionChange=".onResourceChange"
+                                        placeholder="Select Employee Name"
+                                    >
+                                        <c:ListItem
+                                            key="{ResourceModel>DomvalueL}"
+                                            text="{ResourceModel>Ddtext}"
+                                        />
+                                    </m:ComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem
+                                name="Module"
+                                label="Module"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <!-- <m:MultiComboBox items="{subFilter>/}" id="submod" selectionChange=".onSubModChange">
+                                        <c:ListItem key="{subFilter>value}" text="{subFilter>sub}"/>
+                                    </m:MultiComboBox> -->
+
+                                    <m:ComboBox
+                                        items="{SubmoduleModel>/}"
+                                        showButton="true"
+                                        showClearIcon="true"
+                                        id="submodule"
+                                        selectedKey="{FilterDataModel>/submodule}"
+                                        selectionChange=".onSubModuleChange"
+                                        placeholder="Select Employee's Module"
+                                    >
+                                        <c:ListItem
+                                            key="{SubmoduleModel>DomvalueL}"
+                                            text="{SubmoduleModel>Ddtext}"
+                                        />
+                                    </m:ComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem
+                                name="operator"
+                                label="Operator"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <m:ComboBox
+                                        valueState="Information"
+                                        selectedKey="{FilterDataModel>/operator}"
+                                        valueStateText="Select Operator for utilization and Enter a Value"
+                                    >
+                                        <m:items>
+                                            <c:Item
+                                                key="01"
+                                                text="Equal to"
+                                            />
+                                            <c:Item
+                                                key="02"
+                                                text="Less Than"
+                                            />
+                                            <c:Item
+                                                key="03"
+                                                text="Greater Than"
+                                            />
+                                            <c:Item
+                                                key="04"
+                                                text="Less Than or Equal to"
+                                            />
+                                            <c:Item
+                                                key="05"
+                                                text="Greater Than or Equal to"
+                                            />
+                                        </m:items>
+                                    </m:ComboBox>
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+                            <filterbar:FilterGroupItem
+                                name="Utilization"
+                                label="Utilization/Chargeability(MTD)"
+                                groupName="Group1"
+                                visibleInFilterBar="true"
+                            >
+                                <filterbar:control>
+                                    <!-- <m:MultiComboBox items="{subFilter>/}" id="submod" selectionChange=".onSubModChange">
+                                        <c:ListItem key="{subFilter>value}" text="{subFilter>sub}"/>
+                                    </m:MultiComboBox> -->
+                                    <!-- <m:MultiComboBox items="{UtilizationModel>/}" showButton="true" showClearIcon="true" id="utilization" selectedKeys="{FilterDataModel>/utilization}" selectionChange=".onSubModuleChange" placeholder="Select Utilization Range">
+                                        <c:ListItem key="{UtilizationModel>DomvalueL}" text="{UtilizationModel>Ddtext}"/>
+                                    </m:MultiComboBox> -->
+
+                                    <m:Input
+                                        value="{FilterDataModel>/utilization}"
+                                        placeholder="Enter Utilization Value"
+                                        type="Number"
+                                        change="validateUtilization"
+                                    />
+                                </filterbar:control>
+                            </filterbar:FilterGroupItem>
+
+                            <!-- <filterbar:FilterGroupItem name="button" label="Clear Filter Selection" groupName="Group6" visibleInFilterBar="true">
+            <filterbar:control >
+            <m:Button  text="Clear" type="Reject" press="onReset"></m:Button>
+            </filterbar:control>
+
+            </filterbar:FilterGroupItem>           -->
+                        </filterbar:filterGroupItems>
+                        <!-- <m:Button type="Reject" press="onReset"></m:Button> -->
+                    </filterbar:FilterBar>
+                </extension>
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title
+                            text="Available Resources:  {=${oFormModel>/}.length}"
+                            id="rowCountLabel"
+                        />
+                        <m:ToolbarSpacer />
+                        <tnt:InfoLabel
+                            text="Utilization Last Updated on:{FilterDataModel>/LastupdUtilDate}"
+                            colorScheme="6"
+                        />
+                        <!-- <m:Title text="Utilization Last Updated on:{FilterDataModel>/LastupdUtilDate}" /> -->
+                        <m:ToolbarSpacer />
+                        <!-- <m:Button text="Reset selection" press="onReset"></m:Button> -->
+                        <!-- <m:Button text="Sample" press="sample"></m:Button> -->
+                        <!-- <m:Button  text="" press=" onOpenGant" tooltip="Gant Chart" type="Ghost" icon="sap-icon://electrocardiogram"/> -->
+                        <m:Button
+                        id="idAddUser"
+                            press="addUser"
+                            type="Ghost"
+                            icon="sap-icon://add-employee"
+                            tooltip="Add Employee"
+                        />
+                        <m:Button
+                        id="idAvailableResoures"
+                            press="availResource"
+                            type="Ghost"
+                            icon="sap-icon://provision"
+                            tooltip="Available Resources(F8)"
+                        />
+                        <!-- <m:Button press="addNewProject" type="Ghost" icon="sap-icon://write-new-document" tooltip="Add New Project" ></m:Button> -->
+                        <!-- <m:Button  text="" press="onOpenPie" tooltip="Pie Chart" type="Ghost" icon="sap-icon://pie-chart"/>   -->
+                        <!-- <m:Button  text="" press="onOpenfrag" tooltip="Pie Chart" type="Critical" icon="sap-icon://pie-chart"/>   -->
+                        <!-- <m:Button tooltip="Filter" icon="sap-icon://action-settings" press="handleSettingsButtonPress"/> -->
+                        <!-- <m:Button tooltip="Edit Current Location" visible="{oChartModel>/locVisible}" icon="sap-icon://functional-location" type="Ghost" press="handleLocationPress"></m:Button> -->
+                        <!-- <m:Button tooltip="Close Current Location" visible="{oChartModel>/canVisible}" press="handleLocationClose" type="Ghost" icon="sap-icon://decline"></m:Button>
+                        <m:Button tooltip="Save Current Location" visible="{oChartModel>/saveLocVisible}" press="handleSaveLocation" type="Ghost" icon="sap-icon://save"></m:Button> -->
+                        <m:MessagePopover />
+                        <!-- <m:Button  text=" Customer" press="addCustomer" type="Ghost" icon="sap-icon://add"/>    -->
+                        <m:Button
+                            id="idBtnEmployeeDetails"
+                            text=""
+                            press="handleMessagePopoverPress"
+                            icon="sap-icon://detail-view"
+                            tooltip="Resource details(F9)"
+                            type="Ghost"
+                        />
+                        <!-- upload Excel -->
+                        <u:FileUploader
+                            id="idFileUploader"
+                            name="myFileUpload"
+                            uploadUrl="upload/"
+                            tooltip="Upload Excel file to the server"
+                            uploadComplete="handleUploadComplete"
+                            change="handleUploadFile"
+                            typeMissmatch="handleTypeMissmatch"
+                            style="Ghost"
+                            multiple="true"
+                            buttonOnly="true"
+                            iconOnly="true"
+                            icon="sap-icon://upload-to-cloud"
+                            fileType="XLSX,xls,csv"
+                            placeholder="Choose a file for Upload..."
+                        >
+                            <u:parameters>
+                                <u:FileUploaderParameter
+                                    name="Accept-CH"
+                                    value="Viewport-Width"
+                                />
+                                <u:FileUploaderParameter
+                                    name="Accept-CH"
+                                    value="Width"
+                                />
+                                <u:FileUploaderParameter
+                                    name="Accept-CH-Lifetime"
+                                    value="86400"
+                                />
+                            </u:parameters>
+                        </u:FileUploader>
+                        <m:Button
+                            text=""
+                            press="exportToExcel"
+                            type="Ghost"
+                            icon="sap-icon://excel-attachment"
+                        />
+                        <m:Button
+                            text=""
+                            press="clearAllFilters"
+                            type="Ghost"
+                            icon="sap-icon://reset"
+                        />
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column
+                        sortProperty="EmployeeNo."
+                        filterProperty="EmployeeNo."
+                        width="11rem"
+                        visible="false"
+                    >
+                        <m:Label text="Employee No." />
+                        <template>
+                            <m:Text
+                                text="{oFormModel>Pernr}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        sortProperty="Name"
+                        filterProperty="Name"
+                        width="11rem"
+                    >
+                        <m:Label text="Resource Name" />
+                        <template>
+                            <m:Text
+                                tooltip="{oFormModel>Name}"
+                                text="{oFormModel>Name}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Designation"
+                        sortProperty="Designation"
+                    >
+                        <m:Label text="Designation" />
+                        <template>
+                            <m:Text text="{oFormModel>DesinationText}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Location"
+                        sortProperty="Location"
+                    >
+                        <m:Label text="Location" />
+                        <template>
+                            <m:Text text="{oFormModel>Location}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Current Location"
+                        sortProperty="Current Location"
+                    >
+                        <m:Label text="Current Location" />
+                        <template>
+                            <m:Text text="{oFormModel>CurrentLocation}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Module/Primary Skill"
+                        sortProperty="Module/Primary Skill"
+                    >
+                        <m:Label text="Module/primary Skill" />
+                        <template>
+                            <m:Text text="{oFormModel>Module}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Secondary Skill"
+                        sortProperty="Secondary Skill"
+                    >
+                        <m:Label text="Secondary Skill" />
+                        <template>
+                            <m:Text text="{oFormModel>SecondarySkill}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Industry Expertise"
+                        sortProperty="Industry Expertise"
+                    >
+                        <m:Label text="Industry Expertise" />
+                        <template>
+                            <m:Text text="{oFormModel>IndustryExpertise}" />
+                        </template>
+                    </Column>
+
+                    <!-- <Column width="11rem" filterProperty="SubModule" sortProperty="SubModule">
+                        <m:Label text="SubModule"/>
+                        <template>
+                            <m:Text text="{oFormModel>SubModule}"/>
+                        </template>
+                    </Column> -->
+                    <Column
+                        width="11rem"
+                        filterProperty="Task/Project"
+                        sortProperty="Task/Project"
+                    >
+                        <m:Label text="Task/Project" />
+                        <template>
+                            <m:Text text="{oFormModel>TaskText}" />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="MTD"
+                        sortProperty="MTD"
+                    >
+                        <m:Label text="Last MTD" />
+                        <template>
+                            <m:Text
+                                text="{
+                            path:'oFormModel>Lastmtd',
+                            type: 'sap.ui.model.type.Integer'
+                            }%"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="MTD"
+                        sortProperty="MTD"
+                    >
+                        <m:Label text="Current MTD" />
+                        <template>
+                            <m:Text
+                                text="{
+                            path:'oFormModel>Mtd',
+                            type: 'sap.ui.model.type.Integer'
+                            }%"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="YTD"
+                        sortProperty="YTD"
+                    >
+                        <m:Label text="YTD" />
+                        <template>
+                            <m:Text text="{oFormModel>Ytd} %" />
+                        </template>
+                    </Column>
+                    <!-- <Column width="11rem"  filterProperty="UnApproved Leaves/Hours" sortProperty="Unapproved leaves/hours">
+                        <m:Label text="Unapproved Leaves/hours"/>
+                        <template>
+                            <m:Input editable="false" value="{oFormModel>Unapprovedleaves/hours}"/>
+                        </template>
+                    </Column> -->
+                    <Column
+                        width="11rem"
+                        filterProperty="Allocation"
+                        sortProperty="Utilization"
+                    >
+                        <m:Label text="Allocation" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>Allocation}%"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <!-- <Column width="11rem"
+                     filterProperty="Week Execution"
+                        sortProperty="WeekExecution">
+                        <m:Label text="WeekExecution" />
+                        <template>
+                          <m:Text text="{oFormModel>WeekExecution}"/>
+                        </template>
+                    </Column> -->
+                    <Column
+                        width="11rem"
+                        filterProperty="Project 1"
+                        sortProperty="Project 1"
+                    >
+                        <m:Label text="Project 1" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>Project01}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        filterProperty="Track/Module"
+                        sortProperty="Project 2"
+                    >
+                        <m:Label text="Project 2" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>Project02}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        sortProperty="Name"
+                    >
+                        <m:Label text="Project 3" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>Project03}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        sortProperty="Name"
+                    >
+                        <m:Label text="Project 4" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>Project04}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        sortProperty="Name"
+                    >
+                        <m:Label text="Upcoming Proj 1" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>planned01}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        width="11rem"
+                        sortProperty="Name"
+                    >
+                        <m:Label text="Upcoming Proj 2" />
+                        <template>
+                            <m:Input
+                                value="{oFormModel>planned02}"
+                                editable="false"
+                            />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+    </m:Page>
+</mvc:View>

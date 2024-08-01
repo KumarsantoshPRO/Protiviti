@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <TableSelectDialog
+        id="idCustomerAndListTable"
+        noDataText="No Data"
+        title="Customer list"
+        search="handleSearchProduct"
+        confirm="handleConfirmProductDialog"
+        cancel="handleCloseProductDialog"
+        items="{ArrCustF4>/}"
+        
+    >
+        <ColumnListItem vAlign="Middle">
+            <cells>
+                <Text text="{ArrCustF4>CustomerName}" />
+                <Label text="{ArrCustF4>ProjectName}" />
+                <Label text="{ArrCustF4>ProjectTypeText}" />
+                <Text text="{ArrCustF4>Skill}"/>
+                <Text text="{ArrCustF4>Role}"/>
+                <Text text="{ArrCustF4>Designation}"/>
+                <Text text="{ArrCustF4>Location}"/>
+             
+            </cells>
+        </ColumnListItem>
+
+        <columns>
+            <Column>
+                <Text text="Customer Name" />
+            </Column>
+            <Column>
+                <Text text="Project Name" />
+            </Column>
+            <Column>
+                <Text text="Project Type" />
+            </Column>
+            <Column>
+                <Text text="Skill Set" />
+            </Column>
+            <Column>
+                <Text text="Role" />
+            </Column>
+            <Column>
+                <Text text="Designation" />
+            </Column>
+            <Column>
+                <Text text="Development Location" />
+            </Column>
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

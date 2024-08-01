@@ -1,0 +1,104 @@
+<core:FragmentDefinition
+    xmlns:odata="sap.ui.comp.odata"    
+    xmlns:form="sap.ui.layout.form"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.ui.table"
+    
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <m:Dialog icon="sap-icon://add-employee" title="Add User" contentWidth="1000px">
+    
+        <form:SimpleForm editable="true"
+			layout="ResponsiveGridLayout"
+			title="Employee Details"
+			columnsXL="3"
+			columnsL="3"
+			columnsM="2"
+			>
+    <form:content>
+        <core:Title text="Employee Info" />
+                
+       <m:Label id="InputNumberLabel" text="Employee ID" labelFor="inputNumber" />
+			<m:Input
+                value="{NewUserModel>/Pernr}" 
+                required="true"
+				id="inputNumber"
+				type="Number"
+				placeholder="Employee ID"
+				ariaLabelledBy="InputNumberLabel"/>
+
+        <m:Label text="Employee Name" required="true" />
+        <m:FlexBox justifyContent="Start">
+            <m:Input value="{NewUserModel>/FirstName}" placeholder="First Name" width="100px" editable="true" required="true" />
+            <m:Input value="{NewUserModel>/MiddleName}" placeholder="Middle Name" width="100px" editable="true"  />
+            <m:Input value="{NewUserModel>/LastName}" placeholder="Last Name" width="100px" editable="true" required="true" />
+        </m:FlexBox>
+
+        <m:Label id="InputEmailLabel" text="EmailAddress" labelFor="inputEmail" required="true" />
+        <m:Input
+            value="{NewUserModel>/EmailAddress}"
+            id="inputEmail"
+            type="Email"
+            placeholder="Enter email"
+            ariaLabelledBy="InputEmailLabel"
+            required="true" />
+
+        <m:Label text="Gender" required="true" />
+        <m:ComboBox items="{oGenderModel>/}" id="idGender" change="onChangeGender" placeholder="Choose the Gender" width="200px" editable="true" required="true">
+            <m:items>
+                <core:Item key="{oGenderModel>DomvalueL}" text="{oGenderModel>Ddtext}" />
+            </m:items>
+        </m:ComboBox>
+
+        <m:Label text="Date of Joining" required="true" />
+        <m:DatePicker  value="{
+                                        path: 'NewUserModel>/Doj',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {UTC:true, style: 'medium'}
+                                        
+                                    }" width="200px" editable="true" required="true" />
+
+        <core:Title text="Work Information" />
+
+        <!-- <m:Label text="Main Module" required="true" />
+        <m:ComboBox items="{oMModuleModel>/}" id="idMainModule" change="onChangeMainModule"  placeholder="Select the Main Module" width="200px" editable="true" required="true">
+            <m:items>
+                <core:Item key="{oMModuleModel>DomvalueL}" text="{oMModuleModel>Ddtext}" />
+            </m:items>
+        </m:ComboBox> -->
+
+        <m:Label text="Track/Module" required="true" />
+        <m:ComboBox items="{oSuModuleModel>/}" id="idSubModule" selectedKey="{NewUserModel>/ModuleCode}" placeholder="Select Module" width="200px" editable="true" required="true">
+            <m:items>
+                <core:Item key="{oSuModuleModel>DomvalueL}" text="{oSuModuleModel>Ddtext}" />
+            </m:items>
+        </m:ComboBox>
+
+        <m:Label text="Designation" required="true" />
+        <m:ComboBox items="{oDesigModel>/}" id="idDesignation" change="onChangeDesignation" placeholder="Select Designation" width="200px" editable="true" required="true">
+            <m:items>
+                <core:Item key="{oDesigModel>DomvalueL}" text="{oDesigModel>Ddtext}" />
+            </m:items>
+        </m:ComboBox>
+
+        <m:Label text="Base Location" required="true" />
+        <m:Input value="{NewUserModel>/BaseLocation}" placeholder=" Base Location" width="200px" editable="true" required="true"/>
+
+        <!-- <m:Label text="Current Location" required="true" />
+        <m:Input value="{NewUserModel>/CurrentLocation}" placeholder=" Current Location" width="200px" editable="true" required="true"/> -->
+
+            </form:content>
+        </form:SimpleForm>
+
+
+        <m:beginButton>
+            <m:Button type="Emphasized" text="save" press="onSaveUser"   />
+        </m:beginButton>
+
+        <m:endButton>
+            <m:Button  text="close" press="onCloseUser"   />
+        </m:endButton>
+    </m:Dialog>
+</core:FragmentDefinition>

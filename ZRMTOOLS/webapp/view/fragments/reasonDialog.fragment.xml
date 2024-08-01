@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:table2="sap.ui.mdc.table" xmlns:launchpad="sap.ushell.ui.launchpad" xmlns:macros="sap.fe.macros" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+
+<Dialog  id="reasonDialog" title="Reson for Blocking"
+afterClose="onPressCancel" closeOnNavigation="true" 
+>
+<content>
+<TextArea width="25rem" placeholder="Reason for Blocking"></TextArea>
+</content>
+<beginButton>
+<Button text="Submit" type="Accept"></Button>
+</beginButton>
+<endButton>
+<Button text="Cancel" press="onPressCancel" type="Reject"></Button>
+</endButton>
+</Dialog>
+</core:FragmentDefinition>

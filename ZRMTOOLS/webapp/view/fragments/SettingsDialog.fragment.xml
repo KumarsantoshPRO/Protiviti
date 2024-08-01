@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="settingsDialog"
+        title="Column Settings"
+        contentWidth="300px"
+        contentHeight="300px"
+        afterClose="onAfterClose">
+        <VBox class="sapUiContentPadding">
+            <CheckBox text="Resource Name" selected="{settingsDialog>/columns/Name}" />
+            <CheckBox text="Level" selected="{settingsDialog>/columns/DesinationText}" />
+            <CheckBox text="Location" selected="{settingsDialog>/columns/Location}" />
+            <CheckBox text="Track/Module" selected="{settingsDialog>/columns/Modul}" />
+            <CheckBox text="SubModule" selected="{settingsDialog>/columns/SubModule}" />
+            <CheckBox text="Task/Project" selected="{settingsDialog>/columns/TaskText}" />
+            <CheckBox text="MTD" selected="{settingsDialog>/columns/Mtd}" />
+            <CheckBox text="YTD" selected="{settingsDialog>/columns/Ytd}" />
+            <CheckBox text="Project 1" selected="{settingsDialog>/columns/Project01}" />
+            <CheckBox text="Project 2" selected="{settingsDialog>/columns/Project02}" />
+            <CheckBox text="Project 3" selected="{settingsDialog>/columns/Project03}" />
+            <CheckBox text="Project 4" selected="{settingsDialog>/columns/Project04}" />
+            <CheckBox text="Upcoming Proj 1" selected="{settingsDialog>/columns/planned01}" />
+            <CheckBox text="Upcoming Proj 2" selected="{settingsDialog>/columns/planned02}" />
+ 
+            <OverflowToolbar>
+                <Button text="OK" press="handleSettingsDialogOK" />
+                <ToolbarSpacer />
+                <Button text="Close" press="onCloseSettingsDialog" />
+            </OverflowToolbar>
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>
+ 

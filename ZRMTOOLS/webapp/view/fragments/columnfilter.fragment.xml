@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog
+        id="settingsDialog"
+        title="Column Settings"
+        contentWidth="300px"
+        contentHeight="300px"
+        afterClose="onAfterClose">
+        <VBox class="sapUiContentPadding">
+            <CheckBox text="Customer Name" selected="{settingsDialog>/columns/Name}" />
+            <CheckBox text="Project Name" selected="{settingsDialog>/columns/DesinationText}" />
+            <CheckBox text="Project Type" selected="{settingsDialog>/columns/Location}" />
+            <CheckBox text="Start Date" selected="{settingsDialog>/columns/Location}" />
+            <CheckBox text="End Date" selected="{settingsDialog>/columns/Location}" />
+            <CheckBox text="Allocation" selected="{settingsDialog>/columns/Location}" />
+            <CheckBox text="Remarks" selected="{settingsDialog>/columns/Location}" />
+
+            <OverflowToolbar>
+                <Button text="OK" press="handleSettingsDialogOK" />
+                <ToolbarSpacer />
+                <Button text="Close" press="onCloseColumnFilter" />
+            </OverflowToolbar>
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>
+ 

@@ -1,0 +1,163 @@
+<core:FragmentDefinition xmlns:commons="sap.suite.ui.commons"
+        height="100%"
+       
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+         xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:chart="sap.chart" xmlns:smartmicrochart="sap.ui.comp.smartmicrochart" xmlns:microchart="sap.suite.ui.microchart" 
+        >
+ 
+        <m:Dialog
+        id="Pie"
+        title="Pie Charts"
+        afterClose="onAfterClose">
+ 
+        <!-- <m:VBox alignItems="Center">
+             <m:Text text="{/selectedRow/Name}" />
+            </m:VBox>  
+            <m:VBox  alignItems="Center" alignContent="SpaceBetween">
+            <m:Text text="{/selectedRow/DesinationText}" />
+            </m:VBox> -->
+             
+      <!-- <m:Panel >
+<m:VBox >
+<m:Label text="Select Chart:" ></m:Label>
+<m:Select forceSelection="true" change="onChartSelection">
+<m:items>
+<c:Item key="loc" text="Location Chart"> </c:Item>
+<c:Item key="tas" text="Task Chart"> </c:Item>
+<c:Item key="mod" text="Track/Module Chart"> </c:Item>
+<c:Item key="lev" text="Level Chart"> </c:Item>
+</m:items>
+</m:Select>
+</m:VBox>
+</m:Panel> -->
+<m:HBox alignItems="Center" >
+<m:Label  ></m:Label>
+<core:Icon height="60px" src="sap-icon://functional-location"></core:Icon>
+<m:Select type="Default" icon="sap-icon://functional-location" forceSelection="true" change="onChartSelection">
+<m:items>
+<core:Item key="BL" text="Base location" ></core:Item>
+<core:Item key="CL"  text="Current Location"></core:Item>
+<core:Item key="SM" text="Sub-Modules"></core:Item>
+</m:items>
+</m:Select>
+</m:HBox>
+         <viz:VizFrame id="idVizFrame" visible="{oChartModel>/baseLoc}" vizProperties="{title: {text: 'Base Location', visible: true}}"
+                vizType='pie'  >
+                <viz:dataset >
+                    <viz.data:FlattenedDataset  data="{locChart>/locations}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition  displayValue="{locChart>loc}-({locChart>value})" name="Locations"
+                                value="{locChart>loc}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition  name="Count"
+                                value="{locChart>value}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem  uid="size" type="Measure"
+                        values="Count" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="Locations" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover metadataContexts="{ locChart>value }" id="idPopOver"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+           
+       <!-- Current Location Chart -->
+         <viz:VizFrame id="idVizFrame1" visible="{oChartModel>/currLoc}" vizProperties="{title: {text: 'Current Location', visible: true}}"
+                vizType='pie'  >
+                <viz:dataset >
+                    <viz.data:FlattenedDataset  data="{locChart>/locations}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition  displayValue="{locChart>loc}-({locChart>value}){subChart>sub}" name="Locations"
+                                value="{locChart>loc}" />
+                                 <!-- <viz.data:DimensionDefinition  displayValue="{locChart>loc}({locChart>value})" name="Locations"
+                                value="{locChart>loc}" /> -->
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Count"
+                                value="{locChart>value}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset >
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem  uid="size" type="Measure"
+                        values="Count" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="Locations" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover metadataContexts="{ locChart>value }" id="idPopOver1"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+
+<!-- Designation Chart -->
+
+                 <viz:VizFrame id="idVizFrame2" visible="{oChartModel>/subModChart}" vizProperties="{title: {text: 'Sub-Modules', visible: true}}"
+                vizType='pie'  >
+                <viz:dataset >
+                    <viz.data:FlattenedDataset  data="{subChart>/submodules}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition  displayValue="{subChart>sub}-({subChart>value})" name="submodule"
+                                value="{subChart>sub}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition  name="Count"
+                                value="{subChart>value}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem  uid="size" type="Measure"
+                        values="Count" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="submodule" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover metadataContexts="{ subChart>value }" id="idPopOver2"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+        <!-- <viz:VizFrame id="idVizFrame2" visible="{oChartModel}" vizProperties="{title: {text: 'Sub-Modules', visible: true}}"
+                vizType='pie'  >
+                <viz:dataset >
+                    <viz.data:FlattenedDataset  data="{subChart>/submodules}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="submodule"
+                                value="{subChart>sub}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Count"
+                                value="{subChart>value}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure"
+                        values="Count" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension"
+                        values="submodule" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver3"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame> -->
+
+
+       <m:OverflowToolbar >
+       <m:ToolbarSpacer />
+     <m:Button text="Close" type="Ghost" press="onClosepie"   />
+       
+       </m:OverflowToolbar>
+    <!-- <m:FlexBox justifyContent="End">
+    </m:FlexBox> -->
+    </m:Dialog>
+   
+</core:FragmentDefinition>
+ 

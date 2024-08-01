@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
+    xmlns="sap.ui.table"
+xmlns:mvc="sap.ui.core.mvc"
+    >
+    <m:Dialog  icon="sap-icon://write-new-document" title="Create New Project">
+    <form:SimpleForm  >
+    <m:Label text="Project Name"></m:Label>
+    <m:Input value="{oUserModel>/PERNR}" placeholder="Name of the Project"></m:Input>   
+
+    <m:Label text="Client Name"></m:Label>
+    <m:Input value="{oUserModel>/FIRST_NAME}" placeholder="Name of the Client"></m:Input>
+
+    <m:Label text="Start Date "></m:Label>
+    <m:DatePicker placeholder="Project Start Date" ></m:DatePicker>
+
+    <m:Label text="End Date"></m:Label>
+    <m:DatePicker placeholder="Project End Date"></m:DatePicker>
+
+    <m:Label text="Project Type "></m:Label>
+    <m:ComboBox items="{oProjectModel>/}" placeholder="Select Project Type">
+    <m:items >
+    <core:Item key="{oProjectModel>DomvalueL}" text="{oProjectModel>Ddtext}"></core:Item>
+    </m:items>
+    </m:ComboBox>
+
+    
+    </form:SimpleForm>
+    <m:beginButton>
+    <m:Button type="Accept" press="saveNewProject" tooltip="Save Project" icon="sap-icon://save"></m:Button>
+    </m:beginButton>
+    <m:endButton>
+    <m:Button type="Reject" press="onCloseProject" tooltip="Cancel" icon="sap-icon://sys-cancel"></m:Button>
+    </m:endButton>
+    </m:Dialog>
+     
+	 
+    
+</core:FragmentDefinition>

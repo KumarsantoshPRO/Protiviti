@@ -1,0 +1,237 @@
+<mvc:View
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:uxap="sap.uxap"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="rmtool1.controller.View1"
+    displayBlock="true"
+>
+    <uxap:ObjectPageLayout showAnchorBarPopover="true" id="objectPageLayout" upperCaseAnchorBar="false">
+
+    <!-- Header Section -->
+    <uxap:headerTitle>
+    <uxap:ObjectPageDynamicHeaderTitle >
+    <uxap:expandedHeading>
+    <Title text="{localModel>/ResourceName}"></Title>
+    </uxap:expandedHeading>
+
+    <uxap:snappedHeading>
+    <HBox >
+    <Avatar src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+            tooltip="User Image"
+            class="sapUiMediumMarginEnd"></Avatar>
+        <VBox >
+        <Title text="{localModel>/ResourceName}"></Title>
+        <Title text="{localModel>/EmpCode}"></Title>
+        </VBox>
+    </HBox>
+    </uxap:snappedHeading>
+    <uxap:expandedContent>
+    <Title text="{localModel>/EmpCode}"></Title>
+    </uxap:expandedContent>
+
+<uxap:actions>
+<Button text="Back" type="Back" press="onBackPage"></Button>
+<Button icon="sap-icon://cancel"
+                                type="Emphasized"
+                                text="Block"
+                                press="onBlock"
+                                ></Button>
+</uxap:actions>
+
+    </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+<uxap:headerContent>
+<FlexBox wrap="Wrap" fitContainer="true">
+<Avatar src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png"
+                                tooltip="User Image"
+                                class="sapUiLargeMarginEnd sapUiSmallMarginBottom"
+                                displaySize="L"
+                                ></Avatar>
+
+
+<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+<Title text="Level:" class="sapUiTinyMarginBottom"></Title>
+<ObjectStatus text="{localModel>/Level}" class="sapMObjectStatusLarge"></ObjectStatus>
+</VBox>
+
+<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+<Title text="Location:" class="sapUiTinyMarginBottom"></Title>
+<ObjectStatus text="{localModel>/Location}" class="sapMObjectStatusLarge"></ObjectStatus>
+</VBox>
+
+<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+<Title text="Track Module:" class="sapUiTinyMarginBottom"></Title>
+<ObjectStatus text="{localModel>/TrackModule}" class="sapMObjectStatusLarge"></ObjectStatus>
+</VBox>
+
+<VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+<Title text="Track Lead:" class="sapUiTinyMarginBottom"></Title>
+<ObjectStatus text="{localModel>/TrackLead}" class="sapMObjectStatusLarge"></ObjectStatus>
+</VBox>
+
+</FlexBox>
+</uxap:headerContent>
+
+<!-- Sections -->
+<uxap:sections>
+<uxap:ObjectPageSection titleUppercase="false" title="Basic Details">
+<uxap:subSections>
+<uxap:ObjectPageSubSection title="General Informations" showTitle="false">
+<uxap:blocks>
+                            <form:SimpleForm
+                                editable="true"
+                                class="sapUxAPObjectPageSubSectionAlignContent"
+                                layout="ColumnLayout"
+                                columnsM="2"
+                                columnsL="3"
+                                columnsXL="4"
+                            >
+                                <core:Title text="Genaral Information"></core:Title>
+
+                                <form:content>
+                                    <Label text="Employee code" />
+                                    <Text text="{localModel>/EmpCode}" />
+
+                                    <Label text="Resource Name" />
+                                    <Text text="{localModel>/ResourceName}" />
+
+                                    <Label text="Location" />
+                                    <Text text="{localModel>/Location}" />
+
+                                    <Label text="Track Module" />
+                                    <Text text="{localModel>/TrackModule}" />
+
+                                    <Label text="Sub Track Module" />
+                                    <Text text="{localModel>/SubTrackModule}" />
+
+                                    <Label text="Track Head" />
+                                    <Text text="{localModel>/TrackHead}" />
+
+                                    <Label text="Track Lead" />
+                                    <Text text="{localModel>/TrackLead}" />
+
+                                    <Label text="Task/Project" />
+                                    <Text text="{localModel>/TaskProject}" />
+
+                                    <Label text="No Of Projects" />
+                                    <Text text="{localModel>/NoOfProjects}" />
+
+                                    <Label text="Current Project Timeline" />
+                                    <Text text="{localModel>/test}" />
+
+                                    <Label text="Upcomming Project And Date" />
+                                    <Text text="{localModel>/test}" />
+
+                                    <Label text="TargChargeability" />
+                                    <Text text="{localModel>/TargChargeability}"/>
+
+                                    <Label text="CurrentMTD" />
+                                    <Text text="{localModel>/CurrentMTD}" />
+
+                                    <Label text="LastMTD" />
+                                    <Text text="{localModel>/LastMTD}" />
+
+                                    <Label text="ageChange" />
+                                    <Text text="{localModel>/ageChange}" />
+
+                                    <Label text="TilldateYTD" />
+                                    <Text text="{localModel>/TilldateYTD}" />
+                                </form:content>
+                            </form:SimpleForm>
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+
+
+
+</uxap:subSections>
+</uxap:ObjectPageSection>
+</uxap:sections>
+
+<uxap:ObjectPageSection titleUppercase="false" title="Reportees Table">
+<uxap:subSections>
+<uxap:ObjectPageSubSection >
+<uxap:blocks>
+<m:Table class="sapUxAPObjectPageSubSectionAlignContent" id="tblEmployeeList" items="{_localJSONModelForEmployee/employeeList}" >
+
+<m:headerToolbar>
+<OverflowToolbar >
+<Title text="Reportees" level="H2"></Title>
+<!-- <Label id="tblEmployeeList"></Label> -->
+</OverflowToolbar>
+</m:headerToolbar>
+<m:infoToolbar>
+<Toolbar >
+<Title id="itemCountLabel"></Title>
+</Toolbar>
+</m:infoToolbar>
+<m:columns>
+                                <m:Column>
+                                <Label text="EmpCode" />
+                                 </m:Column>
+                                
+                                <m:Column id="_IDGenColumn2">
+								<Label text="Level" ></Label>
+								</m:Column>
+								
+                                <m:Column id="_IDGenColumn3">
+								<Label text="Location" ></Label>
+								</m:Column>
+								
+                                <m:Column id="_IDGenColumn4">
+									<Label id="_IDGenLabel5" text="Resource Name"/>
+								</m:Column>
+                                
+                                <m:Column id="_IDGenColumn5">
+									<Label id="_IDGenLabel6" text="Track/Module"/>
+								</m:Column>
+							
+                                <m:Column id="_IDGenColumn6">
+									<Label id="_IDGenLabel7" text="Sub Track/Module"/>
+								</m:Column>
+
+                                <m:Column id="_IDGenColumn13">
+									<Label id="_IDGenLabel14" text="Target Chargeability"/>
+								</m:Column>
+
+                                <m:Column id="_IDGenColumn14">
+									<Label id="_IDGenLabel15" text="Current MTD"/>
+								</m:Column>
+
+                                <m:Column id="_IDGenColumn15">
+									<Label id="_IDGenLabel16" text="Last MTD"/>
+								</m:Column>
+
+                                <m:Column id="_IDGenColumn17">
+									<Label id="_IDGenLabel18" text="Till date YTD"/>
+								</m:Column>
+</m:columns>
+
+<items>
+								<m:ColumnListItem press="onClickofItem" type="Navigation" id="_IDGenColumnListItem1">
+									<cells>
+                                    <Text id="_IDGenText1" text="{_localJSONModelForEmployee>EmpCode}"/>
+										<Text id="_IDGenText2" text="{_localJSONModelForEmployee>Level}"/>
+										<Text id="_IDGenText3" text="{_localJSONModelForEmployee>Location}"/>
+										<Text id="_IDGenText4" text="{_localJSONModelForEmployee>ResourceName}"/>
+                                        <Text id="_IDGenText13" text="{_localJSONModelForEmployee>TargChargeability}"/>
+										<Text id="_IDGenText14" text="{_localJSONModelForEmployee>CurrentMTD}"/>
+										<Text id="_IDGenText15" text="{_localJSONModelForEmployee>LastMTD}"/>
+										<Text id="_IDGenText16" text="{_localJSONModelForEmployee>ageChange}"/>
+                                        <Text id="_IDGenText17" text="{_localJSONModelForEmployee>TilldateYTD}"/>
+                                    </cells>
+                                </m:ColumnListItem>
+                            </items>
+
+</m:Table>
+</uxap:blocks>
+</uxap:ObjectPageSubSection>
+</uxap:subSections>
+</uxap:ObjectPageSection>
+
+    </uxap:ObjectPageLayout>
+</mvc:View>

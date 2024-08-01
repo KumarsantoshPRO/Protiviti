@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:commons="sap.suite.ui.commons"
+        height="100%"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:l="sap.ui.layout"
+        xmlns:u="sap.ui.unified"
+        >
+        <m:Dialog
+        id="calendarModal"
+        title="Calendar"
+        contentWidth="100px"
+        afterClose="onCalendarAfterClose">
+        <l:VerticalLayout>
+            <u:Calendar
+                    id="calendar"
+                    select="handleCalendarSelect" />
+            
+           
+    </l:VerticalLayout>
+        <m:endButton>
+            <m:Button  text="Ok" press="handleOkCalendar"   />
+        </m:endButton>
+ 
+    </m:Dialog>
+   
+</core:FragmentDefinition>

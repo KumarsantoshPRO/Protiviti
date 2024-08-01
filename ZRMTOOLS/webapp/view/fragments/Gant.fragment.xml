@@ -1,0 +1,111 @@
+<core:FragmentDefinition
+        height="100%"
+        xmlns="sap.gantt.simple"
+        xmlns:axistime="sap.gantt.axistime"
+        xmlns:config="sap.gantt.config"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:shapes="sap.gantt.simple.shapes"
+        xmlns:table="sap.ui.table"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:rm="sap.ui.table.rowmodes">
+ 
+        <m:Dialog
+        id="gantDialog"
+        contentHeight="100%"
+        title="Resource Efficency"
+        afterClose="onAfterClose">
+       <m:Bar >
+       <m:contentLeft>
+       <m:Label text="Gant Chart"></m:Label>
+       </m:contentLeft>
+    <m:contentRight>
+     <m:Button text="Close" press="onClosegant"   />
+    
+    </m:contentRight>
+    </m:Bar>
+        <GanttChartContainer height="50%">
+        <toolbar>
+            <ContainerToolbar showSearchButton="true">
+ 
+           
+ 
+            </ContainerToolbar>
+        </toolbar>
+        <GanttChartWithTable id="gantt" height="700px" shapeSelectionMode="Multiple">
+            <axisTimeStrategy>
+                <axistime:ProportionZoomStrategy>
+                    <axistime:totalHorizon>
+                        <config:TimeHorizon
+                                startTime="20231029000000"
+                                endTime="20231129000000"/>
+                    </axistime:totalHorizon>
+                    <axistime:visibleHorizon>
+                        <config:TimeHorizon
+                                startTime="20231029000000"
+                                endTime="20231129000000"/>
+                    </axistime:visibleHorizon>
+                </axistime:ProportionZoomStrategy>
+            </axisTimeStrategy>
+            <table>
+                <table:TreeTable
+                    selectionMode="Single"
+                    selectionBehavior="RowSelector"
+                    enableColumnReordering="true"
+                    rows="{ path: '/root', parameters: { arrayNames: ['children'], numberOfExpandedLevels: 1 } }">
+                    <table:columns>
+                        <table:Column>
+                            <m:Text text="Start Date"/>
+                            <table:template>
+                            <m:Label text="{startTime}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column>
+                            <m:Text text="End Date"/>
+                            <table:template>
+                            <m:Label text="{endTime}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column>
+                            <m:Text text="Resource Name"/>
+                            <table:template>
+                            <m:Label text="{resourceName}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column>
+                            <m:Text text="Location"/>
+                            <table:template>
+                            <m:Label text="{location}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column>
+                            <m:Text text="MTD"/>
+                            <table:template>
+                            <m:Label text="{MTD} %"/>
+                            </table:template>
+                        </table:Column>
+                        </table:columns>
+                    
+                    <table:rowSettingsTemplate>
+                    <GanttRowSettings rowId="{id}" shapes2="{path: 'subtask', templateShareable:false}">
+                            <shapes2>
+                                <shapes:Task time="{path: 'startTime'}"
+                                             endTime="{path: 'endTime'}"
+                                             color="{path: 'MTD', formatter: '.colorFormatter'}" />
+                            </shapes2>
+                        </GanttRowSettings>
+                    </table:rowSettingsTemplate>
+                </table:TreeTable>
+            </table>
+        </GanttChartWithTable>
+    </GanttChartContainer>
+    
+    <m:OverflowToolbar >
+     <m:Button text="Close" press="onClosegant"   />
+    
+    </m:OverflowToolbar>
+    <!-- <m:FlexBox justifyContent="End">
+    </m:FlexBox> -->
+    </m:Dialog>
+   
+</core:FragmentDefinition>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPROTIVITI_RMG_DATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="et_rmg_main_data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="WeekExecution"/>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="GantWeekStart" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Allocation" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dummy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrentLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UtilPercentage" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dummy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GantWeekEnd" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WeekExecution" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Week of Execution" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="End01" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date of Assignmetn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="End02" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date of Assignmetn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="End03" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date of Assignmetn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="End04" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date of Assignmetn" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDatePlannned01" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDatePlanned01" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDatePlannned02" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDatePlanned02" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDatePlannned03" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned Start Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDatePlanned03" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Planned End Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DesinationText" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Designation Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week01" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative Week01 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="eMployee Designation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week02" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative Week02 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Location" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubModule" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Employee Sub Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week03" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative Week03 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Module" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Module/Track" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week04" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK04 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Task" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Project/Assignment Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week05" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK05 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TaskText" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Assignment Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week06" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK06 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mtd" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dummy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week07" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK07 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week08" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK08 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ytd" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dummy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Project01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Project-01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week09" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK09 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customer01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name of Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week10" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK10 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Per01" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="% Allocation on Project" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week11" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK11 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Project02" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Project-02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week12" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK12 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customer02" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name of Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week13" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK13 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Per02" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="% Allocation on Project" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week14" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK14 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Project03" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Project-03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week15" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK15 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customer03" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name of Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week16" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK16 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Per03" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="% Allocation on Project" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week17" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK17 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Project04" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Project-04" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week18" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK18 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Customer04" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name of Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week19" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK19 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Per04" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="% Allocation on Project" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week20" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK20 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Planned01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Project-01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week21" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK21 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedCust01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Customer-01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week22" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK22 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedPer01" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Planned Percentage-01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week23" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK23 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Planned02" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Project-02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week24" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK24 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedCust02" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Customer-02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week25" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK25 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedPer02" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Planned Percentage-02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week26" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK26 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Planned03" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Project-03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week27" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK27 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedCust03" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Planned Customer-03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week28" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK28 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlannedPer03" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Planned Percentage-03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week29" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK29 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week30" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK30 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week31" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK31 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week32" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK32 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week33" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK33 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week34" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK34 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week35" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK35 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week36" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK36 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week37" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK37 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week38" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK38 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week39" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK39 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week40" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK40 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week41" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK41 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week42" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK42 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week43" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK43 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week44" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK44 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week45" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK45 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week46" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK46 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week47" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK47 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week48" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK48 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week49" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK49 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week50" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK50 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week51" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK51 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week52" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK52 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Week53" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Cumulative WEEK53 Utilization" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_project_add" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PernrD"/>
+                </Key>
+                <Property Name="PernrD" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AssignmentCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Assignment Code of employee" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AssignmentType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Assignment Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remarks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Remarks if any" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProjectName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProjectType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Project/Assignment Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AllocationPer" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Allocation Percentage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Start Date of Engagment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="End Date of Engagement" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_project_update" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="project_update" Relationship="ZPROTIVITI_RMG_DATA_SRV.project_update" FromRole="FromRole_project_update" ToRole="ToRole_project_update" sap:label="project_update"/>
+            </EntityType>
+            <EntityType Name="et_employee_add" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModuleCode" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Module/Track" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubModuleCode" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Employee Sub Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MiddleName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="eMployee Designation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Doj" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrentLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailAddress" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_value_helps" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Domname"/>
+                    <PropertyRef Name="Valpos"/>
+                </Key>
+                <Property Name="Domname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Domain" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Valpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Value key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ddlanguage" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Lang." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalueL" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Lower Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalueH" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Dom.upper limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ddtext" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Short Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalLd" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Lower limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DomvalHd" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Upper Limit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Appval" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="App" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="et_team_master" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mandt"/>
+                    <PropertyRef Name="Pernr"/>
+                </Key>
+                <Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmpType" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Employee Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="First Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Last Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MiddleName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Second name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Titel" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Gender" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Doj" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MainModule" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Module/Track" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubModule" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Employee Sub Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Designation" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="eMployee Designation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContractEnd" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CurrentLocation" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotalExp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Two-digit no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RelevantExp" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Two-digit no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Photo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PHOTO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailId" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Long ID/Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastUpdated" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UpdatedUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="project_update" sap:content-version="1">
+                <End Type="ZPROTIVITI_RMG_DATA_SRV.et_project_update" Multiplicity="1" Role="FromRole_project_update"/>
+                <End Type="ZPROTIVITI_RMG_DATA_SRV.et_project_add" Multiplicity="*" Role="ToRole_project_update"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_project_update">
+                        <PropertyRef Name="Pernr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_project_update">
+                        <PropertyRef Name="PernrD"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPROTIVITI_RMG_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="es_rmg_main_data" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_rmg_main_data" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_project_code" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_project_add" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_project_update" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_project_update" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_employee_add" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_employee_add" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_value_helps" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_value_helps" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="es_team_master" EntityType="ZPROTIVITI_RMG_DATA_SRV.et_team_master" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="project_updateSet" Association="ZPROTIVITI_RMG_DATA_SRV.project_update" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="es_project_update" Role="FromRole_project_update"/>
+                    <End EntitySet="es_project_code" Role="ToRole_project_update"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPROTIVITI_RMG_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://103.162.247.67:8000/sap/opu/odata/sap/ZPROTIVITI_RMG_DATA_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

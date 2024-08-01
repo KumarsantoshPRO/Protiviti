@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns:commons="sap.suite.ui.commons"
+        height="100%"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:l="sap.ui.layout"
+        xmlns:u="sap.ui.unified"
+        xmlns:table="sap.ui.table"
+        xmlns="sap.ui.table"
+        >
+        <m:Dialog
+        title="Available Resources" resizable="true" draggable="true" icon="sap-icon://provision" titleAlignment="Center"
+       >
+
+        <table:Table  width="100%" id="idAvailResTable" selectionMode="None" rows="{availResModel>/}" ariaLabelledBy="title">
+        <table:extension>
+        <m:OverflowToolbar >
+        <m:Title text="No of Resources: ({=${availResModel>/}.length}) "></m:Title>
+        <m:ToolbarSpacer />
+        <m:Button type="Ghost" press="availableResExporttoExcel" tooltip="Download As Excel" icon="sap-icon://excel-attachment"></m:Button>
+        </m:OverflowToolbar>
+        </table:extension>
+                            <table:columns>
+                                <table:Column sortProperty="Employee Name." filterProperty="Employee Name.">
+                                    <m:Label tooltip="Employee Name" text="Employee Name" ></m:Label>
+                                    <table:template>
+                                        <m:Text text="{availResModel>Name}"></m:Text>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column sortProperty="Designation" filterProperty="Designation">
+                                    <m:Label text="Designation"></m:Label>
+                                    <table:template>
+                                        <m:Text text="{availResModel>DesignationText}"  />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column sortProperty="Location" filterProperty="Location">
+                                     <m:Label tooltip="Location" text="Location"></m:Label>
+                                     <table:template>
+                                        <m:Text text="{availResModel>BaseLocation}"/>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column filterProperty="cMTD" sortProperty="MTD">
+                                    <m:Label tooltip="Current MTD"  text="Current MTD"></m:Label>
+                                     <table:template>
+                                       <m:Text text="{availResModel>CurrentMtd}" />
+                                    </table:template>
+                                </table:Column>
+                                <table:Column filterProperty="LMTD" sortProperty="LMTD">
+                                    <m:Label tooltip="LMTD"  text="Last MTD"></m:Label>
+                                     <table:template>
+                                       <m:Text text="{availResModel>LastMtd}" />
+                                    </table:template>
+                                </table:Column>
+                                 <table:Column filterProperty="YTD" sortProperty="YTD">
+                                    <m:Label tooltip="YTD"  text="YTD"></m:Label>
+                                     <table:template>
+                                       <m:Text text="{availResModel>Ytd}" />
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                            </table:Table>
+        <m:endButton>
+            <m:Button  text="Close" press="availResourceClose"   />
+        </m:endButton>
+ 
+    </m:Dialog>
+   
+</core:FragmentDefinition>

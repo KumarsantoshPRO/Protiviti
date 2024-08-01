@@ -1,0 +1,469 @@
+<core:FragmentDefinition
+    xmlns:layout="sap.ui.layout"
+    xmlns:uxap="sap.uxap"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:c="sap.ui.core"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Dialog
+        icon="sap-icon://detail-view"
+        verticalScrolling="false"
+        contentHeight="100%"
+        class="sapUiContentPadding"
+    >
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Title
+                        text="{SelectedRowModel>/Name} - {SelectedRowModel>/DesinationText}"
+                    />
+                </contentLeft>
+                <contentRight>
+                    <Button
+                        text=""
+                        icon="sap-icon://decline"
+                        type="Negative"
+                        press="onCloseProjectAssignDialog"
+                    />
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <VBox>
+            <OverflowToolbar style="Clear">
+                <ToolbarSpacer />
+                <Button
+                    press="onEditEmpDetails"
+                    text="Edit/Add Assignments"
+                    visible="{oVisibleModel>/textVisible}"
+                    type="Emphasized"
+                />
+                <Button
+                    text="Save"
+                    type="Success"
+                    press="onSaveEmpDetail"
+                    visible="{oVisibleModel>/dropDownVisible}"
+                />
+                <Button
+                    text="Cancel"
+                    type="Reject"
+                    press="onCancelEmp"
+                    visible="{oVisibleModel>/dropDownVisible}"
+                />
+            </OverflowToolbar>
+
+            <ScrollContainer
+                width="100%"
+                height="100%"
+                horizontal="true"
+                vertical="true"
+            >
+                <form:SimpleForm
+                    layout="ColumnLayout"
+                    columnsM="2"
+                    columnsL="2"
+                    columnsXL="4"
+                    editable="true"
+                >
+                    <form:content>
+                        <Label text="Base Location" />
+                        <ComboBox
+                            items="{LocationModel>/}"
+                            selectedKey="{SelectedRowModel>/BaseLocCode}"
+                            placeholder="Select Base Location"
+                            selectionChange="onBaseLocation"
+                            editable="{oVisibleModel>/dropDownVisible}"
+                        >
+                            <items>
+                                <core:Item
+                                    key="{LocationModel>DomvalueL}"
+                                    text="{LocationModel>Ddtext}"
+                                />
+                            </items>
+                        </ComboBox>
+                        <Label text="Current Location" />
+                        <Input
+                            value="{SelectedRowModel>/CurrentLocation}"
+                            editable="{oVisibleModel>/dropDownVisible}"
+                        />
+                        <Label text="Reporting Manager" />
+                        <Input
+                            value=""
+                            editable="{oVisibleModel>/dropDownVisible}"
+                        />
+                    </form:content>
+                </form:SimpleForm>
+                <Panel
+                    expandable="true"
+                    expanded="true"
+                    headerText="'{SelectedRowModel>/Name}' - Assignments"
+                    expandAnimation="true"
+                    backgroundDesign="Solid"
+                    visible="false"
+                >
+                    <Table
+                        items="{oFormModel2>/}"
+                        headerText=""
+                        id="Assignmenttable1"
+                    >
+                        <columns>
+                            <Column
+                                hAlign="Center"
+                                width="3rem"
+                            >
+                                <header>
+                                    <Label text="" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Assignment Type" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Customer Name" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Project Name" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Project Type" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Start Date" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="End Date" />
+                                </header>
+                            </Column>
+                            <Column
+                                hAlign="Center"
+                                width="10rem"
+                            >
+                                <header>
+                                    <Label text="Allocation %" />
+                                </header>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem vAlign="Middle">
+                                <cells>
+                                    <Button
+                                        icon="sap-icon://delete"
+                                        visible="{oVisibleModel>/dropDownVisible}"
+                                        press="onRemoveExistingRow"
+                                    />
+                                    <Input
+                                        value="{oFormModel2>AssignmentTypeText}"
+                                        editable="false"
+                                    />
+                                    <Input
+                                        value="{oFormModel2>CustomerName}"
+                                        editable="false"
+                                    />
+                                    <Input
+                                        value="{oFormModel2>ProjectName}"
+                                        editable="false"
+                                    />
+                                    <Input
+                                        value="{oFormModel2>ProjectTypeText}"
+                                        editable="false"
+                                    />
+                                    <DatePicker
+                                        value="{ path: 'oFormModel2>StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
+                                        editable="false"
+                                    />
+                                    <DatePicker
+                                        value="{ path: 'oFormModel2>EndDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
+                                        editable="false"
+                                    />
+                                    <Input
+                                        value="{oFormModel2>AllocationPer}"
+                                        editable="false"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+                <Table
+                    items="{oFormModel1>/}"
+                    headerText=""
+                    id="Assignmenttable"
+                >
+                    <!-- visible="{oVisibleModel>/dropDownVisible}" -->
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="" />
+                            <ToolbarSpacer />
+                            <Button
+                                text=""
+                                icon="sap-icon://add"
+                                press="onAddNewRow"
+                                visible="{oVisibleModel>/dropDownVisible}"
+                            />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column
+                            hAlign="Center"
+                            width="3rem"
+                        >
+                            <header>
+                                <Label text="" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Assignment Type" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Customer Name" />
+                            </header>
+                        </Column>
+                              <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Skill Set" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Project Name" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Project Type" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Start Date" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="End Date" />
+                            </header>
+                        </Column>
+                        <Column
+                            hAlign="Center"
+                            width="10rem"
+                        >
+                            <header>
+                                <Label text="Allocation %" />
+                            </header>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem vAlign="Middle">
+                            <cells>
+                                <Button
+                                    icon="sap-icon://delete"
+                                    visible="{oVisibleModel>/dropDownVisible}"
+                                    press="onRemoveRow"
+                                />
+
+                                <ComboBox
+                                    items="{oAssignModel>/}"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                    selectedKey="{oFormModel1>AssignmentType}"
+                                    selectionChange="onSelectAssignmentType"
+                                >
+                                    <core:ListItem
+                                        key="{oAssignModel>DomvalueL}"
+                                        text="{oAssignModel>Ddtext}"
+                                    />
+                                </ComboBox>
+
+                                <!-- <ComboBox
+                                    items="{ArrCust>/}"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                    selectedKey="{oFormModel1>CustomerCode}"
+                                    selectionChange="onSelectionChangeCustName"
+                                >
+                                    <core:ListItem
+                                        key="{ArrCust>CustomerCode}"
+                                        text="{ArrCust>CustomerName}"
+                                    />
+                                </ComboBox> -->
+
+                                <Input
+                                    id="idInpCustName"
+                                    value="{oFormModel1>CustomerName}"
+                                    showValueHelp="true"
+                                    valueHelpRequest="onCustCodeF4"
+                                    textFormatMode="ValueKey"
+                                    placeholder="Enter Product ..."
+                                    showSuggestion="true"
+                                    showTableSuggestionValueHelp="false"
+                                    suggestionRows="{ArrCust>/}"
+                                    suggestionItemSelected=".onSuggestionItemSelected"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                >
+                                    <suggestionColumns>
+                                        <Column>
+                                            <Text text="Customer Name" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Project Name" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Project Type" />
+                                        </Column>
+
+                                        <Column>
+                                            <Text text="Skill Set" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Role" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Designation" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Development Location" />
+                                        </Column>
+                                    </suggestionColumns>
+
+                                    <suggestionRows>
+                                        <ColumnListItem>
+                                            <Label
+                                                text="{ArrCust>CustomerName}"
+                                                wrapping="true"
+                                                wrappingType="Hyphenated"
+                                            />
+                                            <Label
+                                                text="{ArrCust>ProjectName}"
+                                                wrapping="true"
+                                                wrappingType="Hyphenated"
+                                            />
+                                            <Label
+                                                text="{ArrCust>ProjectTypeText}"
+                                                wrapping="true"
+                                                wrappingType="Normal"
+                                            />
+
+                                            <Label
+                                                text="{ArrCust>Skill}"
+                                                wrapping="true"
+                                                wrappingType="Normal"
+                                            />
+                                            <Label
+                                                text="{ArrCust>Role}"
+                                                wrapping="true"
+                                                wrappingType="Normal"
+                                            />
+                                            <Label
+                                                text="{ArrCust>Designation}"
+                                                wrapping="true"
+                                                wrappingType="Normal"
+                                            />
+                                            <Label
+                                                text="{ArrCust>Location}"
+                                                wrapping="true"
+                                                wrappingType="Normal"
+                                            />
+                                        </ColumnListItem>
+                                    </suggestionRows>
+                                </Input>
+
+                                <!-- <ComboBox
+                                    items="{ArrPrj>/}"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                    selectedKey="{oFormModel1>ProjectCode}"
+                                    selectionChange="onSelectionChangeProjectName"
+                                >
+                                    <core:ListItem
+                                        key="{ArrPrj>ProjectCode}"
+                                        text="{ArrPrj>ProjectName}"
+                                    />
+                                </ComboBox> -->
+                                  <Input
+                                    value="{oFormModel1>Skill}"
+                                    editable="false"
+                                />
+                                <Input
+                                    value="{oFormModel1>ProjectName}"
+                                    editable="false"
+                                />
+
+                                <Input
+                                    value="{oFormModel1>ProjectTypeText}"
+                                    editable="false"
+                                />
+                                <DatePicker
+                                    value="{ path: 'oFormModel1>StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                />
+                                <DatePicker
+                                    value="{ path: 'oFormModel1>EndDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                />
+                                <Input
+                                    value="{path:'oFormModel1>AllocationPer', formatter:'.formatter.removeZero'}"
+                                    editable="{oVisibleModel>/dropDownVisible}"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
+        </VBox>
+
+        <endButton />
+    </Dialog>
+</core:FragmentDefinition>
