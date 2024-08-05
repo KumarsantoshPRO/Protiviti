@@ -110,20 +110,22 @@
                                 visibleInFilterBar="true"
                             >
                                 <filterbar:control>
-                                    <m:ComboBox
+                                    <m:MultiComboBox
                                         items="{LocationModel>/}"
                                         showButton="true"
                                         showClearIcon="true"
+                                        
                                         id="location"
-                                        selectedKey="{FilterDataModel>/location}"
+                               
                                         selectionChange=".onLocationChange"
                                         placeholder="Select Employee Location"
                                     >
+                                             <!-- selectedKey="{FilterDataModel>/location}" -->
                                         <c:ListItem
                                             key="{LocationModel>DomvalueL}"
                                             text="{LocationModel>Ddtext}"
                                         />
-                                    </m:ComboBox>
+                                    </m:MultiComboBox>
 
                                     <!-- <m:ComboBox items="{levFilter>/}" showClearIcon="true" id="levelComboBox" selectedKeys="{FilterDataModel>/level}" selectionChange=".onLevelChange" placeholder="Select Employee Designation" >
                                         <c:ListItem key="{LevelModel>DomvalueL}" text="{LevelModel>Ddtext}"/>

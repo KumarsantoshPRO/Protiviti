@@ -709,6 +709,9 @@ sap.ui.define(
           utilization: "",
           operator: "01",
         });
+        //Start: Location filter, New logic
+        this.getView().byId("location").setSelectedKeys();
+        //End: Location filter, New logic
         this.getView().setModel(ofilterDataModel, "FilterDataModel");
         this.onSearchFilter();
       },
@@ -1633,16 +1636,18 @@ sap.ui.define(
             // value1: ""
           });
           newArrayFilter.push(DesignationFilter);
-          // location
-          var LocationFilter = new sap.ui.model.Filter({
-            path: "Location",
-            operator: sap.ui.model.FilterOperator.EQ,
-            value1: this.getView()
-              .getModel("FilterDataModel")
-              .getProperty("/location"),
-            // value1: ""
-          });
-          newArrayFilter.push(LocationFilter);
+          //Start: Location filter, Old logic
+          // var LocationFilter = new sap.ui.model.Filter({
+          //   path: "Location",
+          //   operator: sap.ui.model.FilterOperator.EQ,
+          //   value1: this.getView()
+          //     .getModel("FilterDataModel")
+          //     .getProperty("/location"),
+          //   // value1: ""
+          // });
+          // newArrayFilter.push(LocationFilter);
+          //End: Location filter, Old logic
+
           //submodule Filter
           var SubmoduleFilter = new sap.ui.model.Filter({
             path: "SubModule",
@@ -1679,7 +1684,25 @@ sap.ui.define(
                   ].IndustryExpertise.replaceAll(",", ";");
                 }
 
-                this.getView().getModel("oFormModel").setData(oData.results);
+                //Start: Location filter, New logic
+                var aSelectedKeys = this.getView()
+                  .byId("location")
+                  .getSelectedKeys();
+                var aTableData = [];
+                if (aSelectedKeys.length > 0) {
+                  for (var k = 0; k < oData.results.length; k++) {
+                    for (let index = 0; index < aSelectedKeys.length; index++) {
+                      const element = aSelectedKeys[index];
+                      if (element === oData.results[k].LocationCode) {
+                        aTableData.push(oData.results[k]);
+                      }
+                    }
+                  }
+                  this.getView().getModel("oFormModel").setData(aTableData);
+                } else {
+                  this.getView().getModel("oFormModel").setData(oData.results);
+                }
+                //End: Location filter, New logic
 
                 const arr = oData.results;
               }.bind(this),
