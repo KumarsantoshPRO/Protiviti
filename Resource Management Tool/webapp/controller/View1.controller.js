@@ -1197,6 +1197,7 @@ sap.ui.define(
           EndDatePlanned02: "End Date Planned 02",
           StartDatePlannned03: "Start Date Planned 03",
           EndDatePlanned03: "End Date Planned 03",
+          Allocation: "Allocation",
         };
         var selectedColumns = [
           "Pernr",
@@ -1243,6 +1244,7 @@ sap.ui.define(
           "EndDatePlanned02",
           "StartDatePlannned03",
           "EndDatePlanned03",
+          "Allocation",
         ];
         var csvContent =
           selectedColumns.map((col) => columnNames[col] || col).join(",") +
