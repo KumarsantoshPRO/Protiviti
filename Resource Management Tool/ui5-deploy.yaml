@@ -39,4 +39,5 @@ builder:
           package: env:PACKAGE
           transport: env:SAP_TRANSPORTNO
         exclude:
-          - /test/
+          - "/test($|/.*)"
+          - "/localService($|/.*)"
