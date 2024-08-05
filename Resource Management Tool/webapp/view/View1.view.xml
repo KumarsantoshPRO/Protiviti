@@ -381,8 +381,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="Designation"
-                        sortProperty="Designation"
+                        filterProperty="DesinationText"
+                        sortProperty="DesinationText"
                     >
                         <m:Label text="Designation" />
                         <template>
@@ -401,8 +401,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="Current Location"
-                        sortProperty="Current Location"
+                        filterProperty="CurrentLocation"
+                        sortProperty="CurrentLocation"
                     >
                         <m:Label text="Current Location" />
                         <template>
@@ -411,8 +411,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="Module/Primary Skill"
-                        sortProperty="Module/Primary Skill"
+                        filterProperty="Module"
+                        sortProperty="Module"
                     >
                         <m:Label text="Module/primary Skill" />
                         <template>
@@ -458,8 +458,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="MTD"
-                        sortProperty="MTD"
+                        filterProperty="Lastmtd"
+                        sortProperty="Lastmtd"
                     >
                         <m:Label text="Last MTD" />
                         <template>
@@ -473,8 +473,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="MTD"
-                        sortProperty="MTD"
+                        filterProperty="Mtd"
+                        sortProperty="Mtd"
                     >
                         <m:Label text="Current MTD" />
                         <template>
@@ -488,8 +488,8 @@
                     </Column>
                     <Column
                         width="11rem"
-                        filterProperty="YTD"
-                        sortProperty="YTD"
+                        filterProperty="Ytd"
+                        sortProperty="Ytd"
                     >
                         <m:Label text="YTD" />
                         <template>

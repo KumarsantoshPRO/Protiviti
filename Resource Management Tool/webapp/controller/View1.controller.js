@@ -569,7 +569,6 @@ sap.ui.define(
       },
       // upload Excel Codes Below
       handleUploadFile: function (e) {
-        this.getView().setBusy(true);
         var data = e.getParameter("files");
         this._import(data && data[0]);
         // e.setParameter("files", null);
@@ -593,11 +592,9 @@ sap.ui.define(
           };
           reader.onerror = function (ex) {
             console.log(ex);
-            this.getView().setBusy(false);
           };
           reader.readAsBinaryString(file);
         } else {
-          this.getView().setBusy(false);
         }
       },
       // Upload the excel data to server.
@@ -605,7 +602,6 @@ sap.ui.define(
         var newEntryArr = this.getFormattedDataToUpload(arrExcelData);
         if (newEntryArr.UPLOAD_EMPLOYEE.length === 0) {
           sap.m.MessageBox.error("Uploaded excel file is blank.");
-          this.getView().setBusy(false);
 
           return;
         }
@@ -626,7 +622,6 @@ sap.ui.define(
               //MessageToast.show(data.CREATERETURN.results[1].Message);
             }.bind(this),
             error: function (error) {
-              this.getView().setBusy(false);
               sap.m.MessageToast.show("Failed Uploading the Data", error);
             }.bind(this),
           });
@@ -661,7 +656,6 @@ sap.ui.define(
 
       getDropDownValues: function (sDomValue, sModelName) {
         var oNewModel = this.getOwnerComponent().getModel();
-        this.getView().setBusy(true);
         var oBaseLocModel = new JSONModel();
         this.getView().setModel(oBaseLocModel, sModelName);
         var filterDD = new sap.ui.model.Filter({
@@ -676,10 +670,8 @@ sap.ui.define(
             var model = this.getView().getModel(sModelName);
             model.setData(oData.results);
             this.getView().setModel(model, sModelName);
-            this.getView().setBusy(false);
           }.bind(this),
           error: function (oError) {
-            this.getView().setBusy(false);
             console.log(oError);
           }.bind(this),
         });
@@ -827,6 +819,8 @@ sap.ui.define(
             },
           });
       },
+
+      // Assignment Type - combobox selection change
       onSelectAssignmentType: function (oEvent) {
         this.sPath = oEvent
           .getSource()
@@ -873,7 +867,7 @@ sap.ui.define(
           });
 
           aFiltersAssignmentType.push(oFilter);
-          this.getView().setBusy(true);
+
           this.getOwnerComponent()
             .getModel()
             .read("/es_project_details", {
@@ -883,6 +877,17 @@ sap.ui.define(
                 sap.ui.core.Fragment.byId("sampleFrag", "Assignmenttable")
                   .getItems()
                   [this.sPath].setModel(JSONModelForCustName, "ArrCust");
+                //Start:  To clear remaining entries
+                var oViewModel = this.getView().getModel("oFormModel1");
+                var sPath = "/" + this.sPath;
+                oViewModel.setProperty(sPath + "/CustomerName", "");
+                oViewModel.setProperty(sPath + "/EmployeeSkillText", "");
+                oViewModel.setProperty(sPath + "/ProjectName", "");
+                oViewModel.setProperty(sPath + "/ProjectTypeText", "");
+                oViewModel.setProperty(sPath + "/StartDate", "");
+                oViewModel.setProperty(sPath + "/EndDate", "");
+                oViewModel.setProperty(sPath + "/AllocationPer", "");
+                //End:  To clear remaining entries
                 this.getView().setBusy(false);
               }.bind(this),
               error: function (oError) {
@@ -918,7 +923,6 @@ sap.ui.define(
             });
 
             aFiltersAssignmentType.push(oFilter);
-            this.getView().setBusy(true);
             this.getOwnerComponent()
               .getModel()
               .read("/es_project_details", {
@@ -932,7 +936,6 @@ sap.ui.define(
                     "Customer list ( " + oData.results[0].AssignmentText + " )"
                   );
                   oDialogPrdList.open();
-                  this.getView().setBusy(false);
                 }.bind(this),
                 error: function (oError) {},
               });
@@ -1054,17 +1057,17 @@ sap.ui.define(
           .read("/es_project_code", {
             filters: P,
             success: function (oData) {
-              if (oData.results.length < 1) {
-                sap.ui.core.Fragment.byId(
-                  "sampleFrag",
-                  "Assignmenttable1"
-                ).setVisible(false);
-              } else {
-                sap.ui.core.Fragment.byId(
-                  "sampleFrag",
-                  "Assignmenttable1"
-                ).setVisible(true);
-              }
+              // if (oData.results.length < 1) {
+              //   sap.ui.core.Fragment.byId(
+              //     "sampleFrag",
+              //     "Assignmenttable1"
+              //   ).setVisible(false);
+              // } else {
+              //   sap.ui.core.Fragment.byId(
+              //     "sampleFrag",
+              //     "Assignmenttable1"
+              //   ).setVisible(true);
+              // }
               var model = this.getView().getModel("oFormModel1");
 
               for (var k = 0; k < oData.results.length; k++) {
@@ -1268,7 +1271,6 @@ sap.ui.define(
         return new Date().toLocaleDateString("en-US", options);
       },
       onSaveEmpDetail: function () {
-        this.getView().setBusy(true);
         var oFormModel = this.getView().getModel("SelectedRowModel");
         var oData = oFormModel.getData();
 
@@ -1304,7 +1306,7 @@ sap.ui.define(
 
         var arrProjectUpdate = [];
         var nAllocationPer = 0;
-        debugger;
+
         for (var i = 0; i < oModelData.length; i++) {
           nAllocationPer = nAllocationPer + Number(oModelData[i].AllocationPer);
           var newObj = {
@@ -1608,7 +1610,6 @@ sap.ui.define(
         if (!valid) {
           return;
         } else {
-          this.getView().setBusy(true);
           var newArrayFilter = new Array();
           // Name
           var NameFilter = new sap.ui.model.Filter({
@@ -1679,8 +1680,6 @@ sap.ui.define(
                 this.getView().getModel("oFormModel").setData(oData.results);
 
                 const arr = oData.results;
-
-                this.getView().setBusy(false);
               }.bind(this),
               error: function (oError) {
                 console.log(oError);
@@ -2265,14 +2264,14 @@ sap.ui.define(
       getavailableResources: function () {
         var oAvailResModel = new JSONModel();
         this.getView().setModel(oAvailResModel, "availResModel");
-        // this.getView().setBusy(true);
+        // ;
         this.getOwnerComponent()
           .getModel()
           .read("/es_availableresourcesSet", {
             // filters: aFilters,
             success: function (oData) {
               this.getView().getModel("availResModel").setData(oData.results);
-              // this.getView().setBusy(true);
+              // ;
             }.bind(this),
             error: function (oError) {
               // this.getView().setBusy(false);

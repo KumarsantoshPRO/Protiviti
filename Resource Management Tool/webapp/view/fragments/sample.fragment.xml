@@ -96,132 +96,13 @@
                         />
                     </form:content>
                 </form:SimpleForm>
-                <Panel
-                    expandable="true"
-                    expanded="true"
-                    headerText="'{SelectedRowModel>/Name}' - Assignments"
-                    expandAnimation="true"
-                    backgroundDesign="Solid"
-                    visible="false"
-                >
-                    <Table
-                        items="{oFormModel2>/}"
-                        headerText=""
-                        id="Assignmenttable1"
-                    >
-                        <columns>
-                            <Column
-                                hAlign="Center"
-                                width="3rem"
-                            >
-                                <header>
-                                    <Label text="" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Assignment Type" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Customer Name" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Project Name" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Project Type" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Start Date" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="End Date" />
-                                </header>
-                            </Column>
-                            <Column
-                                hAlign="Center"
-                                width="10rem"
-                            >
-                                <header>
-                                    <Label text="Allocation %" />
-                                </header>
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem vAlign="Middle">
-                                <cells>
-                                    <Button
-                                        icon="sap-icon://delete"
-                                        visible="{oVisibleModel>/dropDownVisible}"
-                                        press="onRemoveExistingRow"
-                                    />
-                                    <Input
-                                        value="{oFormModel2>AssignmentTypeText}"
-                                        editable="false"
-                                    />
-                                    <Input
-                                        value="{oFormModel2>CustomerName}"
-                                        editable="false"
-                                    />
-                                    <Input
-                                        value="{oFormModel2>ProjectName}"
-                                        editable="false"
-                                    />
-                                    <Input
-                                        value="{oFormModel2>ProjectTypeText}"
-                                        editable="false"
-                                    />
-                                    <DatePicker
-                                        value="{ path: 'oFormModel2>StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
-                                        editable="false"
-                                    />
-                                    <DatePicker
-                                        value="{ path: 'oFormModel2>EndDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"
-                                        editable="false"
-                                    />
-                                    <Input
-                                        value="{oFormModel2>AllocationPer}"
-                                        editable="false"
-                                    />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </Panel>
+       
                 <Table
+                  id="Assignmenttable"
                     items="{oFormModel1>/}"
                     headerText=""
-                    id="Assignmenttable"
                 >
-                    <!-- visible="{oVisibleModel>/dropDownVisible}" -->
+                   
                     <headerToolbar>
                         <Toolbar>
                             <Title text="" />

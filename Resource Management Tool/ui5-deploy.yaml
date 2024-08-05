@@ -23,3 +23,20 @@ builder:
         archiveName: znewresource
         additionalFiles:
           - xs-app.json
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        ignoreCertError: true
+        target:
+          url: env:SAP_URL
+          client: env:CLIENT
+        credentials:
+          username: env:XYZ_USER
+          password: env:XYZ_PASSWORD
+        app:
+          name: env:BSP_NAME
+          description: env:BSP_DESCRIPTION
+          package: env:PACKAGE
+          transport: env:SAP_TRANSPORTNO
+        exclude:
+          - /test/
