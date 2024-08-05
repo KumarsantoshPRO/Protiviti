@@ -1165,6 +1165,7 @@ sap.ui.define(
           TaskText: "Task Text",
           Mtd: "MTD",
           Ytd: "YTD",
+          Allocation: "Allocation",
           Project01: "Project 01",
           Customer01: "Customer 01",
           Per01: "Per 01",
@@ -1197,7 +1198,6 @@ sap.ui.define(
           EndDatePlanned02: "End Date Planned 02",
           StartDatePlannned03: "Start Date Planned 03",
           EndDatePlanned03: "End Date Planned 03",
-          Allocation: "Allocation",
         };
         var selectedColumns = [
           "Pernr",
@@ -1212,6 +1212,7 @@ sap.ui.define(
           "TaskText",
           "Mtd",
           "Ytd",
+          "Allocation",
           "Project01",
           "Customer01",
           "Per01",
@@ -1244,7 +1245,6 @@ sap.ui.define(
           "EndDatePlanned02",
           "StartDatePlannned03",
           "EndDatePlanned03",
-          "Allocation",
         ];
         var csvContent =
           selectedColumns.map((col) => columnNames[col] || col).join(",") +
